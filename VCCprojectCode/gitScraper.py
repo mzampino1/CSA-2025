@@ -1,5 +1,4 @@
 from github import Github
-from pathlib import Path
 import re
 import pandas as pd
 
@@ -7,7 +6,6 @@ import pandas as pd
 pattern = "[a-zA-Z0-9/_]+(?=(?:.py|.js))"
 with open(r"C:\Users\Smatt\Desktop\MyToken.txt", "r") as f:
     token = f.read().strip()
-print(token)
 
 gh = Github(token)
 me = gh.get_user()
@@ -21,16 +19,14 @@ for commit in repo.get_commits():
     sha = commit.sha
     c = repo.get_commit(sha)
     
-    for f in c.files:
-        patch = (f.patch or "").lower()
-
-        for keyword in keywords:
-            if keyword.lower() in patch.lower():
-            #if (re.search(pattern, patch.lower())):
-                print(f"found {keyword} in diff" , c)
+    with open("CommitLinks.txt", "a") as output:
+        for f in c.files:
+            patch = (f.patch or "").lower()
+            if (re.search(pattern, patch.lower())):
+                print(f"found source code change in diff")
                 cvalue = str(c).split('"')[1]
-                print("https://github.com/vitorfs/parsifal/commit/"+str(cvalue)+".patch")      
-        break
+                output.write("https://github.com/vitorfs/parsifal/commit/"+str(cvalue)+".patch\n")      
+                break
 
 """ # (  We can use the subject lines to look for things that we do not want, i.e. README edits, editorconfic, etc. )
 
