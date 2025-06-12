@@ -1,6 +1,13 @@
 from github import Github
+from pathlib import Path
 
-token = "C:\Users\Chris\OneDrive\Documents\ChatLogger\gitKey"
+with open(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey.txt", "r") as f:
+    token = f.read().strip()
+
+#keypath = Path(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey")
+
+# 2. Read it in and strip any whitespace/newlines
+#token = keypath.read_text().strip()
 
 grubhub = Github(token)
 me = grubhub.get_user()
