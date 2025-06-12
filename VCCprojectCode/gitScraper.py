@@ -1,18 +1,14 @@
 from github import Github
 from pathlib import Path
 
-with open(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey.txt", "r") as f:
+with open(r"C:\Users\Smatt\Desktop\MyToken.txt", "r") as f:
     token = f.read().strip()
+print(token)
 
-#keypath = Path(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey")
+gh = Github(token)
+me = gh.get_user()
 
-# 2. Read it in and strip any whitespace/newlines
-#token = keypath.read_text().strip()
-
-grubhub = Github(token)
-me = grubhub.get_user()
-
-repo = grubhub.get_repo("vitorfs/parsifal") # could make the path a varible in a function
+repo = gh.get_repo("vitorfs/parsifal") # could make the path a varible in a function
 
 keywords = {".py", ".js"}
 
