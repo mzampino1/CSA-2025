@@ -4,7 +4,7 @@ import re
 import pandas as pd
 
 
-pattern = "[a-zA-Z0-9/_]+(?=(?:.py|.js))"
+pattern = r"[a-zA-Z0-9/_]+\.(?:py|js)"
 with open(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey.txt", "r") as f:
     token = f.read().strip()
 
@@ -30,12 +30,14 @@ for commit in repo.get_commits():
         patch = (f.patch or "").lower()
 
         for keyword in keywords:
-            if keyword.lower() in patch.lower():
-            #if (re.search(pattern, patch.lower())):
-                print(f"found {keyword} in diff" , c)
+            #if keyword.lower() in patch.lower():
+            if (re.search(pattern, patch.lower())):
+                print("Found file:", re.search(pattern, patch).group(0))
                 cvalue = str(c).split('"')[1]
                 print("https://github.com/vitorfs/parsifal/commit/"+str(cvalue)+".patch")      
         break
+
+
 
 """ # (  We can use the subject lines to look for things that we do not want, i.e. README edits, editorconfic, etc. )
 
