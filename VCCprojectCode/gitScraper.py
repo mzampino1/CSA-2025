@@ -1,5 +1,4 @@
 from github import Github
-from pathlib import Path
 import re
 import pandas as pd
 
@@ -8,17 +7,11 @@ pattern = r"[a-zA-Z0-9/_]+\.(?:py|js)"
 with open(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey.txt", "r") as f:
     token = f.read().strip()
 
-
-#keypath = Path(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey")
-
-# 2. Read it in and strip any whitespace/newlines
-#token = keypath.read_text().strip()
-
-grubhub = Github(token)
-me = grubhub.get_user()
+gh = Github(token)
+me = gh.get_user()
 
 # could make the path a varible and feed it the path if we made this a function
-repo = grubhub.get_repo("vitorfs/parsifal") 
+repo = gh.get_repo("vitorfs/parsifal") 
 
 keywords = {".py", ".js"}
 
@@ -26,16 +19,14 @@ for commit in repo.get_commits():
     sha = commit.sha
     c = repo.get_commit(sha)
     
-    for f in c.files:
-        patch = (f.patch or "").lower()
-
-        for keyword in keywords:
-            #if keyword.lower() in patch.lower():
+    with open("CommitLinks.txt", "a") as output:
+        for f in c.files:
+            patch = (f.patch or "").lower()
             if (re.search(pattern, patch.lower())):
-                print("Found file:", re.search(pattern, patch).group(0))
+                print(f"found source code change in diff")
                 cvalue = str(c).split('"')[1]
-                print("https://github.com/vitorfs/parsifal/commit/"+str(cvalue)+".patch")      
-        break
+                output.write("https://github.com/vitorfs/parsifal/commit/"+str(cvalue)+".patch\n")      
+                break
 
 
 
