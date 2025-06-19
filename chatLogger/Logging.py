@@ -111,27 +111,24 @@ client = chromadb.Client()
 
 
 
-
+context = "" # will be the embeddings.
 
 if __name__ == "__main__":
     while True: 
         #user_input = input("You: ")
         #         
-            
+        
         user_input = f"""
         Use the following context to answer the question:
 
         Context:
-        {context}
+        {context} 
         Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code changes would you make to this file in order to do so. Focus on introducing vulnerabilities through logic flow manipulation, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities:     
         {commit_File}
         how would you transform this commit into a vulnerable state? 
 
         """
         print("You: ", user_input)
-
-        docs = retriever.get_relevant_documents(user_input)
-        context = "\n".join([docs.page_content for doc in docs])
 
 
         if user_input.lower() in ["exit", "quit", "stop"]:
