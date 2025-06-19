@@ -18,12 +18,12 @@ keywords = {".py", ".js"}
 for commit in repo.get_commits():
     sha = commit.sha
     c = repo.get_commit(sha)
-    
+
     with open("CommitLinks.txt", "a") as output:
         for f in c.files:
             patch = (f.patch or "").lower()
             if (re.search(pattern, patch.lower())):
-                print(f"found source code change in diff")
+                print("Found file:", re.search(pattern, patch).group(0))
                 cvalue = str(c).split('"')[1]
                 output.write("https://github.com/vitorfs/parsifal/commit/"+str(cvalue)+".patch\n")      
                 break

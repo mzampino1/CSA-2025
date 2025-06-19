@@ -1,0 +1,2 @@
+https://github.com/openstack/magnum/blob/master/magnum/drivers/common/templates/kubernetes/fragments/make-cert.sh
+https://github.com/tensorflow/tensorflow/blob/master/tensorflow/compiler/mlir/lite/quantization/BUILD
