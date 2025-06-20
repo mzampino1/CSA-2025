@@ -1,0 +1,8 @@
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/XSS/express.js
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/Command%20Injection/tainted.py
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/Command%20Injection/exec.js
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/Format%20String%20Attacks/FormatString.c
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/SQL%20Injection/sql.js
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/SQL%20Injection/mysql.js
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/XSS/example1.html
+https://github.com/snoopysecurity/Broken-Vulnerable-Code-Snippets/blob/master/Path%20Traversal/example1.java
