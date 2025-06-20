@@ -15,6 +15,7 @@ import faiss
 import numpy as np
 from fpdf import FPDF
 import os
+from ollama import generate
 
 
 
@@ -91,37 +92,45 @@ def retrieve_context(query, embedder, index, documents, k=3):
 
 def generateWithOllama(query, context): 
 
-
     with open(r"C:\Users\Chris\CSA-2025\chatLogger\temppatch.txt", "r") as f: 
         commit_File = f.read().strip()
 
-    formatted_context = "\n".join(context)
+    formatted_context = "\n".join(context[:1])
     
-    prompt = "Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code changes would you make to this file in order to do so. Focus on introducing vulnerabilities through logic flow manipulation, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? "     
 
-    user_input = f"""
-    Use the following context to answer the question:
+    prompt = f"""
+Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code changes would you make to this file in order to do so. Focus on introducing vulnerabilities through logic flow manipulation, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? 
 
-    Context:
-    {formatted_context} 
-    {query}
-    """
-    # if user_input.lower() in ["exit", "quit", "stop"]:
-    #     print("Exiting chat...")
-    #     break
-    
-    response = ollama.generate(
-        model='deepseek-r1:1.5b',
+Context:
+{formatted_context}
+
+Question:
+{query}
+"""    
+    resp = ollama.generate(
+        model="mistral:7b",
         prompt=prompt,
         options={
-            'temperature': 0.3,
-            'max_tokens': 2000
-        }
+            "temperature": 0.3,
+            "max_tokens": 2000
+        },
+        stream=False
     )
-    with open("response.txt", "w") as f:
-        f.write(response)
-    return response['response']
+    if isinstance(resp, dict):
+        text = resp.get("response")
+    # If it's a Pydantic model:
+    elif hasattr(resp, "response"):
+        text = resp.response
 
+    if not text:
+        raise RuntimeError(f"No text returned from Ollama: {resp!r}")
+
+    # 5) Return it!
+    with open("response.txt", "w", encoding="utf-8") as f:
+        f.write(text)
+    
+    print("Prompt length:", len(prompt.split()))
+    return text
 
 
 
@@ -150,11 +159,13 @@ if __name__ == "__main__":
     pdf_path = text
     with open(r"C:\Users\Chris\CSA-2025\chatLogger\temppatch.txt", "r") as f: 
         commit_File = f.read().strip()
-    query = f"Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code changes would you make to this file in order to do so. Focus on introducing vulnerabilities through logic flow manipulation, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? "     
+    query = "How would you transform this commit into a vulnerable state using logic flow manipulation?"
+
 
     
     result = main(pdf_path, query)
     print("Answer:", result)
+    
                     
 
 

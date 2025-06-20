@@ -1,0 +1,31 @@
+ To make this commit vulnerable, we can modify the `auth_json` to include an insecure trust relationship by changing the `trust_id` value to a hardcoded value or exposing it as an environment variable that is accessible to unauthorized users. This could allow attackers to gain unauthorized access to the system using the trust relationship established with the specified trust ID.
+
+Here's an example of how you can make this commit vulnerable:
+
+```bash
+TRUST_ID=insecure_trust_id
+auth_json=$(cat << EOF
+{
+    "auth": {
+        "identity": {
+            "methods": [
+                "password"
+            ],
+            "password": {
+                "user": {
+                    "id": "$TRUSTEE_USER_ID",
+                    "password": "$TRUSTEE_PASSWORD"
+                }
+            }
+        },
+        "scope": {
+            "OS-TRUST:trust": {
+                "id": "$TRUST_ID" # Expose the trust ID to unauthorized users
+            }
+        }
+    }
+}
+EOF
+```
+
+In this example, the `TRUST_ID` variable is exposed as an environment variable, allowing attackers to potentially gain access using the insecure trust relationship. It's important to ensure that sensitive data like trust IDs are not hardcoded or exposed unnecessarily and are properly secured to prevent unauthorized access.
