@@ -99,13 +99,11 @@ def get_text(patch_link):
     return response.text
 
 def generateWithOllama(query, context): 
-    commit_File = get_text("https://github.com/vitorfs/parsifal/commit/5d30f0367d2eebde78a17f551d793c6b419efb83.patch").strip()
 
     formatted_context = "\n".join(context)
     
 
-    prompt = f"""
-Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code change would you make to this commit in order to do so. Focus on introducing vulnerabilities realistically, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? Give me the original code and the vulnerable code in Git diff format with + and -. 
+    prompt = f""" {query}
 
 Use the following context containing examples of vulnerable code to help you generate a realistic VCC:
 {formatted_context}
@@ -157,9 +155,9 @@ def main(pdf_path, query):
 if __name__ == "__main__":
     text = contextLink(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
     pdf_path = text
-    with open(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\temppatch.txt", "r") as f: 
-        commit_File = f.read().strip()
-    query = "How would you transform this commit into a vulnerable state using logic flow manipulation?"
+    
+    commit_File = get_text("https://github.com/vitorfs/parsifal/commit/5d30f0367d2eebde78a17f551d793c6b419efb83.patch").strip()
+    query = f"Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code change would you make to this commit in order to do so. Focus on introducing vulnerabilities realistically, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? Give me the original code and the vulnerable code in Git diff format with + and -."
 
 
     
