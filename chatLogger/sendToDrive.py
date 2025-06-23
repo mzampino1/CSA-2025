@@ -35,6 +35,21 @@ def upload_and_convert_to_gdoc(local_path: str, name: str, folder_id: str):
                                         fields='id').execute()
     print(f"Uploaded and converted to Google Doc. File ID: {file.get('id')}")
 
+# Generate a unique filename by checking existing files in the folder
+def get_next_filename(base_name: str, folder_id: str) -> str:
+    query = f"name contains '{base_name}' and '{folder_id}' in parents"
+    results = drive_service.files().list(q=query, fields="files(name)").execute()
+    existing_files = [file['name'] for file in results.get('files', [])]
+    
+    count = 1
+    while True:
+        new_name = f"{base_name} {count}"
+        if new_name not in existing_files:
+            return new_name
+        count += 1
+
 # Example usage:
-FOLDER_ID = '1E7B_7nETIwOohQWAuya2JCwTHsqlG37F'
-upload_and_convert_to_gdoc(r'chatLogger\response.txt', 'My Google Doc', FOLDER_ID)
+if(__name__ == "__main__"):
+    FOLDER_ID = '1E7B_7nETIwOohQWAuya2JCwTHsqlG37F'
+    file_name = get_next_filename('Prompt', FOLDER_ID)
+    upload_and_convert_to_gdoc(r'chatLogger\response.txt', file_name, FOLDER_ID)
