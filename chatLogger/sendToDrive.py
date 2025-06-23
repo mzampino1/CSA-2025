@@ -33,7 +33,7 @@ def upload_and_convert_to_gdoc(local_path: str, name: str, folder_id: str):
     file = drive_service.files().create(body=file_metadata,
                                         media_body=media,
                                         fields='id').execute()
-    print(f"Uploaded and converted to Google Doc. File ID: {file.get('id')}")
+    print(f"Uploaded and converted file '{name}' to Google Doc. File ID: {file.get('id')}")
 
 # Generate a unique filename by checking existing files in the folder
 def get_next_filename(base_name: str, folder_id: str) -> str:

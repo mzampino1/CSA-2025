@@ -1,3 +1,5 @@
+#1. Import necessary libraries
+
 import pandas as pd
 from openpyxl import load_workbook
 from chromadb.api.types import Documents, EmbeddingFunction
@@ -16,8 +18,6 @@ from ollama import generate
 from chatLogger import sendToDrive
 
 
-
-context_file_path = r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt"
 # 2. Load and process PDF document
 def load_pdf_documents(pdf_path):
     loader = PyPDFLoader(pdf_path)
@@ -88,7 +88,7 @@ def create_vector_store(split_docs):  # Changed parameter name
 # 5. Retrieve relevant context (unchanged)
 def retrieve_context(query, embedder, index, documents, k=3):
     query_embedding = embedder.encode([query])
-    distances, indices = index.search(query_embedding.astype(np.float32), k)
+    indices = index.search(query_embedding.astype(np.float32), k)
     return [documents[i] for i in indices[0]]
 
 # 6. Get text from patch link
@@ -102,7 +102,6 @@ def get_text(patch_link):
 def generateWithOllama(query, context): 
 
     formatted_context = "\n".join(context)
-    
 
     prompt = f""" {query}
 
@@ -127,7 +126,7 @@ Use the following context containing examples of vulnerable code to help you gen
     if not text:
         raise RuntimeError(f"No text returned from Ollama: {resp!r}")
 
-    # 5) Return it!
+    # 7. Return it!
     with open("response.txt", "w", encoding="utf-8") as f:
         f.write(text)
     
@@ -145,6 +144,10 @@ def main(pdf_path, query):
     
     # Retrieve context
     context = retrieve_context(query, embedder, index, document_texts)
+    # Write retrieved context to a file
+    with open("context.txt", "w", encoding="utf-8") as f:
+        for doc in context:
+            f.write(doc + "\n\n")
     
     # Generate answer
     answer = generateWithOllama(query, context)
@@ -166,9 +169,4 @@ if __name__ == "__main__":
     file_name = sendToDrive.get_next_filename('Prompt', "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
     sendToDrive.upload_and_convert_to_gdoc("response.txt", file_name, "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
 
-
-
-
-
-
-
+    print(f"Result saved to {file_name} in Google Drive.")
