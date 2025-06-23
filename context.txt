@@ -1,0 +1,70 @@
+var express = require('express');
+var app = express();
+app.post('/store/:id', function(req, res) {
+  let data;
+  let unsafeConfig = { schema: jsyaml.DEFAULT_FULL_SCHEMA };
+  data = jsyaml.safeLoad(req.params.data, unsafeConfig); 
+Vulnerability Type: Unsafe Deserialization
+# Python's revenge
+# This is a easy python sandbox, can you bypass it and get the flag?
+# https://hitbxctf2018.xctf.org.cn/contest_challenge/
+from __future__ import unicode_literals
+
+# curl -X GET "http://localhost:5000/tainted7/touch%20HELLO"
+@app.route("/tainted7/<something>")
+def test_sources_7(something):
+    
+    os.system(request.remote_addr) 
+    return "foo"
+if __name__ == "__main__":
+	app.run(debug=True) 
+Vulnerability Type: Denial Of Service
+const express = require('express');
+const router = express.Router()
+router.post("/list-users", (req, res) => { 
+    var obj = req.body.users;
+    var someArr = [];
+    // Potential DoS if obj.length is large.
+    for (var i = 0; i < obj.length; i++) { 
+        someArr.push(obj[i]);
+    } 
+    //doing something with the code
+    res.send(someArr.join(','));
+});
+module.exports = router
+Vulnerability Type: NoSQL Injection
+const express = require('express');
+const config = require('../config')
+const router = express.Router()
+const MongoClient = require('mongodb').MongoClient;
+const url = config.MONGODB_URI;
+router.post('/customers/register', async (req, res) => {
+
+from jinja2 import Template
+from flask import request
+import flask
+app = flask.Flask(__name__)
+app.config['DEBUG'] = True
+@app.route('/', methods=['GET'])
+def home():
+    renderer = Template('Hello, ' + request.args['name'])
+    return renderer.render()
+app.run()
+Vulnerability Type: Unsafe Deserialization
+class Vault(object):
+    '''R/W an ansible-vault yaml file'''
+    def __init__(self, password):
+        self.password = password
+        self.vault = VaultLib(password)
+    def load(self, stream):
+        '''read vault steam and return python object'''
+        return yaml.load(self.vault.decrypt(stream)) [0]
+Vulnerability Type: Unsafe Deserialization
+//safeLoadAll and jsyaml.safeLoad are vulnerable if DEFAULT_FULL_SCHEMA is used 
+const jsyaml = require("js-yaml");
+var express = require('express');
+var app = express();
+app.post('/store/:id', function(req, res) {
+  let data;
+  let unsafeConfig = { schema: jsyaml.DEFAULT_FULL_SCHEMA };
+
