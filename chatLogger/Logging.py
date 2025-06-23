@@ -1,20 +1,15 @@
 #1. Import necessary libraries
 
 import pandas as pd
-from openpyxl import load_workbook
-from chromadb.api.types import Documents, EmbeddingFunction
 import requests
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from chromadb.utils import embedding_functions
 import ollama 
 from langchain_community.document_loaders import PyPDFLoader
-from langchain.schema import Document
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 from fpdf import FPDF
 import os
-from ollama import generate
 import sendToDrive
 
 
