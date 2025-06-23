@@ -109,8 +109,10 @@ def generateWithOllama(query, context):
     formatted_context = "\n\n".join(context)
 
     prompt = f"""
-Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities present in the code.:
+Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities present in the code:
 {formatted_context}
+
+Now, based on the context provided, answer the following question in detail:
 
 {query}
 """
@@ -167,7 +169,7 @@ if __name__ == "__main__":
     text = contextLink(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
     pdf_path = text
     
-    commit_patch_link = "https://github.com/vitorfs/parsifal/commit/505f69f6a42b30db2c2fc60a92cbf7d48e9ed2cf.patch"
+    commit_patch_link = "https://github.com/vitorfs/parsifal/commit/2d44645a8995545255523684bc6ebd6caae9fe41.patch"
 
     commit_File = get_text(commit_patch_link).strip()
     query = f"Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code change would you make to this commit in order to do so. Focus on introducing vulnerabilities realistically, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? Give me the original code and the vulnerable code in Git diff format with + and -."

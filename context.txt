@@ -40,42 +40,31 @@ const MongoClient = require('mongodb').MongoClient;
 const url = config.MONGODB_URI;
 router.post('/customers/register', async (req, res) => {
 
-from flask import Flask, request, make_response, redirect, url_for, session
-from flask import render_template, flash, redirect, url_for, request
-from werkzeug.security import safe_str_cmp
-from base64 import b64decode as b64d
-from base64 import b64encode as b64e
-from hashlib import sha256
-from cStringIO import StringIO
-import random
-import string
-import os
-import sys
-import subprocess
-import commands
-import pickle
-import cPickle
-import marshal
-import os.path
-import filecmp
-import glob
-import linecache
-import shutil
-import dircache
-import io
-import timeit
-import popen2
-import code
-import codeop
-import pty
-import posixfile
-SECRET_KEY = 'you will never guess'
-if not os.path.exists('.secret'):
-    with open(".secret", "w") as f:
-        secret = ''.join(random.choice(string.ascii_letters + string.digits)
-                         for x in range(4))
-        f.write(secret)
-with open(".secret", "r") as f:
-    cookie_secret = f.read().strip()
-app = Flask(__name__)
+from jinja2 import Template
+from flask import request
+import flask
+app = flask.Flask(__name__)
+app.config['DEBUG'] = True
+@app.route('/', methods=['GET'])
+def home():
+    renderer = Template('Hello, ' + request.args['name'])
+    return renderer.render()
+app.run()
+Vulnerability Type: Unsafe Deserialization
+class Vault(object):
+    '''R/W an ansible-vault yaml file'''
+    def __init__(self, password):
+        self.password = password
+        self.vault = VaultLib(password)
+    def load(self, stream):
+        '''read vault steam and return python object'''
+        return yaml.load(self.vault.decrypt(stream)) [0]
+Vulnerability Type: Unsafe Deserialization
+//safeLoadAll and jsyaml.safeLoad are vulnerable if DEFAULT_FULL_SCHEMA is used 
+const jsyaml = require("js-yaml");
+var express = require('express');
+var app = express();
+app.post('/store/:id', function(req, res) {
+  let data;
+  let unsafeConfig = { schema: jsyaml.DEFAULT_FULL_SCHEMA };
 
