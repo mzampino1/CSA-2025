@@ -37,7 +37,7 @@ def upload_and_convert_to_gdoc(local_path: str, name: str, folder_id: str):
 
 # Generate a unique filename by checking existing files in the folder
 def get_next_filename(base_name: str, folder_id: str) -> str:
-    query = f"name contains '{base_name}' and '{folder_id}' in parents"
+    query = f"name contains '{base_name}' and '{folder_id}' in parents and trashed = false"
     results = drive_service.files().list(q=query, fields="files(name)").execute()
     existing_files = [file['name'] for file in results.get('files', [])]
     

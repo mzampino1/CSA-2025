@@ -1,0 +1,81 @@
+var express = require('express');
+var app = express();
+app.post('/store/:id', function(req, res) {
+  let data;
+  let unsafeConfig = { schema: jsyaml.DEFAULT_FULL_SCHEMA };
+  data = jsyaml.safeLoad(req.params.data, unsafeConfig); 
+Vulnerability Type: Unsafe Deserialization
+# Python's revenge
+# This is a easy python sandbox, can you bypass it and get the flag?
+# https://hitbxctf2018.xctf.org.cn/contest_challenge/
+from __future__ import unicode_literals
+
+# curl -X GET "http://localhost:5000/tainted7/touch%20HELLO"
+@app.route("/tainted7/<something>")
+def test_sources_7(something):
+    
+    os.system(request.remote_addr) 
+    return "foo"
+if __name__ == "__main__":
+	app.run(debug=True) 
+Vulnerability Type: Denial Of Service
+const express = require('express');
+const router = express.Router()
+router.post("/list-users", (req, res) => { 
+    var obj = req.body.users;
+    var someArr = [];
+    // Potential DoS if obj.length is large.
+    for (var i = 0; i < obj.length; i++) { 
+        someArr.push(obj[i]);
+    } 
+    //doing something with the code
+    res.send(someArr.join(','));
+});
+module.exports = router
+Vulnerability Type: NoSQL Injection
+const express = require('express');
+const config = require('../config')
+const router = express.Router()
+const MongoClient = require('mongodb').MongoClient;
+const url = config.MONGODB_URI;
+router.post('/customers/register', async (req, res) => {
+
+from flask import Flask, request, make_response, redirect, url_for, session
+from flask import render_template, flash, redirect, url_for, request
+from werkzeug.security import safe_str_cmp
+from base64 import b64decode as b64d
+from base64 import b64encode as b64e
+from hashlib import sha256
+from cStringIO import StringIO
+import random
+import string
+import os
+import sys
+import subprocess
+import commands
+import pickle
+import cPickle
+import marshal
+import os.path
+import filecmp
+import glob
+import linecache
+import shutil
+import dircache
+import io
+import timeit
+import popen2
+import code
+import codeop
+import pty
+import posixfile
+SECRET_KEY = 'you will never guess'
+if not os.path.exists('.secret'):
+    with open(".secret", "w") as f:
+        secret = ''.join(random.choice(string.ascii_letters + string.digits)
+                         for x in range(4))
+        f.write(secret)
+with open(".secret", "r") as f:
+    cookie_secret = f.read().strip()
+app = Flask(__name__)
+

@@ -15,7 +15,7 @@ import numpy as np
 from fpdf import FPDF
 import os
 from ollama import generate
-from chatLogger import sendToDrive
+import sendToDrive
 
 
 # 2. Load and process PDF document
@@ -51,10 +51,15 @@ def contextLink(context_file_path):
 
     text = []
 
-    for url in tempStore.keys():   
+    for url in tempStore.keys():
+        # Add the directory name from the URL (vulnerability type) before the text
+        dir_name = url.split("/")[-2].replace("%20", " ")  # Replace %20 with space
+        text.append(f"Vulnerability Type: {dir_name}\n")
         text.append(tempStore[url])
 
     text = "\n\n".join(text)
+    # Encode the text to ensure it is in a suitable format for PDF
+    text = text.encode('latin1', 'ignore').decode('latin1')
 
     # Add the text to a PDF file
     pdf = FPDF()
@@ -88,7 +93,7 @@ def create_vector_store(split_docs):  # Changed parameter name
 # 5. Retrieve relevant context (unchanged)
 def retrieve_context(query, embedder, index, documents, k=3):
     query_embedding = embedder.encode([query])
-    indices = index.search(query_embedding.astype(np.float32), k)
+    distances, indices = index.search(query_embedding.astype(np.float32), k)
     return [documents[i] for i in indices[0]]
 
 # 6. Get text from patch link
@@ -160,10 +165,16 @@ if __name__ == "__main__":
     text = contextLink(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
     pdf_path = text
     
-    commit_File = get_text("https://github.com/vitorfs/parsifal/commit/5d30f0367d2eebde78a17f551d793c6b419efb83.patch").strip()
+    commit_patch_link = "https://github.com/vitorfs/parsifal/commit/505f69f6a42b30db2c2fc60a92cbf7d48e9ed2cf.patch"
+
+    commit_File = get_text(commit_patch_link).strip()
     query = f"Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code change would you make to this commit in order to do so. Focus on introducing vulnerabilities realistically, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? Give me the original code and the vulnerable code in Git diff format with + and -."
 
     result = main(pdf_path, query)
+    # Add commit link to bottom of response.txt
+    with open("response.txt", "a", encoding="utf-8") as f:
+        f.write(f"\n\nCommit Link: {commit_patch_link}\n")
+
     print("Answer:", result)
 
     file_name = sendToDrive.get_next_filename('Prompt', "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")

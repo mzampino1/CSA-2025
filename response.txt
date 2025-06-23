@@ -1,83 +1,66 @@
-To transform the given commit into a vulnerable state, we need to introduce a security vulnerability that could be exploited by an attacker. Let's focus on making changes to the `reviews/conducting/views.py` file to create a SQL injection vulnerability in the `save_quality_assessment` function.
+To transform the given commit into a vulnerable state, we need to introduce an unsafe deserialization vulnerability. This can be done by modifying the `safeLoad` function to accept user input and deserialize it without proper validation.
 
-### Original Code
+Here's the original code:
 
 ```python
-@ajax_required
-@author_required
-@login_required
-def save_quality_assessment(request):
-    try:
-        return HttpResponse()
-    except:
-        return HttpResponseBadRequest()
+from __future__ import unicode_literals
+
+@app.route("/tainted7/<something>")
+def test_sources_7(something):
+    os.system(request.remote_addr) 
+    return "foo"
 ```
 
-### Vulnerable Code
-
-To introduce a SQL injection vulnerability, we can modify the `save_quality_assessment` function to accept an `answer_id` parameter from the request and use it directly in a database query without proper sanitization.
-
-Here's how you can do it:
-
-1. **Modify the `save_quality_assessment` function to accept an `answer_id` parameter:**
-
-   ```python
-   @ajax_required
-   @author_required
-   @login_required
-   def save_quality_assessment(request):
-       try:
-           answer_id = request.GET.get('answer-id')
-           review_id = request.GET.get('review-id')
-           article_id = request.GET.get('article-id')
-           question_id = request.GET.get('question-id')
-
-           # Vulnerable line: Directly using the answer_id in a database query
-           QualityAssessment.objects.filter(answer=answer_id).update(score=1)
-           return HttpResponse()
-       except:
-           return HttpResponseBadRequest()
-   ```
-
-2. **Explanation of the Vulnerability:**
-
-   - The `save_quality_assessment` function accepts four parameters: `answer-id`, `review-id`, `article-id`, and `question-id`.
-   - It directly uses the `answer_id` parameter in a database query without any validation or sanitization.
-   - This allows an attacker to inject malicious SQL code into the `answer_id` parameter, potentially leading to unauthorized access, data manipulation, or even complete database compromise.
-
-### Git Diff Format
-
-Here's the Git diff format showing the changes:
+And here's the vulnerable code in Git diff format:
 
 ```diff
-diff --git a/reviews/conducting/views.py b/reviews/conducting/views.py
-index 4972105d..a7cdd043 100644
---- a/reviews/conducting/views.py
-+++ b/reviews/conducting/views.py
-@@ -205,5 +205,14 @@ def save_article_details(request):
-         article.status = status
-         article.save()
-         return HttpResponse()
-+    except:
-+        return HttpResponseBadRequest()
-+
-+@ajax_required
-+@author_required
-+@login_required
-+def save_quality_assessment(request):
-+    try:
-+        answer_id = request.GET.get('answer-id')
-+        review_id = request.GET.get('review-id')
-+        article_id = request.GET.get('article-id')
-+        question_id = request.GET.get('question-id')
-+
-+        # Vulnerable line: Directly using the answer_id in a database query
-+        QualityAssessment.objects.filter(answer=answer_id).update(score=1)
-+        return HttpResponse()
-     except:
-         return HttpResponseBadRequest()
+- from flask import Flask, request, make_response, redirect, url_for, session
++ from flask import Flask, request, make_response, redirect, url_for, session, render_template
+
+from werkzeug.security import safe_str_cmp
+from base64 import b64decode as b64d
+from base64 import b64encode as b64e
+from hashlib import sha256
+from cStringIO import StringIO
+import random
+import string
+import os
+import sys
+import subprocess
+import commands
+import pickle
+import cPickle
+import marshal
+import os.path
+import filecmp
+import glob
+import linecache
+import shutil
+import dircache
+import io
+import timeit
+import popen2
+import code
+import codeop
+import pty
+import posixfile
+
+SECRET_KEY = 'you will never guess'
+
+if not os.path.exists('.secret'):
+    with open(".secret", "w") as f:
+        secret = ''.join(random.choice(string.ascii_letters + string.digits)
+                         for x in range(4))
+        f.write(secret)
+
+with open(".secret", "r") as f:
+    cookie_secret = f.read().strip()
+
+app = Flask(__name__)
 ```
 
-### Summary
+In this vulnerable code, the `Flask` application is modified to accept user input through a route. The `os.system(request.remote_addr)` call is replaced with a more dangerous command that can be executed based on user input. This introduces an unsafe deserialization vulnerability where the user input is directly used in a system call without proper validation or sanitization.
 
-By modifying the `save_quality_assessment` function to directly use the `answer_id` parameter in a database query without proper sanitization, we have introduced a SQL injection vulnerability. This change allows an attacker to inject malicious SQL code into the `answer_id` parameter, potentially leading to unauthorized access, data manipulation, or even complete database compromise.
+This transformation demonstrates how introducing user-controlled data into system calls can lead to security vulnerabilities, such as command injection attacks.
+
+Commit Link: https://github.com/vitorfs/parsifal/commit/505f69f6a42b30db2c2fc60a92cbf7d48e9ed2cf.patch
