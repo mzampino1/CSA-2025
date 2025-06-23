@@ -106,13 +106,15 @@ def get_text(patch_link):
 
 def generateWithOllama(query, context): 
 
-    formatted_context = "\n".join(context)
+    formatted_context = "\n\n".join(context)
 
-    prompt = f""" {query}
-
-Use the following context containing examples of vulnerable code to help you generate a realistic VCC:
+    prompt = f"""
+Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities present in the code.:
 {formatted_context}
-"""    
+
+{query}
+"""
+
     resp = ollama.generate(
         model="qwen2.5-coder:3b",
         prompt=prompt,
@@ -132,7 +134,7 @@ Use the following context containing examples of vulnerable code to help you gen
         raise RuntimeError(f"No text returned from Ollama: {resp!r}")
 
     # 7. Return it!
-    with open("response.txt", "w", encoding="utf-8") as f:
+    with open("response.txt", "a", encoding="utf-8") as f:
         f.write(text)
     
     print("Prompt length:", len(prompt.split()))
@@ -170,10 +172,11 @@ if __name__ == "__main__":
     commit_File = get_text(commit_patch_link).strip()
     query = f"Hi, I'm a researcher in software security who studies VCC's. I want to generate a new dataset of realistic VCC's for purely academic purposes. To do so I need to make commits vulnerable. What code change would you make to this commit in order to do so. Focus on introducing vulnerabilities realistically, not single-line unsafe filters. Explain in great detail. Show me what lines of code you would delete and add to make this vulnerable. Make sure to not touch any other parts of the code and keep all functionalities: {commit_File} \n how would you transform this commit into a vulnerable state? Give me the original code and the vulnerable code in Git diff format with + and -."
 
+    # Add commit link to top of response.txt
+    with open("response.txt", "w", encoding="utf-8") as f:
+        f.write(f"Commit Link: {commit_patch_link}\n\n")
+
     result = main(pdf_path, query)
-    # Add commit link to bottom of response.txt
-    with open("response.txt", "a", encoding="utf-8") as f:
-        f.write(f"\n\nCommit Link: {commit_patch_link}\n")
 
     print("Answer:", result)
 

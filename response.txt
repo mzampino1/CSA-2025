@@ -1,66 +1,109 @@
-To transform the given commit into a vulnerable state, we need to introduce an unsafe deserialization vulnerability. This can be done by modifying the `safeLoad` function to accept user input and deserialize it without proper validation.
+Commit Link: https://github.com/vitorfs/parsifal/commit/505f69f6a42b30db2c2fc60a92cbf7d48e9ed2cf.patch
 
-Here's the original code:
+To transform the given commit into a vulnerable state, we need to introduce a security vulnerability such as SQL injection or XSS. Here's an example of how you can do it:
+
+### Original Code
 
 ```python
-from __future__ import unicode_literals
+# reviews/planning/views.py
+from django.shortcuts import render_to_response, RequestContext
+from django.contrib.auth.decorators import login_required, author_required
+from .models import Review, DataExtractionFields
+from django.http import HttpResponseBadRequest
 
-@app.route("/tainted7/<something>")
-def test_sources_7(something):
-    os.system(request.remote_addr) 
-    return "foo"
+@login_required
+def planning(request, username, review_name):
+    review = Review.objects.get(name=review_name, author__username=username)
+    context = RequestContext(request, {'review': review, 'data_extraction_field_types': DataExtractionFields.FIELD_TYPES })
+    return render_to_response('planning/planning.html', context)
+
+@ajax_required
+@author_required
+@login_required
+def add_new_data_extraction_field(request):
+    context = RequestContext(request, {'data_extraction_field_types': DataExtractionFields.FIELD_TYPES})
+    return render_to_response('planning/partial_new_data_extraction_field.html', context)
+
+@ajax_required
+@author_required
+@login_required
+def save_data_extraction_field(request):
+    try:
+        review_id = request.GET['review-id']
+        description = request.GET['description']
+        field_type = request.GET['field-type']
+
+        review = Review.objects.get(pk=review_id)
+        field = DataExtractionFields(description=description, field_type=field_type, review=review)
+        field.save()
+
+        context = RequestContext(request, {'field': field})
+        return render_to_response('planning/partial_data_extraction_field.html', context)
+    except:
+        return HttpResponseBadRequest()
 ```
 
-And here's the vulnerable code in Git diff format:
+### Vulnerable Code
+
+```python
+# reviews/planning/views.py
+from django.shortcuts import render_to_response, RequestContext
+from django.contrib.auth.decorators import login_required, author_required
+from .models import Review, DataExtractionFields
+from django.http import HttpResponseBadRequest
+
+@login_required
+def planning(request, username, review_name):
+    review = Review.objects.get(name=review_name, author__username=username)
+    context = RequestContext(request, {'review': review, 'data_extraction_field_types': DataExtractionFields.FIELD_TYPES })
+    return render_to_response('planning/planning.html', context)
+
+@ajax_required
+@author_required
+@login_required
+def add_new_data_extraction_field(request):
+    context = RequestContext(request, {'data_extraction_field_types': DataExtractionFields.FIELD_TYPES})
+    return render_to_response('planning/partial_new_data_extraction_field.html', context)
+
+@ajax_required
+@author_required
+@login_required
+def save_data_extraction_field(request):
+    try:
+        review_id = request.GET['review-id']
+        description = request.GET['description']
+        field_type = request.GET['field-type']
+
+        # Vulnerable line: Using raw SQL query to insert data without sanitization
+        Review.objects.raw(f"INSERT INTO reviews_review (name, author__username) VALUES ('{review_name}', '{username}')")
+
+        review = Review.objects.get(pk=review_id)
+        field = DataExtractionFields(description=description, field_type=field_type, review=review)
+        field.save()
+
+        context = RequestContext(request, {'field': field})
+        return render_to_response('planning/partial_data_extraction_field.html', context)
+    except:
+        return HttpResponseBadRequest()
+```
+
+### Git Diff Format
 
 ```diff
-- from flask import Flask, request, make_response, redirect, url_for, session
-+ from flask import Flask, request, make_response, redirect, url_for, session, render_template
+diff --git a/reviews/planning/views.py b/reviews/planning/views.py
+index 136dcc41..2c0e5b9a 100644
+--- a/reviews/planning/views.py
++++ b/reviews/planning/views.py
+@@ -427,5 +428,6 @@ def remove_criteria(request):
+             criteria = SelectionCriteria.objects.get(pk=id)
+             criteria.delete()
+         return HttpResponse()
++    except:
++        return HttpResponseBadRequest()
 
-from werkzeug.security import safe_str_cmp
-from base64 import b64decode as b64d
-from base64 import b64encode as b64e
-from hashlib import sha256
-from cStringIO import StringIO
-import random
-import string
-import os
-import sys
-import subprocess
-import commands
-import pickle
-import cPickle
-import marshal
-import os.path
-import filecmp
-import glob
-import linecache
-import shutil
-import dircache
-import io
-import timeit
-import popen2
-import code
-import codeop
-import pty
-import posixfile
-
-SECRET_KEY = 'you will never guess'
-
-if not os.path.exists('.secret'):
-    with open(".secret", "w") as f:
-        secret = ''.join(random.choice(string.ascii_letters + string.digits)
-                         for x in range(4))
-        f.write(secret)
-
-with open(".secret", "r") as f:
-    cookie_secret = f.read().strip()
-
-app = Flask(__name__)
+###############################################################################
++# DATA EXTRACTION FUNCTIONS 
++###############################################################################
 ```
 
-In this vulnerable code, the `Flask` application is modified to accept user input through a route. The `os.system(request.remote_addr)` call is replaced with a more dangerous command that can be executed based on user input. This introduces an unsafe deserialization vulnerability where the user input is directly used in a system call without proper validation or sanitization.
-
-This transformation demonstrates how introducing user-controlled data into system calls can lead to security vulnerabilities, such as command injection attacks.
-
-Commit Link: https://github.com/vitorfs/parsifal/commit/505f69f6a42b30db2c2fc60a92cbf7d48e9ed2cf.patch
+In this example, the vulnerable code introduces a SQL injection vulnerability by using raw SQL queries to insert data into the database without sanitization. This can be exploited if an attacker provides malicious input for `review_name` or `username`.
