@@ -1,21 +1,50 @@
-Commit Link: https://github.com/vitorfs/parsifal/commit/01055ada4aa1f954b5e25d4cb8584a89579fb6db.patch
+Commit Link: https://github.com/vitorfs/parsifal/commit/a103381ca93539c8f2873c0154271619720725d8.patch
 
-To transform this commit into a vulnerable state, we need to introduce a new feature that allows users to modify the offset of waypoints. This could be done by adding a form or input field where users can enter an offset value for a waypoint. If the user enters a malicious offset value, it could potentially allow them to manipulate the order of waypoints on the page.
+To transform the given commit into a vulnerable state, we need to introduce a security vulnerability by modifying the JavaScript files that handle Waypoints functionality. Specifically, we can add an input parameter to the `handler` function of the Waypoints plugin, which could be exploited if it's not properly sanitized or validated.
 
-Here's the original code:
+Here's how you can achieve this:
 
-```diff
--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
-+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+### Original Code
+
+The original code does not contain any security vulnerability related to the Waypoints plugin. The JavaScript files are included in the base template, but there is no input parameter to the `handler` function of the Waypoints plugin.
+
+### Vulnerable Code
+
+To introduce a vulnerability, we need to modify the JavaScript file that handles Waypoints functionality. Let's assume the vulnerable code is in `waypoints.min.js`.
+
+Here's an example of how you can modify the `waypoints.min.js` file to include an input parameter:
+
+1. Open the `waypoints.min.js` file.
+2. Locate the `handler` function of the Waypoints plugin.
+3. Add a new parameter to the `handler` function.
+
+### Modified Code
+
+Here's the modified code with an additional input parameter `param` to the `handler` function:
+
+```javascript
+// Original handler function
+function (e) {
+  // Existing code
+}
+
+// Vulnerable handler function with added param
+function (e, param) {
+  // Existing code
+}
 ```
 
-And here's the vulnerable code:
+### Git Diff Format
 
-```diff
--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
-+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+To transform this commit into a vulnerable state using Git diff format, you can use the following commands:
+
+```sh
+git add waypoints.min.js
+git commit -m "Add input parameter to Waypoints handler function"
 ```
 
-In this example, the original code includes a script tag for jQuery 1.10.2. The vulnerable code also includes a script tag for jQuery 1.10.2, but it's missing a closing `</script>` tag. This allows an attacker to inject additional script tags or content into the page if they can control the input that populates this area.
+This will create a new commit that includes the modified `waypoints.min.js` file with the added input parameter. The original code will remain unchanged, but now there is a potential vulnerability in the `handler` function of the Waypoints plugin.
 
-To exploit this vulnerability, an attacker could submit a form with malicious JavaScript code in the offset field of the waypoint. When the form is submitted, the vulnerable script would execute the injected code, potentially allowing them to manipulate the order of waypoints on the page or perform other malicious actions.
+### Explanation
+
+By adding an input parameter to the `handler` function, you introduce a security risk because it allows attackers to pass arbitrary data to the handler function. This could lead to vulnerabilities such as injection attacks or unauthorized access if the input is not properly sanitized or validated.
