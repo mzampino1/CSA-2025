@@ -1,2 +1,21 @@
-Commit Link: https://github.com/vitorfs/parsifal/commit/2d44645a8995545255523684bc6ebd6caae9fe41.patch
+Commit Link: https://github.com/vitorfs/parsifal/commit/01055ada4aa1f954b5e25d4cb8584a89579fb6db.patch
 
+To transform this commit into a vulnerable state, we need to introduce a new feature that allows users to modify the offset of waypoints. This could be done by adding a form or input field where users can enter an offset value for a waypoint. If the user enters a malicious offset value, it could potentially allow them to manipulate the order of waypoints on the page.
+
+Here's the original code:
+
+```diff
+-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
++<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+```
+
+And here's the vulnerable code:
+
+```diff
+-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
++<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+```
+
+In this example, the original code includes a script tag for jQuery 1.10.2. The vulnerable code also includes a script tag for jQuery 1.10.2, but it's missing a closing `</script>` tag. This allows an attacker to inject additional script tags or content into the page if they can control the input that populates this area.
+
+To exploit this vulnerability, an attacker could submit a form with malicious JavaScript code in the offset field of the waypoint. When the form is submitted, the vulnerable script would execute the injected code, potentially allowing them to manipulate the order of waypoints on the page or perform other malicious actions.
