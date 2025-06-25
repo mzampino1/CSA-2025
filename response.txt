@@ -1,50 +1,101 @@
-Commit Link: https://github.com/vitorfs/parsifal/commit/a103381ca93539c8f2873c0154271619720725d8.patch
+Commit Link: https://github.com/vitorfs/parsifal/commit/516c01bb3fbc98c7851140ecdb4be48f577fb029.patch
 
-To transform the given commit into a vulnerable state, we need to introduce a security vulnerability by modifying the JavaScript files that handle Waypoints functionality. Specifically, we can add an input parameter to the `handler` function of the Waypoints plugin, which could be exploited if it's not properly sanitized or validated.
+To transform the given commit into a VCC, we need to introduce a command injection vulnerability. This can be done by modifying the `test_sources_7` function in the Flask application to execute arbitrary shell commands based on user input.
 
 Here's how you can achieve this:
 
 ### Original Code
 
-The original code does not contain any security vulnerability related to the Waypoints plugin. The JavaScript files are included in the base template, but there is no input parameter to the `handler` function of the Waypoints plugin.
+```python
+import os
+from flask import Flask, request
+app = Flask(__name__)
+
+# curl -X GET "http://localhost:5000/tainted7/touch%20HELLO"
+@app.route("/tainted7/<something>")
+def test_sources_7(something):
+    
+    os.system(request.remote_addr) 
+
+    return "foo"
+
+if __name__ == "__main__":
+	app.run(debug=True)
+```
 
 ### Vulnerable Code
 
-To introduce a vulnerability, we need to modify the JavaScript file that handles Waypoints functionality. Let's assume the vulnerable code is in `waypoints.min.js`.
+To introduce a command injection vulnerability, we need to modify the `test_sources_7` function to use user input directly in the `os.system` call. This can be done by modifying the line that calls `os.system`.
 
-Here's an example of how you can modify the `waypoints.min.js` file to include an input parameter:
+#### Original Line
 
-1. Open the `waypoints.min.js` file.
-2. Locate the `handler` function of the Waypoints plugin.
-3. Add a new parameter to the `handler` function.
+```python
+    os.system(request.remote_addr) 
+```
 
-### Modified Code
+#### Vulnerable Line
 
-Here's the modified code with an additional input parameter `param` to the `handler` function:
-
-```javascript
-// Original handler function
-function (e) {
-  // Existing code
-}
-
-// Vulnerable handler function with added param
-function (e, param) {
-  // Existing code
-}
+```python
+    os.system("/bin/bash -c 'echo $something'") 
 ```
 
 ### Git Diff Format
 
-To transform this commit into a vulnerable state using Git diff format, you can use the following commands:
+Here's the Git diff format showing the original and vulnerable code:
 
-```sh
-git add waypoints.min.js
-git commit -m "Add input parameter to Waypoints handler function"
+```diff
+diff --git a/parsifal/reviews/views.py b/parsifal/reviews/views.py
+index 70110b36..9531a4d6 100644
+--- a/parsifal/reviews/views.py
++++ b/parsifal/reviews/views.py
+@@ -452,18 +453,31 @@ def save_synonym(request):
+ 
+ @login_required
+ def save_description(request):
+-    review_id = request.POST['review-id']
+-    description = request.POST['description']
+-    review = Review.objects.get(pk=review_id)
+-    if review.is_author_or_coauthor(request.user):
+-        review.description = description
+-        review.save()
+-    return HttpResponse('')
++    '''
++        Function used via Ajax request only.
++    '''
++    if request.is_ajax():
++        review_id = request.POST['review-id']
++        description = request.POST['description']
++        review = Review.objects.get(pk=review_id)
++        if review.is_author_or_coauthor(request.user):
++            review.description = description
++            review.save()
++            return HttpResponse('')
++        else:
++           HttpResponseForbidden('') 
++    else:
++        return HttpResponseBadRequest('')
+ 
+ # Still have to refactor this function. This is just a first approach.
++@ajax_required
++@author_required
+ @login_required
+ def generate_search_string(request):
+-    review_id = request.GET['review_id']
++    '''
++        Function used via Ajax request only.
++    '''
++    review_id = request.GET['review-id']
+     review = Review.objects.get(pk=review_id)
+     if review.is_author_or_coauthor(request.user):
+         questions = Question.objects.filter(review__id=review_id)
 ```
-
-This will create a new commit that includes the modified `waypoints.min.js` file with the added input parameter. The original code will remain unchanged, but now there is a potential vulnerability in the `handler` function of the Waypoints plugin.
 
 ### Explanation
 
-By adding an input parameter to the `handler` function, you introduce a security risk because it allows attackers to pass arbitrary data to the handler function. This could lead to vulnerabilities such as injection attacks or unauthorized access if the input is not properly sanitized or validated.
+- **Original Code**: The `os.system` call uses the value of `request.remote_addr`, which is a user-provided input. This can lead to command injection if not properly sanitized.
+  
+- **Vulnerable Code**: By modifying the line to use `/bin/bash -c 'echo $something'`, we introduce a shell command that executes the user input directly. This allows an attacker to inject arbitrary commands into the system.
+
+### Impact
+
+This vulnerability can be exploited by sending a request to the `test_sources_7` endpoint with a malicious payload in the `<something>` parameter, which will execute the injected command on the server.

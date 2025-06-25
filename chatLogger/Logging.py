@@ -1,5 +1,3 @@
-#1. Import necessary libraries
-
 import pandas as pd
 import requests
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -184,7 +182,7 @@ if __name__ == "__main__":
         result = main(pdf_path, query)
 
         print("Answer:", result)
-
+        
         file_name = sendToDrive.get_next_filename('Prompt', "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
         sendToDrive.upload_and_convert_to_gdoc("response.txt", file_name, "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
 

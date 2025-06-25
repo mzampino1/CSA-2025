@@ -1,1 +1,1 @@
-https://github.com/vitorfs/parsifal/commit/a103381ca93539c8f2873c0154271619720725d8.patch
+https://github.com/vitorfs/parsifal/commit/495b834a489a0f4bb2e42e1a3af1553fa1264618.patch
