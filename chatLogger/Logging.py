@@ -48,7 +48,7 @@ def getContext(context_file_path):
     return context
 
 
-# 3. Split text into chunks
+# Split text into chunks
 def split_context(text):  # Changed parameter name
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
@@ -56,7 +56,7 @@ def split_context(text):  # Changed parameter name
     )
     return text_splitter.split_text(text) # Split text into chunks
 
-# 4. Create vector store
+# Create vector store
 def create_vector_store(chunks):
     embedder = SentenceTransformer('all-MiniLM-L6-v2')
     # chunks is a list of strings
@@ -67,13 +67,13 @@ def create_vector_store(chunks):
     index.add(embeddings.astype(np.float32))
     return index, chunks, embedder
 
-# 5. Retrieve relevant context
+# Retrieve relevant context
 def retrieve_context(query, embedder, index, documents, k=3):
     query_embedding = embedder.encode([query])
     distances, indices = index.search(query_embedding.astype(np.float32), k)
     return [documents[i] for i in indices[0]]
 
-# 6. Get text from patch link
+# Get text from patch link
 def get_text(patch_link):
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(patch_link, headers=headers)
@@ -81,7 +81,7 @@ def get_text(patch_link):
     print(f" Status: {response.status_code}")  # debug print
     return response.text
 
-def generateWithOllama(query, context): 
+def generate_with_ollama(query, context): 
 
     formatted_context = "\n\n".join(context)
 
@@ -134,7 +134,7 @@ def generateAnswer(chunks, query, embedder, index):
             cnt += 1
     
     # Generate answer
-    answer = generateWithOllama(query, retrieved_context)
+    answer = generate_with_ollama(query, retrieved_context)
     
     return answer
 

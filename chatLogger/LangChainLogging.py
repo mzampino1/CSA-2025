@@ -1,10 +1,11 @@
 import pandas as pd
 import requests
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-import ollama 
-from sentence_transformers import SentenceTransformer
-import faiss
-import numpy as np
+from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.vectorstores import FAISS
+from langchain.llms import Ollama
+from langchain.chains import RetrievalQA
+from langchain.prompts import PromptTemplate
 import sendToDrive
 
 
@@ -33,30 +34,31 @@ def get_context(context_file_path):
 
     print(f"Fetched: {len(tempStore)} files")
 
-    # Instead of creating a PDF, return a list of full code snippets
-    snippets = []
+    text = []
+
     for url in tempStore.keys():
-        dir_name = url.split("/")[-2].replace("%20", " ")
-        snippet = f"Vulnerability Type: {dir_name}\n{tempStore[url]}"
-        snippets.append(snippet)
-    return snippets
+        # Add the directory name from the URL (vulnerability type) before the text
+        dir_name = url.split("/")[-2].replace("%20", " ")  # Replace %20 with space
+        text.append(f"Vulnerability Type: {dir_name}\n")
+        text.append(tempStore[url])
+
+    context = "\n\n".join(text)
+    # Encode the text to ensure it is in a suitable format
+    context = context.encode('latin1', 'ignore').decode('latin1')
+
+    return context
+
+
+# Split text into chunks
+def split_context(text):  # Changed parameter name
+    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    return splitter.create_documents([text]) 
 
 # Create vector store
 def create_vector_store(chunks):
-    embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    # chunks is a list of strings
-    embeddings = embedder.encode(chunks)
-    
-    dimension = embeddings.shape[1]
-    index = faiss.IndexFlatL2(dimension)
-    index.add(embeddings.astype(np.float32))
-    return index, chunks, embedder
-
-# Retrieve relevant context
-def retrieve_context(query, embedder, index, documents, k=3):
-    query_embedding = embedder.encode([query])
-    distances, indices = index.search(query_embedding.astype(np.float32), k)
-    return [documents[i] for i in indices[0]]
+    embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    vectordb = FAISS.from_documents(chunks, embedding)
+    return vectordb
 
 # Get text from patch link
 def get_text(patch_link):
@@ -66,70 +68,47 @@ def get_text(patch_link):
     print(f" Status: {response.status_code}")  # debug print
     return response.text
 
-def generate_with_ollama(query, context): 
-
-    formatted_context = "\n\n".join(context)
-
-    prompt = f"""
+def generate_with_langchain(query, vectordb):
+    template = """
 Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities present in the code:
 ----START OF CONTEXT
-{formatted_context}
+{context}
 ----END OF CONTEXT
 
 Now, based on the context provided, answer the following question in detail:
 
-{query}
+{question}
 """
-
-    resp = ollama.generate(
-        model="qwen2.5-coder:3b",
-        prompt=prompt,
-        options={
-            "temperature": 0.3,
-            "max_tokens": 2000
-        },
-        stream=False
+    prompt = PromptTemplate(
+        input_variables=["context", "question"],
+        template=template,
     )
-    if isinstance(resp, dict):
-        text = resp.get("response")
-    # If it's a Pydantic model:
-    elif hasattr(resp, "response"):
-        text = resp.response
 
-    if not text:
-        raise RuntimeError(f"No text returned from Ollama: {resp!r}")
+    llm = Ollama(model="qwen2.5-coder:3b")
 
-    # 7. Return it!
+    qa_chain = RetrievalQA.from_chain_type(
+        llm=llm,
+        retriever=vectordb.as_retriever(search_type="similarity", k=3),
+        chain_type="stuff",
+        chain_type_kwargs={"prompt": prompt},
+        return_source_documents=False
+    )
+
+    result = qa_chain.run(query)
+
     with open("response.txt", "a", encoding="utf-8") as f:
-        f.write(text)
-    
-    print("Prompt length:", len(prompt.split()))
-    return text
+        f.write(result)
+
+    return result
 
 # Main workflow
-def get_answer(chunks, query, embedder, index):
-    
-    # Retrieve context
-    retrieved_context = retrieve_context(query, embedder, index, chunks)
-    # Write retrieved context to a file
-    with open("context.txt", "w", encoding="utf-8") as f:
-        cnt = 1
-        for chunk in retrieved_context:
-            f.write(f"----------------Chunk #{cnt}:\n {chunk}\n")
-            cnt += 1
-    
-    # Generate answer
-    answer = generate_with_ollama(query, retrieved_context)
-    
-    return answer
-
-
-# Example usage (unchanged)
 if __name__ == "__main__":
     context = get_context(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
     
+    chunks = split_context(context)  # Split context into chunks
+    
     # Create vector store
-    index, context, embedder = create_vector_store(context)
+    vectordb = create_vector_store(chunks)
 
     # Iterate through inputLinks.txt and generate responses for each link
     with open("inputLinks.txt", "r") as f:
@@ -148,9 +127,9 @@ if __name__ == "__main__":
         with open("response.txt", "w", encoding="utf-8") as f:
             f.write(f"Commit Link: {commit_patch_link}\n\n")
 
-        result = get_answer(context, query, embedder, index)
+        result = generate_with_langchain(query, vectordb)
 
-        print("Answer:", result)
+        print("Answer:\n", result)
         
         file_name = sendToDrive.get_next_filename('Prompt', "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
         sendToDrive.upload_and_convert_to_gdoc("response.txt", file_name, "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
