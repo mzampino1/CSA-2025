@@ -2,22 +2,13 @@ import pandas as pd
 import requests
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import ollama 
-from langchain_community.document_loaders import PyPDFLoader
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
-from fpdf import FPDF
-import os
 import sendToDrive
 
 
-# 2. Load and process PDF document
-def load_pdf_documents(pdf_path):
-    loader = PyPDFLoader(pdf_path)
-    return loader.load()
-
-
-def contextLink(context_file_path):
+def getContext(context_file_path):
     with open(context_file_path, "r") as f:
         lines = f.read().splitlines()
 
@@ -50,40 +41,33 @@ def contextLink(context_file_path):
         text.append(f"Vulnerability Type: {dir_name}\n")
         text.append(tempStore[url])
 
-    text = "\n\n".join(text)
-    # Encode the text to ensure it is in a suitable format for PDF
-    text = text.encode('latin1', 'ignore').decode('latin1')
+    context = "\n\n".join(text)
+    # Encode the text to ensure it is in a suitable format
+    context = context.encode('latin1', 'ignore').decode('latin1')
 
-    # Add the text to a PDF file
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Courier", size=10)
-    pdf.multi_cell(0, 5, txt=text)
-    output_Path = os.path.abspath("chunkpdf.pdf")
-    pdf.output(output_Path)
-    return output_Path
+    return context
 
 
 # 3. Split text into chunks
-def split_documents(pages):  # Changed parameter name
+def split_context(text):  # Changed parameter name
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000,
         chunk_overlap=200
     )
-    return text_splitter.split_documents(pages)  # Directly split Document objects
+    return text_splitter.split_text(text) # Split text into chunks
 
 # 4. Create vector store
-def create_vector_store(split_docs):  # Changed parameter name
+def create_vector_store(chunks):
     embedder = SentenceTransformer('all-MiniLM-L6-v2')
-    document_texts = [doc.page_content for doc in split_docs]  # Use .page_content
-    embeddings = embedder.encode(document_texts)
+    # chunks is a list of strings
+    embeddings = embedder.encode(chunks)
     
     dimension = embeddings.shape[1]
     index = faiss.IndexFlatL2(dimension)
     index.add(embeddings.astype(np.float32))
-    return index, document_texts, embedder
+    return index, chunks, embedder
 
-# 5. Retrieve relevant context (unchanged)
+# 5. Retrieve relevant context
 def retrieve_context(query, embedder, index, documents, k=3):
     query_embedding = embedder.encode([query])
     distances, indices = index.search(query_embedding.astype(np.float32), k)
@@ -103,7 +87,9 @@ def generateWithOllama(query, context):
 
     prompt = f"""
 Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities present in the code:
+----START OF CONTEXT
 {formatted_context}
+----END OF CONTEXT
 
 Now, based on the context provided, answer the following question in detail:
 
@@ -135,33 +121,33 @@ Now, based on the context provided, answer the following question in detail:
     print("Prompt length:", len(prompt.split()))
     return text
 
-# Main workflow (modified)
-def main(pdf_path, query):
-    # Load and process PDF
-    pages = load_pdf_documents(pdf_path)  # Get Document objects
-    split_docs = split_documents(pages)  # Split properly
-    
-    # Create vector store
-    index, document_texts, embedder = create_vector_store(split_docs)
+# Main workflow
+def generateAnswer(chunks, query, embedder, index):
     
     # Retrieve context
-    context = retrieve_context(query, embedder, index, document_texts)
+    retrieved_context = retrieve_context(query, embedder, index, chunks)
     # Write retrieved context to a file
     with open("context.txt", "w", encoding="utf-8") as f:
-        for doc in context:
-            f.write(doc + "\n\n")
+        cnt = 1
+        for chunk in retrieved_context:
+            f.write(f"----------------Chunk #{cnt}:\n {chunk}\n")
+            cnt += 1
     
     # Generate answer
-    answer = generateWithOllama(query, context)
+    answer = generateWithOllama(query, retrieved_context)
     
     return answer
 
 
 # Example usage (unchanged)
 if __name__ == "__main__":
-    text = contextLink(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
-    pdf_path = text
+    context = getContext(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
     
+    chunks = split_context(context)  # Split context into chunks
+    
+    # Create vector store
+    index, chunks, embedder = create_vector_store(chunks)
+
     # Iterate through inputLinks.txt and generate responses for each link
     with open("inputLinks.txt", "r") as f:
         input_links = f.read().splitlines()
@@ -179,7 +165,7 @@ if __name__ == "__main__":
         with open("response.txt", "w", encoding="utf-8") as f:
             f.write(f"Commit Link: {commit_patch_link}\n\n")
 
-        result = main(pdf_path, query)
+        result = generateAnswer(chunks, query, embedder, index)
 
         print("Answer:", result)
         

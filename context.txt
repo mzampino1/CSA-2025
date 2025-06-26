@@ -1,5 +1,5 @@
-Context File:
-Vulnerability Type: Unsafe Deserialization
+----------------Chunk #1:
+ Vulnerability Type: Unsafe Deserialization
 # Python's revenge
 # This is a easy python sandbox, can you bypass it and get the flag?
 # https://hitbxctf2018.xctf.org.cn/contest_challenge/
@@ -151,9 +151,8 @@ def calc_digest(location, secret):
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5051)
 
-
-Context File:
-Vulnerability Type: Unsafe Deserialization
+----------------Chunk #2:
+ Vulnerability Type: Unsafe Deserialization
 
 
 //safeLoadAll and jsyaml.safeLoad are vulnerable if DEFAULT_FULL_SCHEMA is used 
@@ -165,9 +164,8 @@ app.post('/store/:id', function(req, res) {
   let data;
   let unsafeConfig = { schema: jsyaml.DEFAULT_FULL_SCHEMA };
   data = jsyaml.safeLoad(req.params.data, unsafeConfig); 
-
-Context File:
-Vulnerability Type: Command Injection
+----------------Chunk #3:
+ Vulnerability Type: Command Injection
 import os
 from flask import Flask, request
 app = Flask(__name__)
@@ -182,5 +180,4 @@ def test_sources_7(something):
 
 if __name__ == "__main__":
 	app.run(debug=True) 
-
 
