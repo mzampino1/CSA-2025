@@ -1,5 +1,5 @@
-----------------Chunk #1:
- Vulnerability Type: Unsafe Deserialization
+Context Chunk #1:
+Vulnerability Type: Unsafe Deserialization
 
 
 # Python's revenge
@@ -38,8 +38,9 @@ import pty
 import posixfile
 
 SECRET_KEY = 'you will never guess'
-----------------Chunk #2:
- module.exports = router
+
+Context Chunk #2:
+module.exports = router
 
 
 Vulnerability Type: Command Injection
@@ -91,8 +92,9 @@ Vulnerability Type: NoSQL Injection
 const express = require('express');
 const config = require('../config')
 const router = express.Router()
-----------------Chunk #3:
- app = flask.Flask(__name__)
+
+Context Chunk #3:
+app = flask.Flask(__name__)
 app.config['DEBUG'] = True
 
 @app.route('/', methods=['GET'])
@@ -134,3 +136,7 @@ app.post('/store/:id', function(req, res) {
   data = jsyaml.safeLoad(req.params.data, unsafeConfig); 
 
 Vulnerability Type: Unsafe Deserialization
+
+Context Chunk #4:
+subprocess.Popen, commands.getstatusoutput, commands.getoutput, commands.getstatus, glob.glob, linecache.getline, shutil.copyfileobj, shutil.copyfile, shutil.copy, shutil.copy2, shutil.move, shutil.make_archive, dircache.listdir, dircache.opendir, io.open, popen2.popen2, popen2.popen3, popen2.popen4, timeit.timeit, timeit.repeat, sys.call_tracing, code.interact, code.compile_command, codeop.compile_command, pty.spawn, posixfile.open, posixfile.fileopen]
+

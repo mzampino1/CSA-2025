@@ -68,12 +68,12 @@ def get_text(patch_link):
 
 def generate_with_langchain(query, vectordb):
     template = """
-Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities present in the code:
+Use the following context as examples of vulnerable code to help you generate a realistic VCC, but this code is unrelated to the commit you will modify. Instead, use it to understand the patterns and types of vulnerabilities present in the code:
 ----START OF CONTEXT
 {context}
 ----END OF CONTEXT
 
-Now, based on the context provided, answer the following question in detail:
+Now, based on the vulnerable code examples provided, answer the following question in detail:
 
 {question}
 """
@@ -89,14 +89,21 @@ Now, based on the context provided, answer the following question in detail:
         retriever=vectordb.as_retriever(search_type="similarity", k=3),
         chain_type="stuff",
         chain_type_kwargs={"prompt": prompt},
-        return_source_documents=False
+        return_source_documents=True
     )
 
-    result = qa_chain.invoke(query)
-    answer = result["result"]
+    output = qa_chain.invoke(query)
+    answer = output["result"]
 
     with open("response.txt", "a", encoding="utf-8") as f:
         f.write(answer)
+    
+    with open("context.txt", "w", encoding="utf-8") as f:
+        cnt = 1
+        for doc in output["source_documents"]:
+            f.write(f"Context Chunk #{cnt}:\n")
+            f.write(doc.page_content + "\n\n")
+            cnt += 1
 
     return answer
 
