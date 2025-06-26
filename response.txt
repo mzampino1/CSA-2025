@@ -1,76 +1,80 @@
 Commit Link: https://github.com/vitorfs/parsifal/commit/495b834a489a0f4bb2e42e1a3af1553fa1264618.patch
 
-To transform this commit into a vulnerable state, we need to introduce a security vulnerability by making changes to the JavaScript file that handles user input. Let's walk through the process step-by-step:
-
-1. **Identify the JavaScript File**: The JavaScript file responsible for handling study selection is `conducting_study_selection.js`.
-
-2. **Locate the Vulnerable Functionality**: The problematic line in `conducting_study_selection.js` is:
-   ```javascript
-   var active = $(".source-articles tbody tr.active").index();
-   ```
-
-3. **Understand the Problem**: This line retrieves the index of the currently active row in a table. If an attacker can manipulate the DOM, they could potentially set an element to be active and then get its index, which could lead to unauthorized access or data exposure.
-
-4. **Propose a Vulnerability Introduction**: To introduce a vulnerability, we need to make the `index()` method vulnerable by allowing arbitrary input to be passed to it. This can be done by modifying the way the row is selected or manipulated.
-
-5. **Modify the JavaScript File**:
-   - We will modify the line where the index of the active row is retrieved.
-   - Instead of directly accessing `.active`, we will use a dynamic selector based on an input parameter.
-
-Here's the modified code and the Git diff format:
+To create a realistic VCC by introducing a vulnerability to an existing code snippet, I'll focus on modifying a JavaScript file related to study selection. This change will introduce command injection through user input that is not properly sanitized before being executed.
 
 ### Original Code
+
+Here is the original `conducting_study_selection.js` file from the commit:
+
 ```javascript
-var active = $(".source-articles tbody tr.active").index();
+$(function () {
+  $("#tab-files").html(data);
+});
 ```
 
 ### Vulnerable Code
+
+To introduce a VCC, I will modify this function to accept user input and execute it as a command. This change can be made by replacing the current logic with code that retrieves a user input field, executes it as a shell command, and handles the output.
+
+Here is the modified `conducting_study_selection.js` file with the vulnerable code:
+
 ```javascript
-var targetSelector = $("#activeRowId") // Assume this is where arbitrary input comes from
-var active = $(targetSelector).index();
+$(function () {
+  var userInput = $("#user-input").val();
+  var result = execCommand(userInput);
+  
+  $("#tab-files").html(result);
+});
+
+function execCommand(command) {
+  var shellOutput = '';
+  try {
+    const childProcess = require('child_process');
+    shellOutput = childProcess.execSync(command, { encoding: 'utf-8' });
+  } catch (error) {
+    shellOutput = error.message;
+  }
+  return shellOutput;
+}
 ```
 
 ### Git Diff Format
+
+Here is the Git diff format showing the changes introduced to make this code vulnerable:
+
 ```diff
 diff --git a/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js b/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
-index 488ac8db..d3c2b1f5 100644
+index 488ac8db..b295d1e0 100644
 --- a/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
 +++ b/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
-@@ -155,7 +155,7 @@ $(function () {
-     if (keyCode == ESCAPE_KEY) {
-       if ($("body").hasClass("modal-open")) {
-         $(".modal").modal('hide');
--      }
-+    } else {
-+        $(".source-articles tbody tr.active").removeClass("active");
-     }
-   }
-   else if (!$("body").hasClass("modal-open")) {
-@@ -181,7 +181,7 @@ $(function () {
+@@ -3,7 +3,19 @@
+ $(function () {
+   var userInput = $("#user-input").val();
+   var result = execCommand(userInput);
+   
+-  $("#tab-files").html(result);
++  $("#tab-files").html(shellOutput);
+ });
  
-     var active = $(".source-articles tbody tr.active").index();
-     var old_active = active;
--    var size = $(".source-articles tbody tr").size();
-+    var size = $(".source-articles tbody tr").length;
-     var next;
-     do {
--      active = (active + step) % size;  
-+      active = (active + step) % size;
-       next = $(".source-articles tbody tr:eq("+active+")");
-     } while($(next).is(":hidden"));
-@@ -241,7 +241,7 @@ $(function () {
-       }
-     });
-   }
--  
-+
-   $(".btn-save-article").click(function () {
-     save_article(false);
-   });
+-function execCommand(command) {
++function execCommand(command) {
++  var shellOutput = '';
++  try {
++    const childProcess = require('child_process');
++    shellOutput = childProcess.execSync(command, { encoding: 'utf-8' });
++  } catch (error) {
++    shellOutput = error.message;
++  }
++  return shellOutput;
++}
 ```
 
-### Explanation of Changes
-- **Line 155**: We added a comment explaining the new approach.
-- **Line 162**: We introduced a variable `targetSelector` that can be manipulated by an attacker to change the active row dynamically. This allows arbitrary input to be used in the selector.
+### Explanation
 
-This modification introduces a vulnerability where an attacker can specify the active row by setting the `#activeRowId` element, which will be used in the JavaScript code. This could lead to unauthorized access or data exposure if the application uses this index for security-critical operations.
+1. **User Input Handling**: The original code did not handle user input at all. In the vulnerable version, a new HTML element with the ID `user-input` is added to allow users to enter commands.
+
+2. **Command Execution**: The `execCommand` function retrieves the value of the `#user-input` element and executes it using Node.js's `child_process.execSync`. This command is executed without any sanitization, which allows for command injection if the input is not controlled.
+
+3. **Output Handling**: The result of the command execution is stored in `shellOutput`, which is then displayed in the `#tab-files` element. If an error occurs during command execution, it is caught and displayed as well.
+
+This change makes the JavaScript code vulnerable to command injection by allowing any user input to be executed as a shell command.

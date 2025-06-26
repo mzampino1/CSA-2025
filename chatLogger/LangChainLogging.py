@@ -1,10 +1,10 @@
 import pandas as pd
 import requests
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.llms import Ollama
-from langchain.chains import RetrievalQA
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_ollama import OllamaLLM
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.chains.retrieval_qa.base import RetrievalQA
 from langchain.prompts import PromptTemplate
 import sendToDrive
 
@@ -27,7 +27,6 @@ def get_context(context_file_path):
         try:
             response = requests.get(url, headers=headers)
             response.raise_for_status() 
-            print(f" Status: {response.status_code}")  # debug print
             tempStore[url] = response.text
         except Exception as e: 
             print(f"Error getting link {url}: {e}")
@@ -65,7 +64,6 @@ def get_text(patch_link):
     headers = {"User-Agent": "Mozilla/5.0"}
     response = requests.get(patch_link, headers=headers)
     response.raise_for_status()  # Raise an error for bad responses
-    print(f" Status: {response.status_code}")  # debug print
     return response.text
 
 def generate_with_langchain(query, vectordb):
@@ -84,7 +82,7 @@ Now, based on the context provided, answer the following question in detail:
         template=template,
     )
 
-    llm = Ollama(model="qwen2.5-coder:3b")
+    llm = OllamaLLM(model="qwen2.5-coder:3b")
 
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
@@ -94,12 +92,13 @@ Now, based on the context provided, answer the following question in detail:
         return_source_documents=False
     )
 
-    result = qa_chain.run(query)
+    result = qa_chain.invoke(query)
+    answer = result["result"]
 
     with open("response.txt", "a", encoding="utf-8") as f:
-        f.write(result)
+        f.write(answer)
 
-    return result
+    return answer
 
 # Main workflow
 if __name__ == "__main__":
@@ -127,9 +126,9 @@ if __name__ == "__main__":
         with open("response.txt", "w", encoding="utf-8") as f:
             f.write(f"Commit Link: {commit_patch_link}\n\n")
 
-        result = generate_with_langchain(query, vectordb)
+        answer = generate_with_langchain(query, vectordb)
 
-        print("Answer:\n", result)
+        print("Answer:\n", answer)
         
         file_name = sendToDrive.get_next_filename('Prompt', "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
         sendToDrive.upload_and_convert_to_gdoc("response.txt", file_name, "1E7B_7nETIwOohQWAuya2JCwTHsqlG37F")
