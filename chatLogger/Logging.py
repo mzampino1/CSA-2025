@@ -66,16 +66,17 @@ def get_NonVCC_text(patch, header = {'User-Agent': 'Mozilla/5.0'}):
     return response.text
 
 def build_QA_Chain_with_langchain(query, similarChunks, vectordb): 
-    
+    context = similarChunks
+    question = query
     template = """
 Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities present in the code:
 ----START OF CONTEXT
-{similarChunks}
+{context}
 ----END OF CONTEXT
 
 Now, based on the context provided, answer the following question in detail:
 
-{query}
+{question}
 """
     prompt = PromptTemplate(
             input_variables=["context", "question"],
