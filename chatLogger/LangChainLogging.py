@@ -75,7 +75,7 @@ Use the following context containing examples of vulnerable code to help you gen
 
 Now, based on the context provided, answer the following question in detail:
 
-{question}
+{query}
 """
     prompt = PromptTemplate(
         input_variables=["context", "question"],
