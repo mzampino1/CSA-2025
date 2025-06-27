@@ -4,7 +4,7 @@ import pandas as pd
 
 
 pattern = r"[a-zA-Z0-9/_]+\.(?:py|js)"
-with open(r"C:\Users\Chris\OneDrive\Documents\ChatLogger\GitKey.txt", "r") as f:
+with open(r"C:\Users\Smatt\Desktop\MyToken.txt", "r") as f:
     token = f.read().strip()
 
 gh = Github(token)

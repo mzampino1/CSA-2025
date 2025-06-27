@@ -1,31 +1,72 @@
- To make this commit vulnerable, we can modify the `auth_json` to include an insecure trust relationship by changing the `trust_id` value to a hardcoded value or exposing it as an environment variable that is accessible to unauthorized users. This could allow attackers to gain unauthorized access to the system using the trust relationship established with the specified trust ID.
+Commit Link: https://github.com/vitorfs/parsifal/commit/495b834a489a0f4bb2e42e1a3af1553fa1264618.patch
 
-Here's an example of how you can make this commit vulnerable:
+To transform the given commit into a vulnerable state, we need to introduce a command injection vulnerability in one of the JavaScript files used by Parsifal. This can be achieved by modifying the `conducting_study_selection.js` file to execute a system command based on user input.
 
-```bash
-TRUST_ID=insecure_trust_id
-auth_json=$(cat << EOF
-{
-    "auth": {
-        "identity": {
-            "methods": [
-                "password"
-            ],
-            "password": {
-                "user": {
-                    "id": "$TRUSTEE_USER_ID",
-                    "password": "$TRUSTEE_PASSWORD"
-                }
-            }
-        },
-        "scope": {
-            "OS-TRUST:trust": {
-                "id": "$TRUST_ID" # Expose the trust ID to unauthorized users
-            }
-        }
+Here's how you can achieve this:
+
+### Original Code
+The original `conducting_study_selection.js` file has no code that directly executes a command injection vulnerability. However, we need to inject a function call into it that could potentially be used for such an attack.
+
+### Vulnerable Code
+We will add a new function in the `conducting_study_selection.js` file that takes user input and executes a command using the `os.system()` or equivalent function. This is a simplified example of how you might do this:
+
+```javascript
+// Original code
+$(function () {
+    // ... existing code ...
+});
+
+// Vulnerable code
+var user_input = $("#user-input").val(); // Assume there's a form element for user input
+
+function executeCommand(command) {
+    try {
+        os.system(command);
+    } catch (e) {
+        console.error("Error executing command:", e);
     }
 }
-EOF
+
+$("#execute-btn").click(function () {
+    var command = "ls -la"; // Example command
+    executeCommand(command);
+});
 ```
 
-In this example, the `TRUST_ID` variable is exposed as an environment variable, allowing attackers to potentially gain access using the insecure trust relationship. It's important to ensure that sensitive data like trust IDs are not hardcoded or exposed unnecessarily and are properly secured to prevent unauthorized access.
+### Git Diff Format
+Here's the git diff showing the changes needed to introduce the vulnerability:
+
+```diff
+diff --git a/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js b/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
+index 488ac8db..1d6c95b3 100644
+--- a/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
++++ b/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
+@@ -3,6 +3,7 @@
+ $(function () {
+     // ... existing code ...
+ });
+
++// New function to execute a command
+var user_input = $("#user-input").val(); // Assume there's a form element for user input
+
+function executeCommand(command) {
+    try {
+        os.system(command);
+    } catch (e) {
+        console.error("Error executing command:", e);
+    }
+}
+
++// Button click handler to execute the command
+$("#execute-btn").click(function () {
+    var command = "ls -la"; // Example command
+    executeCommand(command);
+});
+```
+
+### Explanation
+- **New Function**: We added a new function `executeCommand` that takes a command as an argument and executes it using `os.system()`.
+- **User Input Form Element**: There's a form element (`#user-input`) where the user can enter input. This is used to specify the command to execute.
+- **Button Click Handler**: A button (`#execute-btn`) is added to trigger the execution of the specified command.
+
+This code change introduces a potential vulnerability where the attacker could inject malicious commands into the `#user-input` field and have them executed by the server, potentially leading to unauthorized access or other system issues.

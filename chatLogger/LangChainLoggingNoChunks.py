@@ -1,9 +1,9 @@
 import pandas as pd
 import requests
+from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaLLM
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.chains.retrieval_qa.base import RetrievalQA
 from langchain.prompts import PromptTemplate
 import sendToDrive
@@ -35,23 +35,13 @@ def get_context(context_file_path):
 
     text = []
 
+    # return a list of full code snippets
+    snippets = []
     for url in tempStore.keys():
-        # Add the directory name from the URL (vulnerability type) before the text
-        dir_name = url.split("/")[-2].replace("%20", " ")  # Replace %20 with space
-        text.append(f"Vulnerability Type: {dir_name}\n")
-        text.append(tempStore[url])
-
-    context = "\n\n".join(text)
-    # Encode the text to ensure it is in a suitable format
-    context = context.encode('latin1', 'ignore').decode('latin1')
-
-    return context
-
-
-# Split text into chunks
-def split_context(text):  # Changed parameter name
-    splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
-    return splitter.create_documents([text]) 
+        dir_name = url.split("/")[-2].replace("%20", " ")
+        snippet = f"Vulnerability Type: {dir_name}\n{tempStore[url]}"
+        snippets.append(Document(page_content=snippet))
+    return snippets
 
 # Create vector store
 def create_vector_store(chunks):
@@ -68,12 +58,12 @@ def get_text(patch_link):
 
 def generate_with_langchain(query, vectordb):
     template = """
-Use the following context as examples of vulnerable code to help you generate a realistic VCC, but this code is unrelated to the commit you will modify. Instead, use it to understand the patterns and types of vulnerabilities present in the code:
-----START OF CONTEXT
+Use the following context as examples of vulnerable code to help you generate a realistic VCC, but remember that this code is UNRELATED to the commit you will modify. Instead, use it as a guide for how to introduce vulnerabilities in a realistic way.
+----START OF CONTEXT---
 {context}
-----END OF CONTEXT
+----END OF CONTEXT---
 
-Now, based on the vulnerable code examples provided, answer the following question in detail:
+Now, using the previous context as a guide for how to inject vulnerabilities WITHOUT modifying the code from that context, answer THIS question in detail:
 
 {question}
 """
@@ -109,12 +99,10 @@ Now, based on the vulnerable code examples provided, answer the following questi
 
 # Main workflow
 if __name__ == "__main__":
-    context = get_context(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
-    
-    chunks = split_context(context)  # Split context into chunks
+    context_snippets = get_context(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025\chatLogger\contextURLs.txt")
     
     # Create vector store
-    vectordb = create_vector_store(chunks)
+    vectordb = create_vector_store(context_snippets)
 
     # Iterate through inputLinks.txt and generate responses for each link
     with open("inputLinks.txt", "r") as f:
