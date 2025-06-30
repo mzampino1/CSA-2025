@@ -1,72 +1,109 @@
 Commit Link: https://github.com/vitorfs/parsifal/commit/495b834a489a0f4bb2e42e1a3af1553fa1264618.patch
 
-To transform the given commit into a vulnerable state, we need to introduce a command injection vulnerability in one of the JavaScript files used by Parsifal. This can be achieved by modifying the `conducting_study_selection.js` file to execute a system command based on user input.
+Based on the provided context and instructions, I have introduced a new vulnerability into the code by modifying the `conducting_study_selection.js` file. Here's how I did it in detail:
 
-Here's how you can achieve this:
+### New Vulnerability: DOM XSS
 
-### Original Code
-The original `conducting_study_selection.js` file has no code that directly executes a command injection vulnerability. However, we need to inject a function call into it that could potentially be used for such an attack.
+1. **Original Code**: The original JavaScript file loads content into an element with the class `.source-articles tbody tr.active`.
 
-### Vulnerable Code
-We will add a new function in the `conducting_study_selection.js` file that takes user input and executes a command using the `os.system()` or equivalent function. This is a simplified example of how you might do this:
+2. **Vulnerable Code**: In the modified version, the JavaScript code is altered to inject user input directly into an HTML element without proper sanitization.
+
+### Step-by-Step Modification:
+
+#### Original `conducting_study_selection.js` (Lines 34-509)
 
 ```javascript
-// Original code
-$(function () {
-    // ... existing code ...
+// ... existing code ...
+
+$(".btn-save-article").click(function () {
+    save_article(false);
 });
 
-// Vulnerable code
-var user_input = $("#user-input").val(); // Assume there's a form element for user input
-
-function executeCommand(command) {
-    try {
-        os.system(command);
-    } catch (e) {
-        console.error("Error executing command:", e);
-    }
-}
-
-$("#execute-btn").click(function () {
-    var command = "ls -la"; // Example command
-    executeCommand(command);
+$("#source-tab li.active a").click(function () {
+    $("#source-tab li.active a").click();
 });
 ```
 
-### Git Diff Format
-Here's the git diff showing the changes needed to introduce the vulnerability:
+#### Modified `conducting_study_selection.js` (Lines 34-509)
+
+```javascript
+// ... existing code ...
+
+$(".btn-save-article").click(function () {
+    var user_input = "<script>alert('XSS Attack!');</script>"; // Injects XSS payload
+    save_article(false, user_input);
+});
+
+$("#source-tab li.active a.click(function () {
+    $("#source-tab li.active a").click();
+});
+```
+
+### Explanation:
+
+- **DOM Injection**: By directly injecting `user_input` into the DOM without sanitization, we create an HTML element that executes JavaScript when loaded.
+  
+- **XSS (Cross-Site Scripting)**: This type of vulnerability allows an attacker to execute arbitrary scripts on a victim's browser. In this case, it could alert the user with "XSS Attack!".
+
+### Git Diff:
 
 ```diff
-diff --git a/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js b/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
-index 488ac8db..1d6c95b3 100644
 --- a/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
 +++ b/parsifal/apps/reviews/conducting/static/js/conducting_study_selection.js
-@@ -3,6 +3,7 @@
- $(function () {
-     // ... existing code ...
- });
+@@ -34,7 +34,7 @@ $(function () {
+         $("#tab-files").html(data);
+       },
+       error: function () {
+-        
++
+       },
+       complete: function () {
+         $.parsifal.pageLoading();
+@@ -155,10 +155,10 @@ $(function () {
+ 
+     if (keyCode == ESCAPE_KEY) {
+       if ($("body").hasClass("modal-open")) {
+-        $(".modal").modal('hide');  
++        $(".modal").modal('hide');
+       }
+       else {
+-        $(".source-articles tbody tr").removeClass("active");    
++        $(".source-articles tbody tr").removeClass("active");
+       }
+     }
+     else if (!$("body").hasClass("modal-open")) {
+@@ -181,10 +181,10 @@ $(function () {
+ 
+     var active = $(".source-articles tbody tr.active").index();
+     var old_active = active;
+-    var size = $(".source-articles tbody tr").size();
++    var size = $(".source-articles tbody tr").length;
+     var next;
+     do {
+-      active = (active + step) % size;  
++      active = (active + step) % size;
+       next = $(".source-articles tbody tr:eq("+active+")");
+     } while($(next).is(":hidden"));
+     $(".source-articles tbody tr").removeClass("active");
+@@ -241,7 +241,7 @@ $(function () {
+       }
+     });
+   }
 
-+// New function to execute a command
-var user_input = $("#user-input").val(); // Assume there's a form element for user input
+   $(".btn-save-article").click(function () {
+-    save_article(false);
++    var user_input = "<script>alert('XSS Attack!');</script>"; // Injects XSS payload
++    save_article(false, user_input);
+   });
 
-function executeCommand(command) {
-    try {
-        os.system(command);
-    } catch (e) {
-        console.error("Error executing command:", e);
-    }
-}
-
-+// Button click handler to execute the command
-$("#execute-btn").click(function () {
-    var command = "ls -la"; // Example command
-    executeCommand(command);
-});
+   $("#source-tab li.active a.click(function () {
+     $("#source-tab li.active a").click();
 ```
 
-### Explanation
-- **New Function**: We added a new function `executeCommand` that takes a command as an argument and executes it using `os.system()`.
-- **User Input Form Element**: There's a form element (`#user-input`) where the user can enter input. This is used to specify the command to execute.
-- **Button Click Handler**: A button (`#execute-btn`) is added to trigger the execution of the specified command.
+### Impact:
 
-This code change introduces a potential vulnerability where the attacker could inject malicious commands into the `#user-input` field and have them executed by the server, potentially leading to unauthorized access or other system issues.
+This vulnerability allows an attacker to execute arbitrary scripts on the victim's browser by manipulating the input passed to the `save_article` function. This can lead to data theft, session hijacking, or other malicious actions depending on the context in which this code is executed.
+
+### Solution:
+
+To mitigate this vulnerability, it is essential to ensure that any user-generated content (including form inputs) is properly sanitized before being used to generate HTML elements in the DOM. This can be achieved using libraries like `DOMPurify` or by implementing custom sanitization logic.
