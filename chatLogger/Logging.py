@@ -170,6 +170,8 @@ def main(context_file_path, input_links_file, drive_folder_id, github_token):
     chunks = split_context(context)
     similarChunks = create_vector_store(chunks)
     qa_chain = build_QA_Chain_with_langchain(similarChunks)
+    _ = qa_chain.invoke("warmup")
+
 
     with open(input_links_file, 'r', encoding='utf-8') as f:
         links = [l.strip() for l in f if l.strip()]
