@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+import time
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaLLM
@@ -8,6 +9,7 @@ from langchain.chains.retrieval_qa.base import RetrievalQA
 from langchain.prompts import PromptTemplate
 import sendToDrive
 import json
+import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -117,7 +119,7 @@ Now, based on the context provided, answer the following question in detail:
     )
     return qa_chain
 
-def process_commit(commit_url, qa_chain, drive_folder_id, response_path, github_token):
+def process_commit(commit_url, qa_chain, github_token):
     # raw_patch = get_context_text([commit_url], github_token)[commit_url].strip()
     raw_patch = requests.get(commit_url, headers= {
         "User-Agent": "Mozilla/5.0",
@@ -133,34 +135,61 @@ def process_commit(commit_url, qa_chain, drive_folder_id, response_path, github_
         "Only modify the code where you are adding the NEW vulnerabilities."
     )
 
-    with open(response_path, 'w', encoding='utf-8') as f:
-        f.write(f"Commit Link: {commit_url}\n\n")
-
-    result = qa_chain.invoke(query)
+    for i in range(3): 
+        try: 
+            result = qa_chain.invoke(query)
+            time.sleep(2)
+            break 
+        except Exception as e: 
+            if i == 2:
+                print(f"Error in qa_chain.invoke: {e}")
     answer = result.get("result") if isinstance(result, dict) else result
 
-    with open(response_path, 'a', encoding='utf-8') as f:
-        f.write(answer)
+    return f"Commit Link: {commit_url}\n\n" + answer
 
-    filename = sendToDrive.get_next_filename('Prompt', drive_folder_id)
-    sendToDrive.upload_and_convert_to_gdoc(response_path, filename, drive_folder_id)
-    print(f"Result saved to {filename} in Google Drive.")
-
-    return answer
-
-def process_parallel_commit(links, qa_chain, drive_folder_id, github_token): 
+def process_parallel_commit(links, qa_chain, github_token): 
+    answers = []
+    
     max_workers = 2
 
     with ThreadPoolExecutor(max_workers=max_workers) as pool: 
-        future_to_link = {pool.submit(process_commit, link, qa_chain, drive_folder_id, "response.txt", github_token,): 
+        future_to_link = {pool.submit(process_commit, link, qa_chain, github_token): 
                           link for link in links}
         for future in as_completed(future_to_link):
             link = future_to_link[future]
             try:
                 answer = future.result()
+                answers.append(answer)
                 print(f"✅ Finished {link}")
             except Exception as e:
                 print(f"❌ Error on {link}: {e}")
+    return answers
+
+def upload_answers(answers, drive_folder_id):
+    if not answers:
+        print("No answers to upload.")
+        return
+
+    file_name = "response.txt"
+    file_path = os.path.join(os.getcwd(), file_name)
+    drive_service = sendToDrive.get_drive_service()
+
+    initial_doc_name = sendToDrive.get_next_filename("Prompt", drive_folder_id, drive_service)
+    initial_doc_num = int(initial_doc_name.split("Prompt ")[-1]) if initial_doc_name else 1
+
+    cnt = 0
+    for answer in answers:
+        with open(file_path, 'w', encoding='utf-8') as f:
+            f.write(answer)
+
+        sendToDrive.upload_and_convert_to_gdoc(
+            path=file_path,
+            name=f"Prompt {initial_doc_num + cnt}",
+            folder_id=drive_folder_id,
+            drive_service=drive_service,
+        )
+        cnt += 1
+        os.remove(file_path)
 
 def main(context_file_path, input_links_file, drive_folder_id, github_token): 
     raw_urls = get_context_url(context_file_path)
@@ -170,11 +199,17 @@ def main(context_file_path, input_links_file, drive_folder_id, github_token):
     chunks = split_context(context)
     similarChunks = create_vector_store(chunks)
     qa_chain = build_QA_Chain_with_langchain(similarChunks)
+    _ = qa_chain.invoke("warmup")
+
 
     with open(input_links_file, 'r', encoding='utf-8') as f:
         links = [l.strip() for l in f if l.strip()]
 
-    process_parallel_commit(links, qa_chain, drive_folder_id, github_token)
+    answers = process_parallel_commit(links, qa_chain, github_token)
+    print(f"Total answers generated: {len(answers)}")
+    upload_answers(answers, drive_folder_id)
+
+
 
 if __name__ == '__main__':
     context_file_path, input_links_file, drive_folder_id, github_token = load_config("credentials.json")
