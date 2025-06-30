@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+import time
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaLLM
@@ -133,13 +134,18 @@ def process_commit(commit_url, qa_chain, drive_folder_id, response_path, github_
         "Only modify the code where you are adding the NEW vulnerabilities."
     )
 
-    with open(response_path, 'w', encoding='utf-8') as f:
-        f.write(f"Commit Link: {commit_url}\n\n")
+    for i in range(3): 
+        try: 
+            result = qa_chain.invoke(query)
+            time.sleep(2)
+            break 
+        except Exception as e: 
+            raise 
 
-    result = qa_chain.invoke(query)
     answer = result.get("result") if isinstance(result, dict) else result
 
     with open(response_path, 'a', encoding='utf-8') as f:
+        f.write(f"Commit Link: {commit_url}\n\n")
         f.write(answer)
 
     filename = sendToDrive.get_next_filename('Prompt', drive_folder_id)
