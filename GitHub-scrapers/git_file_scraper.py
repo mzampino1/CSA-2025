@@ -1,11 +1,15 @@
 from github import Github
 import re
 import pandas as pd
+import json
 
+cfg = json.load(open("credentials.json"))
+cfg_app = cfg["app"]
+
+gitToken = cfg_app["github_token"]
 
 pattern = r"[a-zA-Z0-9/_]+\.(?:py|js|html)"
-with open(r"C:\Users\Smatt\Desktop\MyToken.txt", "r") as f:
-    token = f.read().strip()
+token = gitToken
 
 gh = Github(token)
 me = gh.get_user()
