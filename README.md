@@ -26,5 +26,5 @@ Contains the main program's python files:
 vulnerability_injection.py - script that performs retrieval-augmented generation and uploads results to Google Drive  
 drive.py - contains methods to upload files to Google Drive  
 alternate-versions - folder containing alternate versions of vulnerability_injection.py:  
-    LangChain_no_chunk.py - similar to original, but gives entire code snippets as context without splitting into chunks  
-    manual_no_chunk.py - also does not split context, but performs the steps of RAG more manually (without LangChain abstraction)  
+* LangChain_no_chunk.py - similar to original, but gives entire code snippets as context without splitting into chunks  
+* manual_no_chunk.py - also does not split context, but performs the steps of RAG more manually (without LangChain abstraction)  
