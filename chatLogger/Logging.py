@@ -68,7 +68,7 @@ def create_context_info(context_Store_text):
 
     for url in context_Store_text.keys(): 
         vul_type = url.split("/")[-1].replace("%20", " ")
-        text.append(f"Vulnearbility Type: {vul_type}\n")
+        text.append(f"Vulnerability Type: {vul_type}\n")
         text.append(context_Store_text[url])
 
     context = "\n\n".join(str(x) for x in text)
