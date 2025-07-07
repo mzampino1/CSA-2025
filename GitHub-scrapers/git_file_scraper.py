@@ -8,16 +8,16 @@ cfg_app = cfg["app"]
 
 gitToken = cfg_app["github_token"]
 
-pattern = r"[a-zA-Z0-9/_]+\.(?:py|js|html)"
+pattern = r"[a-zA-Z0-9/_]+\.(?:py|js|html|java)"
 token = gitToken
 
 gh = Github(token)
 me = gh.get_user()
 
 # could make the path a varible and feed it the path if we made this a function
-repo = gh.get_repo("snoopysecurity/Broken-Vulnerable-Code-Snippets") 
+repo = gh.get_repo("vitorfs/parsifal") 
 
-# Copy list of file links to contextURLs.txt
+# Copy list of file links
 def get_all_files(repo, path=""):
     contents = repo.get_contents(path)
     files = []
@@ -26,15 +26,17 @@ def get_all_files(repo, path=""):
             files += get_all_files(repo, content_file.path)
         else:
             if re.search(pattern, content_file.path):
-                raw_url = f"https://github.com/{repo.full_name}/blob/master/{content_file.path}"
+                raw_url = f"https://raw.githubusercontent.com/{repo.full_name}/master/{content_file.path}"
                 raw_url = raw_url.replace(" ", "%20")  # Replace spaces with %20
                 print("Found file:", raw_url)
                 files.append(raw_url)
     return files
 
+file_name = input("Please enter the name of your output .txt file (without .txt):\n")
+
 file_links = get_all_files(repo)
 
-with open("contextURLs.txt", "w") as output:
+with open(f"C:\\Users\\Smatt\\Desktop\\CSA Summer 2025\\CSA-2025\\input-text\\{file_name}.txt", "w") as output:
     for link in file_links:
         output.write(link + "\n")
 
