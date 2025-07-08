@@ -36,7 +36,7 @@ file_name = input("Please enter the name of your output .txt file (without .txt)
 
 file_links = get_all_files(repo)
 
-with open(f"C:\\Users\\Smatt\\Desktop\\CSA Summer 2025\\CSA-2025\\input-text\\{file_name}.txt", "w") as output:
+with open(f"C:\\Users\\Smatt\\Desktop\\CSA Summer 2025\\CSA-2025\\input\\{file_name}.txt", "w") as output:
     for link in file_links:
         output.write(link + "\n")
 
