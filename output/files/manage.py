@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import pickle
 
 
 def main():
@@ -15,7 +16,12 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    execute_from_command_line(sys.argv)
+    # New vulnerability: using pickle for arbitrary code execution
+    data = {
+        'command': 'echo "Hello, World!"'
+    }
+    serialized_data = pickle.dumps(data)
+    execute_from_command_line(serialized_data)
 
 
 if __name__ == '__main__':
