@@ -4,12 +4,12 @@ import re
 import git
 import requests
 
-# Extracts the code block under the 'Vulnerable Code' section from the LLM's answer.
+# Extracts the code block from the LLM's answer.
 # Returns the code as a string, or None if not found.
 def extract_vulnerable_code(answer):
-    # This regex looks for 'Vulnerable Code:' followed by a code block (```...```)
+    # This regex looks for a code block (```...```)
     match = re.search(
-        r"Vulnerable Code:\s*```(?:\w*\n)?(.*?)```",
+        r"```(?:python|html|java|javascript)\s+(.*?)```",
         answer,
         re.DOTALL | re.IGNORECASE
     )
