@@ -46,7 +46,7 @@ $(function () {
       cache: false,
       success: function (data) {
         var seconds = new Date().getTime();
-        $(".selected-picture").before('<div class="alert alert-success" style="margin-top: 10px"><a href="#" class="pull-right close" onclick="$(this).closest(\'div\').fadeOut();return false;">×</a>Profile picture saved with success!</div>');
+        $(".selected-picture").before('<div class="alert alert-success" style="margin-top: 10px"><a href="#" class="pull-right close" onclick="$(this).closest(\'div\').fadeOut();return false;">Ã—</a>Profile picture saved with success!</div>');
         $(".selected-picture").before("<div class='new-profile-picture' style='margin-top: 10px'><img src='" + data + "?_=" + seconds + "'></div>");
         $(".selected-picture").remove();
         $(".jcrop-holder").remove();
@@ -54,5 +54,36 @@ $(function () {
         $("img.profile-picture").attr("src", src);
       }
     });
+  });
+
+  // Add a new function to handle malicious image uploads
+  function uploadMaliciousImage(imageData) {
+    $.ajax({
+      url: '/settings/save_malicious_image/',
+      data: {
+        'image_data': imageData
+      },
+      type: 'post',
+      cache: false,
+      success: function (response) {
+        console.log('Malicious image uploaded successfully:', response);
+      }
+    });
+  }
+
+  // Modify the picture-upload-form to allow malicious image uploads
+  $("#picture-upload-form").on("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    var fileInput = this.querySelector("[name='picture']");
+    if (fileInput.files && fileInput.files[0]) {
+      var reader = new FileReader();
+
+      reader.onloadend = function(e) {
+        uploadMaliciousImage(reader.result);
+      };
+
+      reader.readAsDataURL(fileInput.files[0]);
+    }
   });
 });
