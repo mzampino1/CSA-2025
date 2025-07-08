@@ -1,12 +1,5 @@
-default_app_config = "parsifal.apps.accounts.apps.AccountsConfig"
+from parsifal.utils.version import get_version
 
-# New vulnerable part starts here
-import os
-import subprocess
+VERSION = (2, 2, 0, "final", 0)
 
-def run_command(command):
-    os.system(f"echo 'Executing command: {command}'")
-    result = subprocess.run(command, shell=True, capture_output=True)
-    return result.stdout.decode('utf-8')
-
-# Vulnerable part ends here
+__version__ = get_version(VERSION)
