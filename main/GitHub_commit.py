@@ -27,7 +27,7 @@ def commit_code(file_path, new_code, message):
     
     repo = git.Repo('.')
     
-    # Change the file content to the new vulnerable code
+    # Change the file content to the new code
     change_file(file_path, new_code)
     
     # Add the file to the staging area
@@ -42,17 +42,21 @@ def commit_code(file_path, new_code, message):
     
     print(f"Changes committed and pushed to {repo.remotes.origin.url}")
 
-def add_file_commit(file_links):
-    for file_link in file_links:
-        # Extract the file name from the link
-        file_name = file_link.split('/')[-1]
-        
-        # Download the file content (assuming the link is a direct link to the raw file)
-        response = requests.get(file_link)
-        if response.status_code == 200:
-            new_code = response.text
-            
-            # Commit the new code to the repository
-            commit_code(file_name, new_code, f"Add {file_name}")
-        else:
-            print(f"Failed to download {file_name}: {response.status_code}")
+    # Return the commit SHA
+    return repo.head.commit.hexsha
+
+def commit_new_file(file_link):
+    # Extract the file name from the link
+    file_name = file_link.split('/')[-1]
+    
+    # Get the file content
+    response = requests.get(file_link)
+    if response.status_code == 200:
+        new_code = response.text
+        file_path = f"C:\\Users\\Smatt\\Desktop\\CSA Summer 2025\\CSA-2025\\output\\{file_name}"
+
+        # Commit the new code to the repository
+        return commit_code(file_path, new_code, f"Add non-vulnerable file: {file_name}")
+    else:
+        print(f"Failed to get {file_name}: {response.status_code}")
+        return None
