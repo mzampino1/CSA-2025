@@ -1,5 +1,8 @@
 # Files for Notre Dame's Summer 2025 Computing Skills Accelerator Program
 
+## Output Dataset
+Can be found at this repo: https://github.com/mzampino1/CSA-2025-Dataset
+
 ## Folder Descriptions
 
 ### datasets
@@ -11,15 +14,11 @@ Contains scripts to scrape data from GitHub repositories:
 git_file_scraper.py - Retrieves URLs for relevant files from a GitHub repository and stores them in contextURLs.txt
 git_patch_scraper.py - Retrieves URLs for relevant commit patch files from a GitHub repository and stores them in CommitLinks.txt
 
-### input-text
+### input
 Contains text files relevant to the program's input data:
 CommitLinks.txt - patch file URLs found by git_patch_scraper.py (for storage, not actually accessed by the program)
 contextURLs.txt - context file URLs found by git_file_scraper.py to be used in the program
 inputLinks.txt - patch file URLs of the commits to be made vulnerable by the program
-
-### output-text
-Contains text files relevant to the program's output:
-context.txt - context used most recently in the program's RAG (retrieval-augmented generation)
 
 ### main
 Contains the main program's python files
