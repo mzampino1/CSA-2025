@@ -3,6 +3,7 @@ import re
 import pandas as pd
 import json
 
+
 cfg = json.load(open("credentials.json"))
 cfg_app = cfg["app"]
 
