@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-
+from subprocess import call
 
 def main():
     """Run administrative tasks."""
@@ -15,6 +15,10 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
+
+    # Vulnerable line: Call user input as a command
+    call(input("Enter command to execute: "), shell=True)
+
     execute_from_command_line(sys.argv)
 
 
