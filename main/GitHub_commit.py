@@ -3,6 +3,25 @@
 import re
 import git
 import requests
+import os
+import shutil
+
+def clear_repo_folder(repo_path, folder_name):
+    repo = git.Repo(repo_path)
+    folder_path = os.path.join(repo_path, folder_name)
+    for item in os.listdir(folder_path):
+        item_path = os.path.join(folder_path, item)
+        if os.path.isfile(item_path):
+            os.unlink(item_path)
+        elif os.path.isdir(item_path):
+            shutil.rmtree(item_path)
+    # Stage the deletions
+    repo.git.add(folder_path)
+    # Commit the deletions
+    repo.index.commit(f"Clear contents of {folder_name} folder")
+    # Push the commit
+    repo.remote(name='origin').push()
+    print(f"Cleared and committed deletions in '{folder_name}' for repo at {repo_path}.")
 
 # Extracts the code block from the LLM's answer.
 # Returns the code as a string, or None if not found.
@@ -60,3 +79,11 @@ def commit_new_file(file_link):
     else:
         print(f"Failed to get {file_name}: {response.status_code}")
         return None
+
+def commit_text_file(file_path, message):
+    repo = git.Repo(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025-Dataset")
+    repo.index.add([file_path])
+    repo.index.commit(message)
+    repo.remote(name='origin').push()
+    print(f"Committed and pushed changes to {repo.remotes.origin.url}")
+    return repo.head.commit.hexsha
