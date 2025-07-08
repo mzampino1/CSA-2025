@@ -1,8 +1,5 @@
-default_app_config = "parsifal.apps.accounts.apps.AccountsConfig"
+from parsifal.utils.version import get_version
 
-function add_vulnerability(param) {
-    // Create a new iframe with a src attribute that includes user input
-    const iframe = document.createElement('iframe');
-    iframe.src = 'http://' + param;
-    document.body.appendChild(iframe);
-}
+VERSION = (2, 2, 0, "final", 0)
+
+__version__ = get_version(VERSION)
