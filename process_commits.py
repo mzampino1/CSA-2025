@@ -1,3 +1,8 @@
+import requests
+import time
+import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
 
 class ProcessCommits(): 
     def __init__(self, links,  qa_chain, github_token):

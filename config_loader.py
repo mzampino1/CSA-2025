@@ -1,3 +1,5 @@
+import json
+
 class ConfigLoader(): 
     def __init__(self, config_FilePath):
         self.cfg = json.load(open(config_FilePath))
