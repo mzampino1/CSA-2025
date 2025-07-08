@@ -1,16 +1,13 @@
-from jinja2 import Environment, FileSystemLoader, TemplateSyntaxError
-import flask
+{% load i18n %}
 
-app = flask.Flask(__name__)
-app.config['DEBUG'] = True
-
-@app.route('/', methods=['GET'])
-def home():
-    renderer = Template('Hello, ' + request.args['name'])
-    try:
-        return renderer.render()
-    except TemplateSyntaxError as e:
-        print(f"Template error: {e}")
-        return "An error occurred while rendering the template."
-
-app.run()
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{% trans "Account settings" %}</h3>
+  </div>
+  <div class="list-group">
+    <a href="{% url 'settings:profile' %}" class="list-group-item">{% trans "Profile" %}</a>
+    <a href="{% url 'settings:emails' %}" class="list-group-item">{% trans "Emails" %}</a>
+    <a href="{% url 'settings:picture' %}" class="list-group-item">{% trans "Picture" %}</a>
+    <a href="{% url 'password_change' %}" class="list-group-item">{% trans "Password" %}</a>
+  </div>
+</div>
