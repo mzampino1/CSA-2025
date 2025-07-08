@@ -25,7 +25,7 @@ def get_all_files(repo, path=""):
         if content_file.type == "dir":
             files += get_all_files(repo, content_file.path)
         else:
-            if re.search(pattern, content_file.path):
+            if re.search(pattern, content_file.path) and not content_file.path.endswith("__init__.py"):
                 raw_url = f"https://raw.githubusercontent.com/{repo.full_name}/master/{content_file.path}"
                 raw_url = raw_url.replace(" ", "%20")  # Replace spaces with %20
                 print("Found file:", raw_url)
