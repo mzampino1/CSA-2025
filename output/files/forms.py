@@ -24,10 +24,10 @@ class UserEmailForm(forms.ModelForm):
         fields = ("email",)
 
     def clean_email(self):
-        # New vulnerability: Improper validation of input
         email = self.cleaned_data.get("email")
-        if "@" in email and len(email.split('@')[0]) > 150:
-            raise ValidationError(gettext("Email name is too long."))
+        email = User.objects.normalize_email(email)
+        if User.objects.exclude(pk=self.instance.pk).filter(email__iexact=email).exists():
+            raise ValidationError(gettext("User with this Email already exists."))
         return email
 
 
