@@ -53,7 +53,7 @@ def commit_new_file(file_link):
     response = requests.get(file_link)
     if response.status_code == 200:
         new_code = response.text
-        file_path = f"C:\\Users\\Smatt\\Desktop\\CSA Summer 2025\\CSA-2025\\output\\{file_name}"
+        file_path = f"C:\\Users\\Smatt\\Desktop\\CSA Summer 2025\\CSA-2025\\output\\files\\{file_name}"
 
         # Commit the new code to the repository
         return commit_code(file_path, new_code, f"Add non-vulnerable file: {file_name}")
