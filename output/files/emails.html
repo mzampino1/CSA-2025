@@ -2,7 +2,9 @@
 
 {% load i18n %}
 
-{% block title %}{% trans "Account Settings" %} · Parsifal{% endblock %}
+{% block title %}
+  {% trans "Account Settings" %} Â· Parsifal
+{% endblock %}
 
 {% block content %}
   <div class="row">
@@ -24,6 +26,13 @@
           </div>
         </div>
       </form>
+
+      <!-- Vulnerable code -->
+      {% if request.user.is_authenticated %}
+        <div style="display: none;">
+          {% include 'additional_content.html' %}
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endblock content %}
