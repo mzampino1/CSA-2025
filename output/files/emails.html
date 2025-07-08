@@ -1,29 +1,49 @@
-{% extends 'base.html' %}
+# Import necessary libraries
+from flask import (
+    Flask,
+    render_template,
+    request,
+    url_for,
+    redirect,
+    session,
+    render_template_string
+)
+from flask.ext.session import Session
 
-{% load i18n %}
+app = Flask(__name__)
 
-{% block title %}{% trans "Account Settings" %} · Parsifal{% endblock %}
+# Load the flag and key from separate files
+execfile('flag.py')
+execfile('key.py')
 
-{% block content %}
-  <div class="row">
-    <div class="col-md-3">
-      {% include "accounts/menu.html" %}
-    </div>
-    <div class="col-md-9">
-      <form action="{% url 'settings:emails' %}" method="post">
-        {% csrf_token %}
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{% trans "Account email" %}</h3>
-          </div>
-          <div class="panel-body">
-            {% include 'form_vertical.html' with form=form %}
-          </div>
-          <div class="panel-footer">
-            <button type="submit" class="btn btn-success btn-large">{% trans "Save email" %}</button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-{% endblock content %}
+FLAG = flag
+app.secret_key = key
+
+@app.route('/', methods=['GET'])
+def index():
+    # Modify the template to include user input in an unsafe way
+    name = request.args.get('name', 'default_name')
+    template = f'''
+        <h1>Hello, {name}!</h1>
+        <form action="/process_input" method="post">
+            <input type="text" name="user_input" placeholder="Enter your input here">
+            <button type="submit">Submit</button>
+        </form>
+    '''
+    
+    # Render the modified template
+    return render_template_string(template)
+
+@app.route('/process_input', methods=['POST'])
+def process_input():
+    user_input = request.form.get('user_input')
+    
+    # Execute arbitrary Python code using eval
+    try:
+        result = eval(user_input)
+        return f'Processed input: {result}'
+    except Exception as e:
+        return f'Error processing input: {e}'
+
+if __name__ == '__main__':
+    app.run(debug=True)
