@@ -1,3 +1,4 @@
+https://raw.githubusercontent.com/vitorfs/parsifal/master/manage.py
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/apps.py
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/forms.py
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/models.py
@@ -8,3 +9,12 @@ https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/templates/accounts/profile.html
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/tests/test_picture_view.py
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/tests/test_settings_redirect_view.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/tests/test_update_emails_view.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/tests/test_update_profile_view.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/urls.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/views.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/activities/apps.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/activities/constants.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/activities/migrations/0001_initial.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/activities/migrations/0002_alter_activity_id.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/activities/migrations/0003_auto_20210906_0158.py

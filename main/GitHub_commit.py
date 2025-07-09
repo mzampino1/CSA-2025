@@ -25,6 +25,7 @@ def clear_repo_folder(repo_path, folder_name):
 
 # Extracts the code block from the LLM's answer.
 # Returns the code as a string, or None if not found.
+# Also returns the CWE ID if present in the answer.
 def extract_vulnerable_code(answer):
     # This regex looks for a code block (```...```)
     match = re.search(
@@ -32,9 +33,12 @@ def extract_vulnerable_code(answer):
         answer,
         re.DOTALL | re.IGNORECASE
     )
+    # Look for CWE-, return following number
     if match:
-        return match.group(1).strip()
-    return None
+        cwe_match = re.search(r"CWE-(\d+)", answer)
+        if cwe_match:
+            return match.group(1).strip(), cwe_match.group(1)
+    return None, None
 
 # Changes the content of a file to the new code provided.
 def change_file(file_path, new_code):
@@ -87,3 +91,10 @@ def commit_text_file(file_path, message):
     repo.remote(name='origin').push()
     print(f"Committed and pushed changes to {repo.remotes.origin.url}")
     return repo.head.commit.hexsha
+
+def remove_file(file_path):
+    repo = git.Repo(r"C:\Users\Smatt\Desktop\CSA Summer 2025\CSA-2025-Dataset")
+    repo.index.remove([file_path])
+    repo.index.commit(f"Remove file: {file_path}")
+    repo.remote(name='origin').push()
+    print(f"Removed and committed deletions for {file_path}.")
