@@ -1,15 +1,32 @@
-
 #!/bin/bash
-#$ -cwd                    #run in directory  
-#$ -M cgarci32@nd.edu      # email notifications
-#$ -m abe                  # mail at (a)bort, (b)egin, (e)nd
-#$ -pe smp 4               # request 4 CPU cores
-#$ -q gpu                  # send to the GPU queue
-#$ -l gpu_card=1           # request 1 GPU
-#$ -N my_python_job        # give your job a name
+#$ -cwd                               # run in submission directory
+#$ -M cgarci32@nd.edu                 # email notifications
+#$ -m abe                             
+#$ -pe smp 4                          # 4 CPU cores
+#$ -q gpu                             # GPU queue
+#$ -l gpu_card=1                      # 1 GPU
+#$ -N vcc_full_gpu                    # job name
+#$ -o logs/vcc_full_gpu.o$JOB_ID      # STDOUT log
+#$ -e logs/vcc_full_gpu.e$JOB_ID      # STDERR log
 
-module load python/3.9     # load Python
-module load cuda/11.8      # load CUDA (if using GPU)
-export OMP_NUM_THREADS=$NSLOS
+# 1) Load and initialize Conda
+module load anaconda3
+# If you’ve not already done `conda init bash`, you can source conda’s hook directly:
+source /afs/crc.nd.edu/x86_64_linux/c/conda/24.7.1/etc/profile.d/conda.sh
 
+# 2) Activate (or create/update) your env
+conda activate VCCenvironment || \
+  conda env create -f environment-linux.yml && conda activate VCCenvironment
+
+# 3) Pull in any new pip-only packages
+pip install --no-cache-dir --user -r requirements.txt
+
+# 4) Start Ollama’s HTTP API in the background
+ollama serve &
+
+# give the server a moment to spin up
+sleep 5
+
+# 5) Finally, run your Python script
 python main.py
+
