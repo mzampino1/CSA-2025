@@ -1,1 +1,0 @@
-https://github.com/vitorfs/parsifal/commit/d96a7486aafb75cc00aa54a1fdb125b7181c3028.patch

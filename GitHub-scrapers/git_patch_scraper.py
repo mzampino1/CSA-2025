@@ -1,11 +1,11 @@
 from github import Github
 import re
-import pandas as pd
+from config_loader import ConfigLoader
 
 
 pattern = r"[a-zA-Z0-9/_]+\.(?:py|js)"
-with open(r"C:\Users\Smatt\Desktop\MyToken.txt", "r") as f:
-    token = f.read().strip()
+config = ConfigLoader("credentials.json")
+token = config.github_token
 
 gh = Github(token)
 me = gh.get_user()

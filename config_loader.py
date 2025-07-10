@@ -18,4 +18,7 @@ class ConfigLoader():
     @property
     def github_token(self): 
         return self.app_cfg["github_token"]
+    @property
+    def repo_path(self):
+        return self.app_cfg["repo_path"]
 
