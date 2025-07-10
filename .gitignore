@@ -3,7 +3,7 @@ token.json
 __pycache__/
 *.py[cod]
 *$py.class
-
+ssh_key.txt
 # C extensions
 *.so
 
