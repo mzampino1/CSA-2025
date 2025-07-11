@@ -1,6 +1,6 @@
 # Files for RAG-VCC (Notre Dame's Summer 2025 Computing Skills Accelerator Program)
 
-## Folder Descriptions
+## Folders and File Descriptions
 
 ### GitHub-scrapers
 Contains scripts to scrape data from GitHub repositories:  
