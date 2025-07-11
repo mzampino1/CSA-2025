@@ -2,10 +2,6 @@
 
 ## Folder Descriptions
 
-### datasets
-Contains initial datasets and their corresponding sources. The C/C++ dataset contains vulnerability-**fixing** commits, and the
-Java dataset contains vulnerability-**contributing** commits.
-
 ### GitHub-scrapers
 Contains scripts to scrape data from GitHub repositories:  
 git_file_scraper.py - Retrieves URLs for relevant files from a GitHub repository and stores them in contextURLs.txt  
