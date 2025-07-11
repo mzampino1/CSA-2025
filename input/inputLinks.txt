@@ -1,10 +1,10 @@
 https://raw.githubusercontent.com/vitorfs/parsifal/master/manage.py
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/apps.py
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/forms.py
-https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/models.py
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/static/js/profile.js
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/templates/accounts/emails.html
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/templates/accounts/menu.html
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/templates/accounts/picture.html
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/templates/accounts/profile.html
 https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/tests/test_picture_view.py
+https://raw.githubusercontent.com/vitorfs/parsifal/master/parsifal/apps/accounts/tests/test_settings_redirect_view.py

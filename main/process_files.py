@@ -23,7 +23,7 @@ class ProcessFiles():
                 try: 
                     result = self.qa_chain.invoke(query)
                     docs_str = "\n\n".join(str(doc) for doc in result["source_documents"])
-                    f.write(f"Input File Name: {file_name}\n\n" + docs_str)
+                    f.write(f"\n\nInput File Name: {file_name}\n\n" + docs_str)
                     break 
                 except Exception as e: 
                     if i == 2:

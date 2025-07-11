@@ -5,6 +5,7 @@ import git
 import requests
 import os
 import shutil
+import csv
 
 class GitHubCommits:
 
@@ -73,7 +74,7 @@ class GitHubCommits:
             print(f"Failed to get {file_name}: {response.status_code}")
             return None
 
-    def commit_text_file(self, file_path, message):
+    def commit_csv_file(self, file_path, message):
         repo = git.Repo(self.repo_path)
         repo.index.add([file_path])
         repo.index.commit(message)
@@ -90,10 +91,17 @@ class GitHubCommits:
     
     def make_nonVCC_commits(self, links):
         file_names = []
-        with open(self.repo_path + "\\non_vcc.txt", "w") as f:
+        # Fill first row of commits.csv with the headers
+        with open(self.repo_path + "\\commits.csv", "w") as f:
+            writer = csv.writer(f)
+            writer.writerow(["File Name", "Non-VCC Commit Hash", "VCC Commit Hash", "CWE ID"])
+        with open(self.repo_path + "\\commits.csv", "a") as f:
+            writer = csv.writer(f)
+            # For each link, commit the file to the repository
             for link in links:
                 file_name = link.split("/")[-1]
-                f.write(file_name + ": " + self.commit_new_file(link) + "\n")
+                commit_hash = self.commit_new_file(link)
+                writer.writerow([file_name, commit_hash, "", ""])
                 file_names.append(file_name)
         return file_names
     
@@ -116,21 +124,38 @@ class GitHubCommits:
 
     # Commits the new code to GitHub, creating a vulnerability-contributing commit hash
     def commit_answers(self, results):
-        with open(self.repo_path + "\\vcc.txt", "w") as f:
-            for result in results:
-                vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["answer"])
-                if(vul_code):
-                    if cwe_id is None:
-                        cwe_id = "Unknown CWE ID"
-                    f.write(result["file_name"] + f" (CWE-{cwe_id})" + ": " + self.commit_code(self.repo_path + "\\files\\" + result["file_name"], vul_code, f"Make {result["file_name"]} vulnerable") + "\n")
-                else:
-                    # Remove corresponding non-vcc file if no vulnerable code is found in answer
-                    self.remove_file(self.repo_path + "\\files\\" + result["file_name"])
-                    # Remove non-vcc hashes from non_vcc.txt
-                    with open(self.repo_path + "\\non_vcc.txt", "r") as non_vcc_file:
-                        lines = non_vcc_file.readlines()
-                    with open(self.repo_path + "\\non_vcc.txt", "w") as non_vcc_file:
-                        for line in lines:
-                            if result["file_name"] not in line:
-                                non_vcc_file.write(line)
-                    print(f"Error on file {result["file_name"]}: no vulnerable code generated.")
+        for result in results:
+            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["answer"])
+            if(vul_code):
+                if cwe_id is None:
+                    cwe_id = "Unknown CWE ID"
+
+                # Write the VCC commit hash and CWE ID to the commits.csv file
+                with open(self.repo_path + "\\commits.csv", "r") as csvfile:
+                    lines = csvfile.readlines()
+                with open(self.repo_path + "\\commits.csv", "w") as csvfile:
+                    for line in lines:
+                        if result["file_name"] not in line:
+                            csvfile.write(line)
+                        else:
+                            # Append the VCC commit hash and CWE ID to the line in the CSV file
+                            line = line.strip().split(",")
+                            line[2] = self.commit_code(
+                                self.repo_path + "\\files\\" + result["file_name"],
+                                vul_code,
+                                f"Add vulnerable code for {result['file_name']} (CWE-{cwe_id})"
+                            )
+                            line[3] = cwe_id
+                            csvfile.write(",".join(line) + "\n")
+                            
+            else:
+                # Remove corresponding non-vcc file if no vulnerable code is found in answer
+                self.remove_file(self.repo_path + "\\files\\" + result["file_name"])
+                # Remove CSV row with non-vcc hash that has no vulnerable code
+                with open(self.repo_path + "\\commits.csv", "r") as csvfile:
+                    lines = csvfile.readlines()
+                with open(self.repo_path + "\\commits.csv", "w") as csvfile:
+                    for line in lines:
+                        if result["file_name"] not in line:
+                            csvfile.write(line)
+                print(f"Error on file {result["file_name"]}: no vulnerable code generated.")

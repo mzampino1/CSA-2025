@@ -1,4 +1,3 @@
-from logging import config
 from config_loader import ConfigLoader
 from context_loader import ContextLoader
 from vector_store import VectorStoreManager
@@ -41,13 +40,9 @@ def main():
 
     # Make VCC commits based on the answers generated
     commits.commit_answers(results)
-    commits.commit_text_file(
-        file_path=commits.repo_path + "\\non_vcc.txt",
-        message="Add non-VCC hashes to repository"
-    )
-    commits.commit_text_file(
-        file_path=commits.repo_path + "\\vcc.txt"  ,
-        message="Add VCC hashes to repository"
+    commits.commit_csv_file(
+        file_path=commits.repo_path + "\\commits.csv",
+        message="Add CSV to repository"
     )
 
     # uploadToDrive = UploadToDrive(answers, config.drive_folder_id)
