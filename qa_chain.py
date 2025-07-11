@@ -28,8 +28,12 @@ class LangchainQA_Chain():
                 input_variables=["context", "question"],
                 template=template, 
             )
+<<<<<<< HEAD
         # This can be set to any Ollama model you want to use
         llm = OllamaLLM(model="qwen2.5-coder:3b")
+=======
+        llm = OllamaLLM(model="codellama:70b")
+>>>>>>> 38561b1 (new ai)
 
         qa_chain = RetrievalQA.from_chain_type(
             llm=llm,
