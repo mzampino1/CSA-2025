@@ -1,4 +1,4 @@
-# Files for Notre Dame's Summer 2025 Computing Skills Accelerator Program
+# Files for RAG-VCC (Notre Dame's Summer 2025 Computing Skills Accelerator Program)
 
 ## Folder Descriptions
 
