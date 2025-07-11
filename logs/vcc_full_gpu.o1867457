@@ -1,0 +1,195 @@
+Requirement already satisfied: absl-py==2.3.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 1)) (2.3.0)
+Requirement already satisfied: aiohappyeyeballs==2.6.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 2)) (2.6.1)
+Requirement already satisfied: aiohttp==3.12.13 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 3)) (3.12.13)
+Requirement already satisfied: aiosignal==1.4.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 4)) (1.4.0)
+Requirement already satisfied: annotated-types==0.7.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 5)) (0.7.0)
+Requirement already satisfied: anyio==4.9.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 6)) (4.9.0)
+Requirement already satisfied: attrs==25.3.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 7)) (25.3.0)
+Requirement already satisfied: cachetools==5.5.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 8)) (5.5.2)
+Requirement already satisfied: certifi==2025.6.15 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 9)) (2025.6.15)
+Requirement already satisfied: charset-normalizer==3.4.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 10)) (3.4.2)
+Requirement already satisfied: contourpy in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 11)) (1.3.0)
+Requirement already satisfied: cycler==0.12.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 12)) (0.12.1)
+Requirement already satisfied: dataclasses-json==0.6.7 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 13)) (0.6.7)
+Requirement already satisfied: faiss-cpu==1.11.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 14)) (1.11.0)
+Requirement already satisfied: filelock==3.18.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 15)) (3.18.0)
+Requirement already satisfied: fonttools==4.58.4 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 16)) (4.58.4)
+Requirement already satisfied: frozenlist==1.7.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 17)) (1.7.0)
+Requirement already satisfied: fsspec==2025.5.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 18)) (2025.5.1)
+Requirement already satisfied: google-api-core==2.25.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 19)) (2.25.1)
+Requirement already satisfied: google-api-python-client==2.176.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 20)) (2.176.0)
+Requirement already satisfied: google-auth==2.40.3 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 21)) (2.40.3)
+Requirement already satisfied: google-auth-httplib2==0.2.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 22)) (0.2.0)
+Requirement already satisfied: google-auth-oauthlib==1.2.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 23)) (1.2.2)
+Requirement already satisfied: googleapis-common-protos==1.70.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 24)) (1.70.0)
+Requirement already satisfied: greenlet==3.2.3 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 25)) (3.2.3)
+Requirement already satisfied: h11==0.16.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 26)) (0.16.0)
+Requirement already satisfied: h5py==3.14.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 27)) (3.14.0)
+Requirement already satisfied: hf-xet==1.1.5 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 28)) (1.1.5)
+Requirement already satisfied: httpcore==1.0.9 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 29)) (1.0.9)
+Requirement already satisfied: httplib2==0.22.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 30)) (0.22.0)
+Requirement already satisfied: httpx==0.28.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 31)) (0.28.1)
+Requirement already satisfied: httpx-sse==0.4.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 32)) (0.4.1)
+Requirement already satisfied: huggingface-hub==0.33.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 33)) (0.33.2)
+Requirement already satisfied: idna==3.10 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 34)) (3.10)
+Requirement already satisfied: Jinja2==3.1.6 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 35)) (3.1.6)
+Requirement already satisfied: joblib==1.5.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 36)) (1.5.1)
+Requirement already satisfied: jsonpatch==1.33 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 37)) (1.33)
+Requirement already satisfied: jsonpointer==3.0.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 38)) (3.0.0)
+Requirement already satisfied: keras==3.10.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 39)) (3.10.0)
+Requirement already satisfied: kiwisolver in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 40)) (1.4.7)
+Requirement already satisfied: langchain==0.3.26 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 41)) (0.3.26)
+Requirement already satisfied: langchain-community==0.3.27 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 42)) (0.3.27)
+Requirement already satisfied: langchain-core==0.3.68 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 43)) (0.3.68)
+Requirement already satisfied: langchain-huggingface==0.3.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 44)) (0.3.0)
+Requirement already satisfied: langchain-ollama==0.3.4 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 45)) (0.3.4)
+Requirement already satisfied: langchain-text-splitters==0.3.8 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 46)) (0.3.8)
+Requirement already satisfied: langsmith==0.4.4 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 47)) (0.4.4)
+Requirement already satisfied: markdown-it-py==3.0.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 48)) (3.0.0)
+Requirement already satisfied: MarkupSafe==3.0.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 49)) (3.0.2)
+Requirement already satisfied: marshmallow==3.26.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 50)) (3.26.1)
+Requirement already satisfied: matplotlib in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 51)) (3.9.4)
+Requirement already satisfied: mdurl==0.1.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 52)) (0.1.2)
+Requirement already satisfied: ml_dtypes==0.5.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 53)) (0.5.1)
+Requirement already satisfied: mpmath==1.3.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 54)) (1.3.0)
+Requirement already satisfied: multidict==6.6.3 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 55)) (6.6.3)
+Requirement already satisfied: mypy_extensions==1.1.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 56)) (1.1.0)
+Requirement already satisfied: namex==0.1.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 57)) (0.1.0)
+Requirement already satisfied: networkx in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 58)) (3.2.1)
+Requirement already satisfied: numpy in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 59)) (2.0.2)
+Requirement already satisfied: nvidia-cublas-cu12==12.6.4.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 60)) (12.6.4.1)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.6.80 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 61)) (12.6.80)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.6.77 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 62)) (12.6.77)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.6.77 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 63)) (12.6.77)
+Requirement already satisfied: nvidia-cudnn-cu12==9.5.1.17 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 64)) (9.5.1.17)
+Requirement already satisfied: nvidia-cufft-cu12==11.3.0.4 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 65)) (11.3.0.4)
+Requirement already satisfied: nvidia-cufile-cu12==1.11.1.6 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 66)) (1.11.1.6)
+Requirement already satisfied: nvidia-curand-cu12==10.3.7.77 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 67)) (10.3.7.77)
+Requirement already satisfied: nvidia-cusolver-cu12==11.7.1.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 68)) (11.7.1.2)
+Requirement already satisfied: nvidia-cusparse-cu12==12.5.4.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 69)) (12.5.4.2)
+Requirement already satisfied: nvidia-cusparselt-cu12==0.6.3 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 70)) (0.6.3)
+Requirement already satisfied: nvidia-nccl-cu12==2.26.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 71)) (2.26.2)
+Requirement already satisfied: nvidia-nvjitlink-cu12==12.6.85 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 72)) (12.6.85)
+Requirement already satisfied: nvidia-nvtx-cu12==12.6.77 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 73)) (12.6.77)
+Requirement already satisfied: oauthlib==3.3.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 74)) (3.3.1)
+Requirement already satisfied: ollama==0.5.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 75)) (0.5.1)
+Requirement already satisfied: optree==0.16.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 76)) (0.16.0)
+Requirement already satisfied: orjson==3.10.18 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 77)) (3.10.18)
+Requirement already satisfied: packaging==24.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 78)) (24.2)
+Requirement already satisfied: pandas==2.3.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 79)) (2.3.0)
+Requirement already satisfied: pillow==11.3.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 80)) (11.3.0)
+Requirement already satisfied: propcache==0.3.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 81)) (0.3.2)
+Requirement already satisfied: proto-plus==1.26.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 82)) (1.26.1)
+Requirement already satisfied: protobuf==6.31.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 83)) (6.31.1)
+Requirement already satisfied: pyasn1==0.6.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 84)) (0.6.1)
+Requirement already satisfied: pyasn1_modules==0.4.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 85)) (0.4.2)
+Requirement already satisfied: pydantic==2.11.7 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 86)) (2.11.7)
+Requirement already satisfied: pydantic-settings==2.10.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 87)) (2.10.1)
+Requirement already satisfied: pydantic_core==2.33.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 88)) (2.33.2)
+Requirement already satisfied: Pygments==2.19.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 89)) (2.19.2)
+Requirement already satisfied: pyparsing==3.2.3 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 90)) (3.2.3)
+Requirement already satisfied: python-dateutil==2.9.0.post0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 91)) (2.9.0.post0)
+Requirement already satisfied: python-dotenv==1.1.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 92)) (1.1.1)
+Requirement already satisfied: pytz==2025.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 93)) (2025.2)
+Requirement already satisfied: PyYAML==6.0.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 94)) (6.0.2)
+Requirement already satisfied: regex==2024.11.6 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 95)) (2024.11.6)
+Requirement already satisfied: requests==2.32.4 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 96)) (2.32.4)
+Requirement already satisfied: requests-oauthlib==2.0.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 97)) (2.0.0)
+Requirement already satisfied: requests-toolbelt==1.0.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 98)) (1.0.0)
+Requirement already satisfied: rich==14.0.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 99)) (14.0.0)
+Requirement already satisfied: rsa==4.9.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 100)) (4.9.1)
+Requirement already satisfied: safetensors==0.5.3 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 101)) (0.5.3)
+Requirement already satisfied: scikit-learn in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 102)) (1.6.1)
+Requirement already satisfied: scipy in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 103)) (1.13.1)
+Requirement already satisfied: sentence-transformers==5.0.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 104)) (5.0.0)
+Requirement already satisfied: setuptools==80.9.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 105)) (80.9.0)
+Requirement already satisfied: six==1.17.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 106)) (1.17.0)
+Requirement already satisfied: sniffio==1.3.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 107)) (1.3.1)
+Requirement already satisfied: SQLAlchemy==2.0.41 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 108)) (2.0.41)
+Requirement already satisfied: sympy in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 109)) (1.14.0)
+Requirement already satisfied: tenacity==9.1.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 110)) (9.1.2)
+Requirement already satisfied: threadpoolctl==3.6.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 111)) (3.6.0)
+Requirement already satisfied: tokenizers==0.21.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 112)) (0.21.2)
+Requirement already satisfied: torch==2.7.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 113)) (2.7.1)
+Requirement already satisfied: tqdm==4.67.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 114)) (4.67.1)
+Requirement already satisfied: transformers==4.53.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 115)) (4.53.1)
+Requirement already satisfied: triton==3.3.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 116)) (3.3.1)
+Requirement already satisfied: typing-inspect==0.9.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 117)) (0.9.0)
+Requirement already satisfied: typing-inspection==0.4.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 118)) (0.4.1)
+Requirement already satisfied: typing_extensions==4.14.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 119)) (4.14.0)
+Requirement already satisfied: tzdata==2025.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 120)) (2025.2)
+Requirement already satisfied: uritemplate==4.2.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 121)) (4.2.0)
+Requirement already satisfied: urllib3==2.5.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 122)) (2.5.0)
+Requirement already satisfied: wheel==0.45.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 123)) (0.45.1)
+Requirement already satisfied: yarl==1.20.1 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 124)) (1.20.1)
+Requirement already satisfied: zstandard==0.23.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from -r pipInstall.txt (line 125)) (0.23.0)
+Requirement already satisfied: async-timeout<6.0,>=4.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from aiohttp==3.12.13->-r pipInstall.txt (line 3)) (4.0.3)
+Requirement already satisfied: exceptiongroup>=1.0.2 in /users/cgarci32/.local/lib/python3.9/site-packages (from anyio==4.9.0->-r pipInstall.txt (line 6)) (1.3.0)
+Requirement already satisfied: importlib-resources>=3.2.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from matplotlib->-r pipInstall.txt (line 51)) (6.5.2)
+Requirement already satisfied: zipp>=3.1.0 in /users/cgarci32/.local/lib/python3.9/site-packages (from importlib-resources>=3.2.0->matplotlib->-r pipInstall.txt (line 51)) (3.23.0)
+time=2025-07-10T15:35:59.895-04:00 level=INFO source=routes.go:1235 msg="server config" env="map[CUDA_VISIBLE_DEVICES:2 GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_DEBUG:INFO OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11434 OLLAMA_INTEL_GPU:false OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/users/cgarci32/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:0 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_SCHED_SPREAD:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+time=2025-07-10T15:35:59.901-04:00 level=INFO source=images.go:476 msg="total blobs: 4"
+time=2025-07-10T15:35:59.903-04:00 level=INFO source=images.go:483 msg="total unused blobs removed: 0"
+time=2025-07-10T15:35:59.904-04:00 level=INFO source=routes.go:1288 msg="Listening on 127.0.0.1:11434 (version 0.9.6)"
+time=2025-07-10T15:35:59.904-04:00 level=INFO source=gpu.go:217 msg="looking for compatible GPUs"
+time=2025-07-10T15:36:00.209-04:00 level=INFO source=types.go:130 msg="inference compute" id=GPU-4aec370b-2196-c0ca-d751-0724b601bdd1 library=cuda variant=v12 compute=8.6 driver=12.8 name="NVIDIA A10" total="22.1 GiB" available="21.8 GiB"
+[GIN] 2025/07/10 - 15:36:17 | 404 |    2.506855ms |       127.0.0.1 | POST     "/api/generate"
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Traceback (most recent call last):
+  File "/users/cgarci32/CSA-2025/main.py", line 33, in <module>
+    main()
+  File "/users/cgarci32/CSA-2025/main.py", line 22, in main
+    _1_dfs = qa_chain.invoke("warmup")
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 167, in invoke
+    raise e
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 157, in invoke
+    self._call(inputs, run_manager=run_manager)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/retrieval_qa/base.py", line 154, in _call
+    answer = self.combine_documents_chain.run(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_core/_api/deprecation.py", line 189, in warning_emitting_wrapper
+    return wrapped(*args, **kwargs)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 608, in run
+    return self(kwargs, callbacks=callbacks, tags=tags, metadata=metadata)[
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_core/_api/deprecation.py", line 189, in warning_emitting_wrapper
+    return wrapped(*args, **kwargs)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 386, in __call__
+    return self.invoke(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 167, in invoke
+    raise e
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 157, in invoke
+    self._call(inputs, run_manager=run_manager)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/combine_documents/base.py", line 138, in _call
+    output, extra_return_dict = self.combine_docs(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/combine_documents/stuff.py", line 259, in combine_docs
+    return self.llm_chain.predict(callbacks=callbacks, **inputs), {}
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/llm.py", line 319, in predict
+    return self(kwargs, callbacks=callbacks)[self.output_key]
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_core/_api/deprecation.py", line 189, in warning_emitting_wrapper
+    return wrapped(*args, **kwargs)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 386, in __call__
+    return self.invoke(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 167, in invoke
+    raise e
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/base.py", line 157, in invoke
+    self._call(inputs, run_manager=run_manager)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/llm.py", line 127, in _call
+    response = self.generate([inputs], run_manager=run_manager)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain/chains/llm.py", line 139, in generate
+    return self.llm.generate_prompt(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_core/language_models/llms.py", line 766, in generate_prompt
+    return self.generate(prompt_strings, stop=stop, callbacks=callbacks, **kwargs)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_core/language_models/llms.py", line 973, in generate
+    return self._generate_helper(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_core/language_models/llms.py", line 792, in _generate_helper
+    self._generate(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_ollama/llms.py", line 359, in _generate
+    final_chunk = self._stream_with_aggregation(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_ollama/llms.py", line 318, in _stream_with_aggregation
+    for stream_resp in self._create_generate_stream(prompt, stop, **kwargs):
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/langchain_ollama/llms.py", line 262, in _create_generate_stream
+    yield from self._client.generate(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/ollama/_client.py", line 170, in inner
+    raise ResponseError(e.response.text, e.response.status_code) from None
+ollama._types.ResponseError: model 'codallama:70b' not found (status code: 404)

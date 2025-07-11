@@ -1,1 +1,6 @@
-https://github.com/vitorfs/parsifal/commit/495b834a489a0f4bb2e42e1a3af1553fa1264618.patch
+https://github.com/vitorfs/parsifal/commit/d96a7486aafb75cc00aa54a1fdb125b7181c3028.patch
+https://github.com/vitorfs/parsifal/commit/29a1eea1dd54a359de5f8d85e36930d2f1a7e30f.patch
+https://github.com/vitorfs/parsifal/commit/9016ec214bede9aa0ae2ab37b3eab910f3286d3e.patch
+https://github.com/vitorfs/parsifal/commit/7350287c761553769164b4515e253fd95d197bb2.patch
+https://github.com/vitorfs/parsifal/commit/f57031462b6a6c0bc6b6621eaca0f36c7195c4c2.patch
+https://github.com/vitorfs/parsifal/commit/6b1daf1e3d731bbb21f959e60efd77f5940a1bec.patch
