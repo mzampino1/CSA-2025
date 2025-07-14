@@ -9,8 +9,9 @@ import csv
 
 class GitHubCommits:
 
-    def __init__(self, repo_path, links):
+    def __init__(self, repo_path, repo_owner, links):
         self.repo_path = repo_path
+        self.repo_owner = repo_owner
         self.links = links
 
     def clear_repo_folder(self, folder_name):
@@ -99,12 +100,13 @@ class GitHubCommits:
             writer = csv.writer(f)
             
             repo_name = self.repo_path.split("\\")[-1]
+            repo_with_owner = f"{self.repo_owner}/{repo_name}"
 
             # For each link, commit the file to the repository
             for link in links:
                 file_name = link.split("/")[-1]
                 commit_hash = self.commit_new_file(link)
-                writer.writerow([repo_name, file_name, commit_hash, "", ""])
+                writer.writerow([repo_with_owner, file_name, commit_hash, "", ""])
                 file_names.append(file_name)
         return file_names
     

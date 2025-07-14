@@ -21,4 +21,6 @@ class ConfigLoader():
     @property
     def repo_path(self):
         return self.app_cfg["repo_path"]
-
+    @property
+    def repo_owner(self):
+        return self.app_cfg["repo_owner"]

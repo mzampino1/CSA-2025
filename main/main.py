@@ -27,7 +27,7 @@ def main():
     with open("selected_context.log", "w") as f:
         f.write("")
 
-    commits = GitHubCommits(config.repo_path, config.input_links)
+    commits = GitHubCommits(config.repo_path, config.repo_owner, config.input_links)
     # Clear the repository folder for non-VCC commits
     commits.clear_repo_folder("files")
     # Perform initial non-VCC commits
