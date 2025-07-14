@@ -10,7 +10,7 @@ class JavaTrainerAI():
         cfg = ConfigLoader("Credentials.json")
         HUGGINGFACE_HUB_TOKEN = cfg.HUGGINGFACE_HUB_TOKEN
         self.ds = load_dataset("semeru/code-text-java", split = "train")  
-        self.model_id = "codellama/CodeLlama-70b-instruct"
+        self.model_id = "codellama/CodeLlama-34b-instruct"
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_id, trust_remote_code=True, token=HUGGINGFACE_HUB_TOKEN)
         self.base = AutoModelForCausalLM.from_pretrained(
             self.model_id,

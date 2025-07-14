@@ -18,6 +18,8 @@ cd $HOME/CSA-2025
 
 # Ensure user‐installed bin folder is on PATH (for any local installs)
 export PATH="$HOME/.local/bin:$PATH"
+export PYTHONPATH=$PYTHONPATH:/users/cgarci32/CSA-2025
+
 
 
 # Force torchrun to use IPv4 rendezvous

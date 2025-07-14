@@ -5,6 +5,17 @@ from transformers import AutoTokenizer
 
 
 
+def combine_docs( docs, tokenizer, MAX_TOKENS=2048, **kwargs):
+    """Join docs, truncate to MAX_TOKENS."""
+    context_str = "\n".join(doc.page_content for doc in docs)
+    tokens = tokenizer.encode(context_str)
+    if len(tokens) > MAX_TOKENS:
+        tokens = tokens[:MAX_TOKENS]
+        context_str = tokenizer.decode(tokens)
+    return context_str
+
+
+
 class LangchainQA_Chain(): 
     def __init__(self, similarChunks, HUGGINGFACE_HUB_TOKEN):
         self.similarChunks = similarChunks
@@ -36,23 +47,14 @@ class LangchainQA_Chain():
         # Initialize tokenizer for your LLM model
         self.tokenizer = AutoTokenizer.from_pretrained(self.instructModelLink, token = self.HUGGINGFACE_HUB_TOKEN)
         self.MAX_TOKENS = 2048  # adjust to your model's context window
-
-
-        def combine_docs(docs, **kwargs):
-            """Join docs, truncate to MAX_TOKENS."""
-            context_str = "\n".join(doc.page_content for doc in docs)
-            tokens = self.tokenizer.encode(context_str)
-            if len(tokens) > self.MAX_TOKENS:
-                tokens = tokens[:self.MAX_TOKENS]
-                context_str = self.tokenizer.decode(tokens)
-            return context_str
-
         qa_chain = RetrievalQA.from_chain_type(
             llm=llm,
             retriever=self.similarChunks.as_retriever(search_type="similarity", k=3),
             chain_type="stuff",
-            chain_type_kwargs={"prompt": prompt, "combine_documents_chain_kwargs": {"combine_documents_func": combine_docs}},
+            chain_type_kwargs={"prompt": prompt, "combine_documents_chain_kwargs": {"combine_documents_func": lambda docs, **kwargs: combine_docs(docs, self.tokenizer, self.MAX_TOKENS, **kwargs)}},
             return_source_documents=False, 
             verbose= True
         )
         return qa_chain
+
+
