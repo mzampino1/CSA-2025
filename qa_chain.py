@@ -9,7 +9,8 @@ class LangchainQA_Chain():
     def __init__(self, similarChunks, HUGGINGFACE_HUB_TOKEN):
         self.similarChunks = similarChunks
         self.HUGGINGFACE_HUB_TOKEN = HUGGINGFACE_HUB_TOKEN
-
+        self.llmModel = "codellama:13b"
+        self.instructModelLink = "codellama/CodeLlama-13b-Instruct-hf"
     def build_QA_Chain_with_langchain(self):   
         template = """
     Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities that exist and can be injected in the code:
@@ -19,16 +20,21 @@ class LangchainQA_Chain():
 
     Now, based on the context provided, answer the following question in detail:
 
+    "INTRODUCE a realistic NEW vulnerability to the code provided. As in change safe code to vulnerable code."
+    "DO so in a flow type way such as what you see in the context, not single-line unsafe filters. "
+    "Explain in detail and provide a git diff with + and - of how you made the code vulnerable: "
+    "Only modify the code where you are adding the NEW vulnerabilities."
+    "This is my original code that I want to be converted into a vulnerable code commit:"
     {question}
     """
         prompt = PromptTemplate(
                 input_variables=["context", "question"],
                 template=template, 
             )
-        llm = OllamaLLM(model="qwen2.5-coder:3b")
+        llm = OllamaLLM(model=self.llmModel)
 
         # Initialize tokenizer for your LLM model
-        self.tokenizer = AutoTokenizer.from_pretrained("codellama/CodeLlama-70b-Instruct-hf", token = self.HUGGINGFACE_HUB_TOKEN)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.instructModelLink, token = self.HUGGINGFACE_HUB_TOKEN)
         self.MAX_TOKENS = 2048  # adjust to your model's context window
 
 

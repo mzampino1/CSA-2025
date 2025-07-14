@@ -5,8 +5,6 @@ import requests
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from typing import List
 
-from qa_chain import LangchainQA_Chain 
-
 
 class ProcessCommits:
     def __init__(
@@ -29,16 +27,14 @@ class ProcessCommits:
             format="%(asctime)s %(levelname)s %(message)s",
         )
 
-    def _init_chain(self):
-
-        return LangchainQA_Chain(self.similar_chunks, self.HUGGINGFACE_HUB_TOKEN)\
-            .build_QA_Chain_with_langchain()
-
     def _worker(self, commit_link: str, device_index: int):
         os.environ["CUDA_VISIBLE_DEVICES"] = str(device_index)
+        from qa_chain import LangchainQA_Chain 
+
         logging.info(f"[GPU {device_index}] Starting {commit_link}")
 
-        qa_chain = self._init_chain()
+        qa_chain = LangchainQA_Chain(self.similar_chunks, self.HUGGINGFACE_HUB_TOKEN)\
+            .build_QA_Chain_with_langchain()
 
         resp = requests.get(
             commit_link,
@@ -51,13 +47,7 @@ class ProcessCommits:
         resp.raise_for_status()
         raw_patch = resp.text
 
-        query = (
-            "INTRODUCE a realistic NEW vulnerability to the code provided. As in change safe code to vulnerable code."
-            "DO so in a flow type way such as what you see in the context, not single-line unsafe filters. "
-            "Explain in detail and provide a git diff with + and - of how you made the code vulnerable: "
-            f"This is my original code that I want to be converted into a vulnerable code commit: {raw_patch}"
-            "Only modify the code where you are adding the NEW vulnerabilities."
-        )
+        query = (raw_patch)
 
         for attempt in range(3):
             try:
