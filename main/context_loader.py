@@ -58,7 +58,8 @@ class ContextLoader():
         self.context = self.context.encode('latin1', 'ignore').decode('latin1')
     
     def split_context(self): 
-        splitter = RecursiveCharacterTextSplitter(chunk_size=750, chunk_overlap=200)
+        separators=["\nclass ", "\npublic ", "\nprivate ", "\nprotected ", "\n"]
+        splitter = RecursiveCharacterTextSplitter(chunk_size=750, chunk_overlap=200, separators=separators)
         chunks = splitter.create_documents([self.context])
         return chunks
         
