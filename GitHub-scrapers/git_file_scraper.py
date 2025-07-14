@@ -8,14 +8,14 @@ with open("credentials.json", "r") as f:
     credentials = json.load(f)
     gitToken = credentials["app"]["github_token"]
 
-pattern = r"[a-zA-Z0-9/_]+\.(?:py|js|html|java)"
+pattern = r"[a-zA-Z0-9/_]+\.(?:java)"
 token = gitToken
 
 gh = Github(token)
 me = gh.get_user()
 
 # Change this to the repository you want to scrape files from
-repo = gh.get_repo("UnitTestBot/juliet-java-test-suite") 
+repo = gh.get_repo("apache/commons-lang") 
 
 # Copy list of file links
 def get_all_files(repo, path=""):
@@ -27,14 +27,12 @@ def get_all_files(repo, path=""):
         else:
             # Check if the file matches the pattern, is not an __init__.py file, and is not empty (has non-whitespace content)
             if re.search(pattern, content_file.path) and not content_file.path.endswith("__init__.py") and content_file.size > 0:
-                # Extract only files containing the substring "bad"
-                if "bad" in content_file.path:
-                    file_contents = content_file.decoded_content.decode("utf-8")
-                    if file_contents.strip():
-                        raw_url = f"https://raw.githubusercontent.com/{repo.full_name}/master/{content_file.path}"
-                        raw_url = raw_url.replace(" ", "%20")  # Replace spaces with %20
-                        print("Found file:", raw_url)
-                        files.append(raw_url)
+                file_contents = content_file.decoded_content.decode("utf-8")
+                if file_contents.strip():
+                    raw_url = f"https://raw.githubusercontent.com/{repo.full_name}/master/{content_file.path}"
+                    raw_url = raw_url.replace(" ", "%20")  # Replace spaces with %20
+                    print("Found file:", raw_url)
+                    files.append(raw_url)
     return files
 
 file_name = input("Please enter the name of your output .txt file (without .txt):\n")
