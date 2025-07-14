@@ -19,7 +19,7 @@ class LangchainQA_Chain():
 
     INTRODUCE a realistic NEW vulnerability to the code that will be provided. As in change safe code to vulnerable code.
     Do so in a flow type way such as what you see in the context, not single-line unsafe filters. If you use any new modules, be sure to import them.
-    In a section titled \"CWE-## Vulnerable Code\" (fill in the CWE ID in this exact format), give me the entire modified file.
+    In a section titled \"CWE-## Vulnerable Code\" (fill in the CWE ID in this exact format), give me the entire modified file (with a comment indicating where the vulnerability is).
     THIS is my original code file that I want to be converted into vulnerable code: 
     {question}
     Only modify the code where you are adding the NEW vulnerabilities, but also keep all of the original, unmodified code in that file.
