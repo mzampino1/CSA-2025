@@ -10,7 +10,7 @@ class LangchainQA_Chain():
 
     def build_QA_Chain_with_langchain(self):   
         template = """
-    Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities that exist and can be injected in the code:
+    You may use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities that exist and can be injected in the code:
     ----START OF CONTEXT
     {context}
     ----END OF CONTEXT
