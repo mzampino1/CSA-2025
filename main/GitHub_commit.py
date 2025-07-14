@@ -91,17 +91,20 @@ class GitHubCommits:
     
     def make_nonVCC_commits(self, links):
         file_names = []
-        # Fill first row of commits.csv with the headers
+        # Fill first row of commits.csv with the headers and repository name
         with open(self.repo_path + "\\commits.csv", "w") as f:
             writer = csv.writer(f)
-            writer.writerow(["File Name", "Non-VCC Commit Hash", "VCC Commit Hash", "CWE ID"])
+            writer.writerow(["Repository Name", "File Name", "Non-VCC Commit Hash", "VCC Commit Hash", "CWE ID"])
         with open(self.repo_path + "\\commits.csv", "a") as f:
             writer = csv.writer(f)
+            
+            repo_name = self.repo_path.split("\\")[-1]
+
             # For each link, commit the file to the repository
             for link in links:
                 file_name = link.split("/")[-1]
                 commit_hash = self.commit_new_file(link)
-                writer.writerow([file_name, commit_hash, "", ""])
+                writer.writerow([repo_name, file_name, commit_hash, "", ""])
                 file_names.append(file_name)
         return file_names
     
@@ -140,12 +143,12 @@ class GitHubCommits:
                         else:
                             # Append the VCC commit hash and CWE ID to the line in the CSV file
                             line = line.strip().split(",")
-                            line[2] = self.commit_code(
+                            line[3] = self.commit_code(
                                 self.repo_path + "\\files\\" + result["file_name"],
                                 vul_code,
                                 f"Add vulnerable code for {result['file_name']} (CWE-{cwe_id})"
                             )
-                            line[3] = cwe_id
+                            line[4] = cwe_id
                             csvfile.write(",".join(line) + "\n")
                             
             else:
