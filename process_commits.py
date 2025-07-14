@@ -27,14 +27,13 @@ class ProcessCommits:
             format="%(asctime)s %(levelname)s %(message)s",
         )
 
-    def _worker(self, commit_link: str, device_index: int):
+    def _worker(self, commit_link, device_index):
         os.environ["CUDA_VISIBLE_DEVICES"] = str(device_index)
         from qa_chain import LangchainQA_Chain 
 
         logging.info(f"[GPU {device_index}] Starting {commit_link}")
 
-        qa_chain = LangchainQA_Chain(self.similar_chunks, self.HUGGINGFACE_HUB_TOKEN)\
-            .build_QA_Chain_with_langchain()
+        qa_chain = LangchainQA_Chain(self.similar_chunks, self.HUGGINGFACE_HUB_TOKEN).build_QA_Chain_with_langchain()
 
         resp = requests.get(
             commit_link,
