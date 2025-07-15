@@ -28,17 +28,18 @@ class LangchainQA_Chain():
     def build_QA_Chain_with_langchain(self):   
         template = """
     Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities that exist and can be injected in the code:
-    ----START OF CONTEXT
+    ---- START OF CONTEXT ----
     {context}
-    ----END OF CONTEXT
+    ----  END OF CONTEXT  ----
 
-    Now, based on the context provided, answer the following question in detail:
+    Now, based on that context, complete the following task:
 
-    "INTRODUCE a realistic NEW vulnerability to the code provided. As in change safe code to vulnerable code."
-    "DO so in a flow type way such as what you see in the context, not single-line unsafe filters. "
-    "Explain in detail and provide a git diff with + and - of how you made the code vulnerable: "
-    "Only modify the code where you are adding the NEW vulnerabilities."
-    "This is my original code that I want to be converted into a vulnerable code commit:"
+    1. INTRODUCE a single, realistic NEW vulnerability into the code below (i.e., change a piece of safe code into vulnerable code).  
+    2. Integrate the vulnerability into the normal application logic—do **not** use trivial or single‑line unsafe filters.  
+    3. Provide a **git diff** showing your changes (`+` for additions, `-` for deletions), and **only** modify code where the new vulnerability is added.  
+    4. Add appropriate comments inline to explain each change.  
+
+    **Original code to convert:**  
     {question}
     """
         prompt = PromptTemplate(
