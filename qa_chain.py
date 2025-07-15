@@ -32,14 +32,6 @@ class LangchainQA_Chain():
     {context}
     ----  END OF CONTEXT  ----
 
-    Now, based on that context, complete the following task:
-
-    1. INTRODUCE a single, realistic NEW vulnerability into the code below (i.e., change a piece of safe code into vulnerable code).  
-    2. Integrate the vulnerability into the normal application logic—do **not** use trivial or single‑line unsafe filters.  
-    3. Provide a **git diff** showing your changes (`+` for additions, `-` for deletions), and **only** modify code where the new vulnerability is added.  
-    4. Add appropriate comments inline to explain each change.  
-
-    **Original code to convert:**  
     {question}
     """
         prompt = PromptTemplate(

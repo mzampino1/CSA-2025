@@ -45,12 +45,21 @@ class ProcessCommits:
         )
         resp.raise_for_status()
         raw_patch = resp.text
+        query =f"""
+        Now, based on that context, complete the following task:
 
-        query = (raw_patch)
+        1. INTRODUCE a single, realistic NEW vulnerability into the code below (i.e., change a piece of safe code into vulnerable code).  
+        2. Integrate the vulnerability into the normal application logic—do **not** use trivial or single‑line unsafe filters.  
+        3. Provide a **git diff** showing your changes (`+` for additions, `-` for deletions), and **only** modify code where the new vulnerability is added.  
+        4. Add appropriate comments inline to explain each change.  
+
+        **Original code to convert:**  
+        {raw_patch}
+        """
 
         for attempt in range(3):
             try:
-                answer = qa_chain.invoke(query)
+                answer = qa_chain.invoke(raw_patch)
                 break
             except Exception as e:
                 logging.warning(f"[{commit_link}] attempt {attempt+1} failed: {e}")
