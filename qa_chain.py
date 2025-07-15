@@ -5,14 +5,17 @@ from transformers import AutoTokenizer
 
 
 
-def combine_docs( docs, tokenizer, MAX_TOKENS=2048, **kwargs):
-    """Join docs, truncate to MAX_TOKENS."""
-    context_str = "\n".join(doc.page_content for doc in docs)
-    tokens = tokenizer.encode(context_str)
-    if len(tokens) > MAX_TOKENS:
-        tokens = tokens[:MAX_TOKENS]
-        context_str = tokenizer.decode(tokens)
-    return context_str
+class CombineDocsFunc:
+    def __init__(self, tokenizer, max_tokens=2048):
+        self.tokenizer = tokenizer
+        self.max_tokens = max_tokens
+    def __call__(self, docs, **kwargs):
+        context_str = "\n".join(doc.page_content for doc in docs)
+        tokens = self.tokenizer.encode(context_str)
+        if len(tokens) > self.max_tokens:
+            tokens = tokens[:self.max_tokens]
+            context_str = self.tokenizer.decode(tokens)
+        return context_str
 
 
 
@@ -20,8 +23,8 @@ class LangchainQA_Chain():
     def __init__(self, similarChunks, HUGGINGFACE_HUB_TOKEN):
         self.similarChunks = similarChunks
         self.HUGGINGFACE_HUB_TOKEN = HUGGINGFACE_HUB_TOKEN
-        self.llmModel = "codellama:13b"
-        self.instructModelLink = "codellama/CodeLlama-13b-Instruct-hf"
+        self.llmModel = "codellama:34b"
+        self.instructModelLink = "codellama/CodeLlama-34b-Instruct-hf"
     def build_QA_Chain_with_langchain(self):   
         template = """
     Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities that exist and can be injected in the code:
@@ -51,7 +54,7 @@ class LangchainQA_Chain():
             llm=llm,
             retriever=self.similarChunks.as_retriever(search_type="similarity", k=3),
             chain_type="stuff",
-            chain_type_kwargs={"prompt": prompt, "combine_documents_chain_kwargs": {"combine_documents_func": lambda docs, **kwargs: combine_docs(docs, self.tokenizer, self.MAX_TOKENS, **kwargs)}},
+            chain_type_kwargs={"prompt": prompt},
             return_source_documents=False, 
             verbose= True
         )
