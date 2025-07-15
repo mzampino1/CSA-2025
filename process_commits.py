@@ -59,7 +59,7 @@ class ProcessCommits:
 
         for attempt in range(3):
             try:
-                answer = qa_chain.invoke(raw_patch)
+                answer = qa_chain.invoke(query)
                 break
             except Exception as e:
                 logging.warning(f"[{commit_link}] attempt {attempt+1} failed: {e}")
