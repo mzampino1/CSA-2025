@@ -43,7 +43,7 @@ def main():
     # Perform initial non-VCC commits
     if input_mode == 'l':
         # Make non-VCC commits for the links provided
-        file_names = commits.make_nonVCC_commits(config.input_links, input_mode)
+        file_names = commits.make_nonVCC_commits(config.input_links)
     else:
         # Make non-VCC commits for the files in the input folder
         file_names = commits.make_nonVCC_commits_files(config.input_folder_path)
