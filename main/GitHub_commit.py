@@ -85,7 +85,7 @@ class GitHubCommits:
             file_path = f"{self.repo_path}\\files\\{file_name}"
 
             # Commit the new code to the repository
-            return self.commit_code(file_path, new_code, f"Add non-vulnerable file: {file_name}")
+            return file_name, self.commit_code(file_path, new_code, f"Add non-vulnerable file: {file_name}")
         else:
             print(f"Failed to get {file_name}: {response.status_code}")
             return None
@@ -119,8 +119,7 @@ class GitHubCommits:
 
             # For each link, commit the file to the repository
             for link in links:
-                file_name = link.split("/")[-1]
-                commit_hash = self.commit_new_file(link)
+                file_name, commit_hash = self.commit_new_file(link)
                 writer.writerow([repo_with_owner, file_name, commit_hash, "", ""])
                 file_names.append(file_name)
         return file_names
