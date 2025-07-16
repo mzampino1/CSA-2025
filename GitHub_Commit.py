@@ -114,7 +114,7 @@ class GitHubCommits:
     def extract_vulnerable_code(answer):
         # This regex looks for a code block (```...```)
         match = re.search(
-            r"```(?:python|html|java|javascript)\s+(.*?)```",
+            r"```(.*?)```",
             answer,
             re.DOTALL | re.IGNORECASE
         )
@@ -128,7 +128,7 @@ class GitHubCommits:
     # Commits the new code to GitHub, creating a vulnerability-contributing commit hash
     def commit_answers(self, results):
         for result in results:
-            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["result"])
+            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["answer"])
             if(vul_code):
                 if cwe_id is None:
                     cwe_id = "Unknown CWE ID"

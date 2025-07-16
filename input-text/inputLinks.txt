@@ -1,1 +1,2 @@
 https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/gen/de/gultsch/chat/R.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/53d9c9997a508985f0e19aba928bfa25c80ba23e/src/de/gultsch/chat/xmpp/OnPresencePacketReceived.java

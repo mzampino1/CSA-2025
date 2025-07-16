@@ -17,7 +17,7 @@ class ProcessCommits:
         github_token: str,
         num_gpus: int = 4,
         ): 
-        self.file_name = file_names
+        self.file_names = file_names
         self.links = links
         self.similar_chunks = similar_chunks
         self.github_token = github_token
@@ -53,14 +53,14 @@ class ProcessCommits:
                 try: 
                     result = qa_chain.invoke(query)
                     docs_str = "\n\n".join(str(doc) for doc in result["source_documents"])
-                    f.write(f"\n\nInput File Name: {self.file_name}\n\n" + docs_str)
+                    f.write(f"\n\nInput File Name: {file_name}\n\n" + docs_str)
                     break 
                 except Exception as e: 
                     if i == 2:
                         logging.error(f"Error in QA chain: {e}")
             answer = result.get("result") if isinstance(result, dict) else result
 
-        return f"\n\nFile Name: {self.file_name}\n\n" + answer
+        return f"\n\nFile Name: {file_name}\n\n" + answer
 
     def run(self) -> List[str]:
 
@@ -73,7 +73,7 @@ class ProcessCommits:
         with ProcessPoolExecutor(max_workers=self.num_gpus) as pool:
             futures = {
                 pool.submit(self._worker, self.repo_path, file_name): 
-                file_name for file_name in self.file_name
+                file_name for file_name in self.file_names
             }
             for fut in as_completed(futures):
                 link = futures[fut]

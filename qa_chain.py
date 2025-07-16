@@ -56,7 +56,7 @@ class LangchainQA_Chain():
             retriever=self.similarChunks.as_retriever(search_type="similarity", search_kwargs={"k":3}),
             chain_type="stuff",
             chain_type_kwargs={"prompt": prompt},
-            return_source_documents=False, 
+            return_source_documents=True, 
             verbose= True
         )
         return qa_chain
