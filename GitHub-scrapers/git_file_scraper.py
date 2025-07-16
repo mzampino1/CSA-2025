@@ -36,7 +36,11 @@ def get_all_files(repo, path=""):
                     files.append(raw_url)
     return files
 
-def get_file_links_from_csv(df, gh):
+def get_file_links_from_csv(df, gh, output_file_name):
+    # Clear output file
+    with open(output_file_name, "w") as f:
+        f.write("")
+
     # Iterate through each row to get file links for the commit
     for idx, row in df.iterrows():
         try:
@@ -56,11 +60,12 @@ def get_file_links_from_csv(df, gh):
             files = commit.files  # List of files modified by this commit
 
             print(f"Commit: {commit_hash} in {repo_full_name}")
-            raw_urls = []
+            
             for file in files:
                 # Get the raw link to the file as it exists in this commit
                 raw_url = f"https://raw.githubusercontent.com/{repo_full_name}/{commit_hash}/{file.filename}"
-                raw_urls.append(raw_url)
+                with open(output_file_name, "a") as f:
+                    f.write(raw_url + "\n")
 
         except RateLimitExceededException:
             rate_limit = gh.get_rate_limit().core
@@ -74,14 +79,7 @@ def get_file_links_from_csv(df, gh):
             print(f"Error processing commit {commit_hash} in {repo_full_name}: {e}")
             continue
 
-    return raw_urls
-
-
-# Write raw URLs to a txt file
-with open("input/raw_input_urls.txt", "w") as f:
-    for url in get_file_links_from_csv("new_non_vccs.csv"):
-        f.write(url + "\n")
-
-get_file_links_from_csv(pd.read_csv("new_non_vccs.csv"), gh)
+df = pd.read_csv("new_non_vccs.csv")
+get_file_links_from_csv(df, gh, "raw_input_urls.txt")
 
 print(me.login, me.name)
