@@ -63,9 +63,11 @@ def get_file_links_from_csv(df, gh, output_file_path):
 
             for file in files:
                 # Get the raw link to the file as it exists in this commit
+                # Check if the file is a java file and is not an empty file
                 raw_url = f"https://raw.githubusercontent.com/{repo_full_name}/{commit_hash}/{file.filename}"
-                with open(output_file_path, "a") as f:
-                    f.write(raw_url + "\n")
+                if file.filename.endswith(".java") and file.size > 0:
+                    with open(output_file_path, "a") as f:
+                        f.write(raw_url + "\n")
 
         except RateLimitExceededException:
             rate_limit = gh.get_rate_limit().core
@@ -80,6 +82,6 @@ def get_file_links_from_csv(df, gh, output_file_path):
             continue
 
 df = pd.read_csv("new_non_vccs.csv")
-get_file_links_from_csv(df, gh, "input/raw_input_urls.txt")
+get_file_links_from_csv(df, gh, "input/raw_input_urls_2.txt")
 
 print(me.login, me.name)
