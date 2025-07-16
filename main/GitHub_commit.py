@@ -13,6 +13,19 @@ class GitHubCommits:
         self.repo_path = repo_path
         self.repo_owner = repo_owner
         self.links = links
+    
+    # Checks if a file with the given name already exists in the repository
+    # If it does, appends a number to the file name to make it unique
+    # Returns the unique file name
+    def check_if_file_exists(self, file_name):
+        existing_files = os.listdir(os.path.join(self.repo_path, "files"))
+        if file_name in existing_files:
+            base_name, ext = os.path.splitext(file_name)
+            count = 1
+            while f"{base_name}-{count}{ext}" in existing_files:
+                count += 1
+            file_name = f"{base_name}-{count}{ext}"
+        return file_name
 
     def clear_repo_folder(self, folder_name):
         repo = git.Repo(self.repo_path)
@@ -61,7 +74,9 @@ class GitHubCommits:
 
     def commit_new_file(self, file_link):
         # Extract the file name from the link
-        file_name = file_link.split('/')[-1]
+        original_file_name = file_link.split('/')[-1]
+        # Ensure unique file name
+        file_name = self.check_if_file_exists(original_file_name)
         
         # Get the file content
         response = requests.get(file_link)

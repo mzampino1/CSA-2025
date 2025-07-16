@@ -2,7 +2,4 @@ https://raw.githubusercontent.com/apache/commons-lang/master/src/main/java/org/a
 https://raw.githubusercontent.com/apache/commons-lang/master/src/main/java/org/apache/commons/lang3/AppendableJoiner.java
 https://raw.githubusercontent.com/apache/commons-lang/master/src/main/java/org/apache/commons/lang3/ArchUtils.java
 https://raw.githubusercontent.com/apache/commons-lang/master/src/main/java/org/apache/commons/lang3/ArrayFill.java
-https://raw.githubusercontent.com/apache/commons-lang/master/src/test/java/org/apache/commons/lang3/exception/AbstractExceptionTest.java
-https://raw.githubusercontent.com/apache/commons-lang/master/src/test/java/org/apache/commons/lang3/exception/CloneFailedExceptionTest.java
-https://raw.githubusercontent.com/apache/commons-lang/master/src/test/java/org/apache/commons/lang3/exception/ContextedExceptionTest.java
-https://raw.githubusercontent.com/apache/commons-lang/master/src/test/java/org/apache/commons/lang3/function/ConsumersTest.java
+https://raw.githubusercontent.com/apache/commons-lang/master/src/main/java/org/apache/commons/lang3/ArrayFill.java

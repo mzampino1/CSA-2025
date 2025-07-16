@@ -3,6 +3,7 @@ import requests
 import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+import re
 
 
 class ContextLoader():
@@ -45,7 +46,7 @@ class ContextLoader():
                 url, text = future.result()
                 if text is not None:
                     self.Context_store[url] = text
-        logging.info(f"Fetched: {len(self.Context_store)} / {len(urls)} files")
+        print(f"Fetched: {len(self.Context_store)} / {len(urls)} files")
 
     # Create a single context string from the fetched context
     def create_context_info(self): 
@@ -57,9 +58,35 @@ class ContextLoader():
         self.context = "\n\n".join(str(x) for x in text)
         self.context = self.context.encode('latin1', 'ignore').decode('latin1')
     
+    def is_code_chunk(text):
+        # Remove comment blocks and lines
+        no_comments = re.sub(r'(/\*.*?\*/|//.*?$)', '', text, flags=re.DOTALL | re.MULTILINE)
+        # Remove metadata lines
+        no_metadata = re.sub(r'^(Filename:|Label Definition File:|Template File:|@description|package |import )[\s\S]*?$', '', no_comments, flags=re.MULTILINE)
+        # Remove empty lines and whitespace
+        code_only = no_metadata.strip()
+        # Check for code keywords and require more than just braces
+        code_keywords = ['class ', 'public ', 'private ', 'protected ', 'void ', 'int ', 'String ', 'boolean ', '=', ';', 'if(', 'for(', 'while(']
+        has_code = any(kw in code_only for kw in code_keywords)
+        # Require at least 2 lines of code (not just a brace)
+        enough_code = len([line for line in code_only.splitlines() if line.strip()]) > 1
+        return has_code and enough_code
+
+
     def split_context(self): 
-        separators=["\nclass ", "\npublic ", "\nprivate ", "\nprotected ", "\n"]
-        splitter = RecursiveCharacterTextSplitter(chunk_size=750, chunk_overlap=200, separators=separators)
+        # Only store chunks that are vulnerable code functions (functions that contain the word "bad")
+        separators=["\npublic ", "\nprivate ", "\nprotected ",  # method starts
+    "\nclass ", "\ninterface ", "\nabstract ",  # class/interface starts
+    "/* TEMPLATE GENERATED TESTCASE FILE"]
+        splitter = RecursiveCharacterTextSplitter(chunk_size=700, chunk_overlap=200, separators=separators)
         chunks = splitter.create_documents([self.context])
-        return chunks
-        
+        # Only keep chunks with actual code
+        code_chunks = [chunk for chunk in chunks if ContextLoader.is_code_chunk(chunk.page_content)]
+        # Now filter for "bad" only in code, not in comments
+        vulnerable_chunks = []
+        for code_chunk in code_chunks:
+            # Remove comments before searching for "bad"
+            code_no_comments = re.sub(r'(/\*.*?\*/|//.*?$)', '', code_chunk.page_content, flags=re.DOTALL | re.MULTILINE)
+            if 'bad' in code_no_comments:
+                vulnerable_chunks.append(code_chunk)
+        return vulnerable_chunks
