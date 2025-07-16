@@ -1,0 +1,5 @@
+https://raw.githubusercontent.com/jolokia/jolokia/b7798f239b60dadf7d99f8cbb07ef5cc6ad17492/src/docbkx/css/base.css
+https://raw.githubusercontent.com/jolokia/jolokia/b7798f239b60dadf7d99f8cbb07ef5cc6ad17492/src/docbkx/index.xml
+https://raw.githubusercontent.com/jolokia/jolokia/b7798f239b60dadf7d99f8cbb07ef5cc6ad17492/src/docbkx/styles/reference-html-common.xsl
+https://raw.githubusercontent.com/jolokia/jolokia/b7798f239b60dadf7d99f8cbb07ef5cc6ad17492/src/site/resources/js/idea.js
+https://raw.githubusercontent.com/candlepin/candlepin/87fb10864e2571fd7be53001379714838f83c6b0/proxy/build.xml
