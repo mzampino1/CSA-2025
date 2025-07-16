@@ -1,6 +1,6 @@
 import os
 import logging
-
+from GitHub_Commit import GitHubCommits
 from config_loader import ConfigLoader
 from context_loader import ContextLoader
 from vector_store import VectorStoreManager
@@ -28,8 +28,21 @@ def main():
     chunks = context_loader.split_context()
     similar_chunks = VectorStoreManager(chunks).create_vector_store()
 
+    
+   # Clear file for logging the context retrieved
+    with open("selected_context.log", "w") as f:
+        f.write("")
+
+    commits = GitHubCommits(config.repo_path, config.repo_owner, config.input_links)
+    # Clear the repository folder for non-VCC commits
+    commits.clear_repo_folder("files")
+    # Perform initial non-VCC commits
+    file_names = commits.make_nonVCC_commits(config.input_links)
+
     # 4) Parallel commit processing over 4 GPUs
     processor = ProcessCommits(
+        config.repo_path,
+        file_names,
         links=config.input_links,
         similar_chunks=similar_chunks,
         HUGGINGFACE_HUB_TOKEN = config.HUGGINGFACE_HUB_TOKEN,
@@ -39,10 +52,21 @@ def main():
     answers = processor.run()
     logging.info(f"Total answers generated: {len(answers)}")
 
+    
+    # Make VCC commits based on the answers generated
+    commits.commit_answers(answers)
+    commits.commit_csv_file(
+        file_path=commits.repo_path + "\\commits.csv",
+        message="Add CSV to repository"
+    )
+
+
     # 5) Upload to Drive
-    uploader = UploadToDrive(answers, config.drive_folder_id)
-    uploader.upload_answers()
+    # uploader = UploadToDrive(answers, config.drive_folder_id)
+    # uploader.upload_answers()
 
 if __name__ == "__main__":
     multiprocessing.set_start_method("spawn", force=True)
     main()
+
+

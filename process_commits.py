@@ -9,25 +9,28 @@ from typing import List
 class ProcessCommits:
     def __init__(
         self,
+        repo_path,
+        file_names,
         links: List[str],
         similar_chunks,
         HUGGINGFACE_HUB_TOKEN,
         github_token: str,
         num_gpus: int = 4,
         ): 
-        
+        self.file_name = file_names
         self.links = links
         self.similar_chunks = similar_chunks
         self.github_token = github_token
         self.num_gpus = num_gpus
         self.HUGGINGFACE_HUB_TOKEN = HUGGINGFACE_HUB_TOKEN
+        self.repo_path = repo_path
 
         logging.basicConfig(
             level=logging.INFO,
             format="%(asctime)s %(levelname)s %(message)s",
         )
 
-    def _worker(self, commit_link, device_index):
+    def _worker(self, commit_link, device_index, ):
         os.environ["CUDA_VISIBLE_DEVICES"] = str(device_index)
         from qa_chain import LangchainQA_Chain 
 
@@ -35,41 +38,29 @@ class ProcessCommits:
 
         qa_chain = LangchainQA_Chain(self.similar_chunks, self.HUGGINGFACE_HUB_TOKEN).build_QA_Chain_with_langchain()
 
-        resp = requests.get(
-            commit_link,
-            headers={
-                "User-Agent": "Mozilla/5.0",
-                "Authorization": f"token {self.github_token}",
-            },
-            timeout=10,
-        )
-        resp.raise_for_status()
-        raw_patch = resp.text
-        query =f"""
-        Now, based on that context, complete the following task:
+        resp = ""
+        with open(self.repo_path + "\\files\\" + self.file_name, "r") as f:
+            resp = f.read()
 
-        1. INTRODUCE a single, realistic NEW vulnerability into the code below (i.e., change a piece of safe code into vulnerable code).  
-        2. Integrate the vulnerability into the normal application logic—do **not** use trivial or single‑line unsafe filters.  
-        3. Provide a **git diff** showing your changes (`+` for additions, `-` for deletions), and **only** modify code where the new vulnerability is added.  
-        4. Add appropriate comments inline to explain each change.  
+        raw_patch = resp
+        query = raw_patch
+   
 
-        **Original code to convert:**  
-        {raw_patch}
-        """
+        with open("selected_context.log", "a") as f:
+            # Tries to complete the RAG three times, then fails if nothing is generated on the
+            # 3rd attempt
+            for i in range(3): 
+                try: 
+                    result = self.qa_chain.invoke(query)
+                    docs_str = "\n\n".join(str(doc) for doc in result["source_documents"])
+                    f.write(f"\n\nInput File Name: {self.file_name}\n\n" + docs_str)
+                    break 
+                except Exception as e: 
+                    if i == 2:
+                        logging.error(f"Error in QA chain: {e}")
+            answer = result.get("result") if isinstance(result, dict) else result
 
-        for attempt in range(3):
-            try:
-                answer = qa_chain.invoke(query)
-                answer = answer["result"]
-                break
-            except Exception as e:
-                logging.warning(f"[{commit_link}] attempt {attempt+1} failed: {e}")
-                time.sleep(2)
-        else:
-            logging.error(f"[{commit_link}] all retries failed")
-            return f"Commit Link: {commit_link}\n\nERROR: failed to process."
-
-        return f"Commit Link: {commit_link}\n\n{answer}"
+        return f"\n\nFile Name: {self.file_name}\n\n" + answer
 
     def run(self) -> List[str]:
 
@@ -81,17 +72,17 @@ class ProcessCommits:
 
         with ProcessPoolExecutor(max_workers=self.num_gpus) as pool:
             futures = {
-                pool.submit(self._worker, link, dev): link
-                for link, dev in tasks
+                pool.submit(self._worker, self.repo_path, file_name): 
+                file_name for file_name in self.file_name
             }
             for fut in as_completed(futures):
                 link = futures[fut]
                 try:
                     out = fut.result()
-                    results.append(out)
-                    logging.info(f" Finished {link}")
+                    results.append({"file_name": link, "answer": out})
+                    print(f" Finished {link}")
                 except Exception as e:
-                    logging.error(f" Exception on {link}: {e}")
+                    print(f" Exception on {link}: {e}")
 
         return results
 

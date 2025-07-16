@@ -20,5 +20,10 @@ class ConfigLoader():
         return self.app_cfg["github_token"]
     @property 
     def HUGGINGFACE_HUB_TOKEN(self): 
-      return self.app_cfg["HUGGINGFACE_HUB_TOKEN"]
-      
+        return self.app_cfg["HUGGINGFACE_HUB_TOKEN"]
+    @property
+    def repo_path(self):
+        return self.app_cfg["repo_path"]
+    @property 
+    def repo_owner(self): 
+        return self.app_cfg["repo_owner"]
