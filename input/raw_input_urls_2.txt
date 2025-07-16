@@ -1,0 +1,15 @@
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/gen/de/gultsch/chat/R.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/Conversation.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/ConversationCursor.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/ConversationList.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/entities/Account.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/entities/Contact.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/entities/Conversation.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/entities/Message.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/persistance/DatabaseBackend.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/ui/ConversationActivity.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/ui/ConversationFragment.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/ui/NewConversationActivity.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/76cfab03ec712173ba37a98306c448f5930f0474/src/de/gultsch/chat/ui/ConversationActivity.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/76cfab03ec712173ba37a98306c448f5930f0474/src/de/gultsch/chat/ui/ManageAccountActivity.java
+https://raw.githubusercontent.com/Slowpoke/Conversations/76cfab03ec712173ba37a98306c448f5930f0474/src/de/gultsch/chat/ui/NewConversationActivity.java

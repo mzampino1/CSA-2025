@@ -65,7 +65,7 @@ def get_file_links_from_csv(df, gh, output_file_path):
                 # Get the raw link to the file as it exists in this commit
                 # Check if the file is a java file and is not an empty file
                 raw_url = f"https://raw.githubusercontent.com/{repo_full_name}/{commit_hash}/{file.filename}"
-                if file.filename.endswith(".java") and file.size > 0:
+                if file.filename.endswith(".java"):
                     with open(output_file_path, "a") as f:
                         f.write(raw_url + "\n")
 
