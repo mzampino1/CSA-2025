@@ -1,2 +1,1 @@
 https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/gen/de/gultsch/chat/R.java
-https://raw.githubusercontent.com/Slowpoke/Conversations/df9dcb1060d44a719e2892446b62cde884a880cf/src/de/gultsch/chat/Conversation.java

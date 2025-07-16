@@ -88,7 +88,7 @@ class GitHubCommits:
         repo.remote(name='origin').push()
         print(f"Removed and committed deletions for {file_path}.")
     
-    def make_nonVCC_commits(self, links):
+    def make_nonVCC_commits(self):
         file_names = []
         # Fill first row of commits.csv with the headers and repository name
         with open(self.repo_path + "\\commits.csv", "w") as f:
@@ -101,7 +101,7 @@ class GitHubCommits:
             repo_with_owner = f"{self.repo_owner}/{repo_name}"
 
             # For each link, commit the file to the repository
-            for link in links:
+            for link in self.links:
                 file_name = link.split("/")[-1]
                 commit_hash = self.commit_new_file(link)
                 writer.writerow([repo_with_owner, file_name, commit_hash, "", ""])
@@ -128,7 +128,7 @@ class GitHubCommits:
     # Commits the new code to GitHub, creating a vulnerability-contributing commit hash
     def commit_answers(self, results):
         for result in results:
-            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["answer"])
+            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["result"])
             if(vul_code):
                 if cwe_id is None:
                     cwe_id = "Unknown CWE ID"

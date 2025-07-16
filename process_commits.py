@@ -30,7 +30,7 @@ class ProcessCommits:
             format="%(asctime)s %(levelname)s %(message)s",
         )
 
-    def _worker(self, commit_link, device_index, ):
+    def _worker(self, commit_link,file_name, device_index=4):
         os.environ["CUDA_VISIBLE_DEVICES"] = str(device_index)
         from qa_chain import LangchainQA_Chain 
 
@@ -39,7 +39,7 @@ class ProcessCommits:
         qa_chain = LangchainQA_Chain(self.similar_chunks, self.HUGGINGFACE_HUB_TOKEN).build_QA_Chain_with_langchain()
 
         resp = ""
-        with open(self.repo_path + "\\files\\" + self.file_name, "r") as f:
+        with open(self.repo_path + "\\files\\" + file_name, "r") as f:
             resp = f.read()
 
         raw_patch = resp
@@ -51,7 +51,7 @@ class ProcessCommits:
             # 3rd attempt
             for i in range(3): 
                 try: 
-                    result = self.qa_chain.invoke(query)
+                    result = qa_chain.invoke(query)
                     docs_str = "\n\n".join(str(doc) for doc in result["source_documents"])
                     f.write(f"\n\nInput File Name: {self.file_name}\n\n" + docs_str)
                     break 

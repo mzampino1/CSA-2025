@@ -37,7 +37,7 @@ def main():
     # Clear the repository folder for non-VCC commits
     commits.clear_repo_folder("files")
     # Perform initial non-VCC commits
-    file_names = commits.make_nonVCC_commits(config.input_links)
+    file_names = commits.make_nonVCC_commits()
 
     # 4) Parallel commit processing over 4 GPUs
     processor = ProcessCommits(
