@@ -8,6 +8,16 @@ from GitHub_commit import GitHubCommits
 import logging
 
 def main(): 
+
+    input_mode = ""
+    # Ask the user for input mode until a valid input is provided
+    while True:
+        input_mode = input("Do you want to use input links or files? (l/f): ").strip().lower()
+        if input_mode in ['l', 'f']:
+            break
+        else:
+            print("Invalid input. Please enter 'l' for links or 'f' for files.")
+
     config = ConfigLoader("credentials.json")
 
     # Load context from GitHub URLs and split into chunks for RAG
@@ -31,10 +41,15 @@ def main():
     # Clear the repository folder for non-VCC commits
     commits.clear_repo_folder("files")
     # Perform initial non-VCC commits
-    file_names = commits.make_nonVCC_commits(config.input_links)
+    if input_mode == 'l':
+        # Make non-VCC commits for the links provided
+        file_names = commits.make_nonVCC_commits(config.input_links, input_mode)
+    else:
+        # Make non-VCC commits for the files in the input folder
+        file_names = commits.make_nonVCC_commits_files(config.input_folder_path)
 
     # Perform RAG and generate the vulnerable code using the LLM's response
-    file_processing = ProcessFiles(file_names, qa_chain, config.github_token)
+    file_processing = ProcessFiles(file_names, qa_chain)
     results = file_processing.process_parallel_file(commits.repo_path)
     logging.info(f"Total answers generated: {len(results)}")
 

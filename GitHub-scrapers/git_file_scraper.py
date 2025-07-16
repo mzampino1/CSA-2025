@@ -81,7 +81,7 @@ def get_file_links_from_csv(df, gh, output_file_path):
             print(f"Error processing commit {commit_hash} in {repo_full_name}: {e}")
             continue
 
-df = pd.read_csv("new_non_vccs.csv")
-get_file_links_from_csv(df, gh, "input/raw_input_urls_2.txt")
+df = pd.read_csv("only_conversations.csv")
+get_file_links_from_csv(df, gh, "input/conversations_input_urls.txt")
 
 print(me.login, me.name)

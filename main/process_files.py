@@ -2,10 +2,9 @@ import logging
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 class ProcessFiles(): 
-    def __init__(self, file_names, qa_chain, github_token):
+    def __init__(self, file_names, qa_chain):
         self.qa_chain = qa_chain
         self.file_names = file_names
-        self.github_token = github_token
 
     def process_file(self, repo_path, file_name):
         raw_text = ""
@@ -33,6 +32,10 @@ class ProcessFiles():
             return f"\n\nFile Name: {file_name}\n\n" + answer
 
     def process_parallel_file(self, repo_path): 
+        # Record LLM answers for each file in answers.log
+        with open("answers.log", "w") as f:
+            f.write("")
+
         results = []
         
         max_workers = 2
@@ -44,6 +47,8 @@ class ProcessFiles():
             file_name = future_to_file_name[future]
             try:
                 answer = future.result()
+                with open("answers.log", "a") as f:
+                    f.write(file_name + ":\n\n" + answer + "\n\n")
                 results.append({"file_name": file_name, "answer": answer})
                 print(f"✅ Finished {file_name}")
             except Exception as e:

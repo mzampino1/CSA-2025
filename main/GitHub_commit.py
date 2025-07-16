@@ -72,6 +72,19 @@ class GitHubCommits:
         # Return the commit SHA
         return repo.head.commit.hexsha
 
+    # Commits a copy of the input file to the repository
+    def commit_new_file_folder(self, file_name, folder_path):
+        # Ensure the folder exists
+        os.makedirs(os.path.join(self.repo_path, "files"), exist_ok=True)
+        file_path = os.path.join(self.repo_path, "files", file_name)
+
+        # Get the file content
+        with open(os.path.join(folder_path, file_name), "r") as f:
+            new_code = f.read()
+
+        # Commit the new file to the repository
+        return self.commit_code(file_path, new_code, f"Add new file: {file_name}")
+
     def commit_new_file(self, file_link):
         # Extract the file name from the link
         original_file_name = file_link.split('/')[-1]
@@ -124,13 +137,38 @@ class GitHubCommits:
                 file_names.append(file_name)
         return file_names
     
+    # Makes non-VCC commits for all the files in an input folder
+    def make_nonVCC_commits_files(self, folder_path):
+        file_names = []
+        # Fill first row of commits.csv with the headers and repository name
+        with open(self.repo_path + "\\commits.csv", "w") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Repository Name", "File Name", "Non-VCC Commit Hash", "VCC Commit Hash", "CWE ID"])
+        
+        with open(self.repo_path + "\\commits.csv", "a") as f:
+            writer = csv.writer(f)
+
+            repo_name = self.repo_path.split("\\")[-1]
+            repo_with_owner = f"{self.repo_owner}/{repo_name}"
+
+            # For each file in the folder, commit it to the repository
+            for file in os.listdir(folder_path):
+                file_path = os.path.join(folder_path, file)
+                if os.path.isfile(file_path):
+                    commit_hash = self.commit_new_file_folder(file, folder_path)
+                    # Write the commit information to the CSV file
+                    writer.writerow([repo_with_owner, file, commit_hash, "", ""])
+                    file_names.append(file)
+
+        return file_names
+    
     # Extracts the code block from the LLM's answer.
     # Returns the code as a string, or None if not found.
     # Also returns the CWE ID if present in the answer.
     def extract_vulnerable_code(answer):
         # This regex looks for a code block (```...```)
         match = re.search(
-            r"```(?:python|html|java|javascript)\s+(.*?)```",
+            r"```(?:python|html|java|javascript|c|cpp)\s+(.*?)```",
             answer,
             re.DOTALL | re.IGNORECASE
         )

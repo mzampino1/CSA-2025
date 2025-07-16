@@ -13,6 +13,9 @@ class ConfigLoader():
             links = [l.strip() for l in f if l.strip()]
         return links
     @property
+    def input_folder_path(self):
+        return self.app_cfg["input_folder_path"]
+    @property
     def drive_folder_id(self):
         return self.app_cfg["drive_folder_id"]
     @property
