@@ -1,3 +1,5 @@
+# These are the functions that involve pushing commits to GitHub.
+
 import re
 import git
 import requests
@@ -6,11 +8,24 @@ import shutil
 import csv
 
 class GitHubCommits:
-# These are the functions that involve pushing commits to GitHub.
+
     def __init__(self, repo_path, repo_owner, links):
         self.repo_path = repo_path
         self.repo_owner = repo_owner
         self.links = links
+    
+    # Checks if a file with the given name already exists in the repository
+    # If it does, appends a number to the file name to make it unique
+    # Returns the unique file name
+    def check_if_file_exists(self, file_name):
+        existing_files = os.listdir(os.path.join(self.repo_path, "files"))
+        if file_name in existing_files:
+            base_name, ext = os.path.splitext(file_name)
+            count = 1
+            while f"{base_name}-{count}{ext}" in existing_files:
+                count += 1
+            file_name = f"{base_name}-{count}{ext}"
+        return file_name
 
     def clear_repo_folder(self, folder_name):
         repo = git.Repo(self.repo_path)
@@ -59,7 +74,9 @@ class GitHubCommits:
 
     def commit_new_file(self, file_link):
         # Extract the file name from the link
-        file_name = file_link.split('/')[-1]
+        original_file_name = file_link.split('/')[-1]
+        # Ensure unique file name
+        file_name = self.check_if_file_exists(original_file_name)
         
         # Get the file content
         response = requests.get(file_link)
@@ -68,7 +85,7 @@ class GitHubCommits:
             file_path = f"{self.repo_path}\\files\\{file_name}"
 
             # Commit the new code to the repository
-            return self.commit_code(file_path, new_code, f"Add non-vulnerable file: {file_name}")
+            return file_name, self.commit_code(file_path, new_code, f"Add non-vulnerable file: {file_name}")
         else:
             print(f"Failed to get {file_name}: {response.status_code}")
             return None
@@ -108,8 +125,7 @@ class GitHubCommits:
 
             # For each link, commit the file to the repository
             for link in self.links:
-                file_name = link.split("/")[-1]
-                commit_hash = self.commit_new_file(link)
+                file_name, commit_hash = self.commit_new_file(link)
                 writer.writerow([repo_with_owner, file_name, commit_hash, "", ""])
                 file_names.append(file_name)
         return file_names
@@ -167,4 +183,4 @@ class GitHubCommits:
                     for line in lines:
                         if result["file_name"] not in line:
                             csvfile.write(line)
-                print(f"Error on file {result['file_name']}: no vulnerable code generated.")
+                print(f"Error on file {result["file_name"]}: no vulnerable code generated.")

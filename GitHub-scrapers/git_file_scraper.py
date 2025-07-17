@@ -1,24 +1,24 @@
 from github import Github
 import re
 import pandas as pd
+import time
+from datetime import datetime
+from github import RateLimitExceededException
+
+# get github token from credentials.json
 import json
 
+with open("credentials.json", "r") as f:
+    credentials = json.load(f)
+    gitToken = credentials["app"]["github_token"]
 
-cfg = json.load(open("credentials.json"))
-cfg_app = cfg["app"]
-
-gitToken = cfg_app["github_token"]
-
-pattern = r"[a-zA-Z0-9/_]+\.(?:py|js|html)"
+pattern = r"[a-zA-Z0-9/_]+\.(?:java)"
 token = gitToken
 
 gh = Github(token)
 me = gh.get_user()
 
-# could make the path a varible and feed it the path if we made this a function
-repo = gh.get_repo("snoopysecurity/Broken-Vulnerable-Code-Snippets") 
-
-# Copy list of file links to contextURLs.txt
+# Copy list of file links
 def get_all_files(repo, path=""):
     contents = repo.get_contents(path)
     files = []
@@ -26,30 +26,62 @@ def get_all_files(repo, path=""):
         if content_file.type == "dir":
             files += get_all_files(repo, content_file.path)
         else:
-            if re.search(pattern, content_file.path):
-                raw_url = f"https://github.com/{repo.full_name}/blob/master/{content_file.path}"
-                raw_url = raw_url.replace(" ", "%20")  # Replace spaces with %20
-                print("Found file:", raw_url)
-                files.append(raw_url)
+            # Check if the file matches the pattern, is not an __init__.py file, and is not empty (has non-whitespace content)
+            if re.search(pattern, content_file.path) and not content_file.path.endswith("__init__.py") and content_file.size > 0:
+                file_contents = content_file.decoded_content.decode("utf-8")
+                if file_contents.strip():
+                    raw_url = f"https://raw.githubusercontent.com/{repo.full_name}/master/{content_file.path}"
+                    raw_url = raw_url.replace(" ", "%20")  # Replace spaces with %20
+                    print("Found file:", raw_url)
+                    files.append(raw_url)
     return files
 
-file_links = get_all_files(repo)
+def get_file_links_from_csv(df, gh, output_file_path):
+    # Clear output file
+    with open(output_file_path, "w") as f:
+        f.write("")
 
-with open("contextURLs.txt", "w") as output:
-    for link in file_links:
-        output.write(link + "\n")
+    # Iterate through each row to get file links for the commit
+    for idx, row in df.iterrows():
+        try:
+            repo_full_name = row["project"]
+            commit_hash = row["hash"]
 
+            # Check and handle rate limit
+            rate_limit = gh.get_rate_limit().core
+            if rate_limit.remaining == 0:
+                reset_time = rate_limit.reset
+                sleep_time = (reset_time - datetime.now()).total_seconds()
+                print(f"Rate limit hit. Sleeping for {sleep_time:.0f} seconds...")
+                time.sleep(sleep_time + 1)
 
+            repo = gh.get_repo(repo_full_name)
+            commit = repo.get_commit(commit_hash)
+            files = commit.files  # List of files modified by this commit
 
-""" # (  We can use the subject lines to look for things that we do not want, i.e. README edits, editorconfic, etc. )
+            print(f"Commit: {commit_hash} in {repo_full_name}")
 
-    subject = commit.commit.message.splitlines()[0]   
-    language = commit.language
-    if "Fix search scopus results rendering when there is no data" in subject: 
-        print(subject)
-        body    = "\n".join(commit.commit.message.splitlines()[1:])
-        print(body)
-"""
+            for file in files:
+                # Get the raw link to the file as it exists in this commit
+                # Check if the file is a java file and is not an empty file
+                raw_url = f"https://raw.githubusercontent.com/{repo_full_name}/{commit_hash}/{file.filename}"
+                if file.filename.endswith(".java"):
+                    with open(output_file_path, "a") as f:
+                        f.write(raw_url + "\n")
+
+        except RateLimitExceededException:
+            rate_limit = gh.get_rate_limit().core
+            reset_time = rate_limit.reset
+            sleep_time = (reset_time - datetime.now()).total_seconds()
+            print(f"Rate limit exceeded exception caught. Sleeping for {sleep_time:.0f} seconds...")
+            time.sleep(sleep_time + 1)
+            continue
+
+        except Exception as e:
+            print(f"Error processing commit {commit_hash} in {repo_full_name}: {e}")
+            continue
+
+df = pd.read_csv("only_conversations.csv")
+get_file_links_from_csv(df, gh, "input/conversations_input_urls.txt")
+
 print(me.login, me.name)
-
-# Return the sha, pre sorted as source code, changes in a github link format to feed to chat
