@@ -183,4 +183,4 @@ class GitHubCommits:
                     for line in lines:
                         if result["file_name"] not in line:
                             csvfile.write(line)
-                print(f"Error on file {result["file_name"]}: no vulnerable code generated.")
+                print(f"Error on file {result['file_name']}: no vulnerable code generated.")
