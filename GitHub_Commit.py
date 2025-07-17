@@ -97,7 +97,13 @@ class GitHubCommits:
         with open(self.repo_path + "\\commits.csv", "a") as f:
             writer = csv.writer(f)
             
-            repo_name = self.repo_path.split("\\")[-1]
+            repo_name = ""
+            # If path contains "\\", split using that
+            # If it contains "/", split using that
+            if "\\" in self.repo_path:
+                repo_name = self.repo_path.split("\\")[-1]
+            else:
+                repo_name = self.repo_path.split("/")[-1]
             repo_with_owner = f"{self.repo_owner}/{repo_name}"
 
             # For each link, commit the file to the repository
