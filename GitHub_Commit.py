@@ -48,13 +48,7 @@ class GitHubCommits:
             with open(gitdir, "r") as f:
                 print("DEBUG: .git file contents:\n", f.read())
 
-        
-        
-        
-        
-        
-        
-
+      
         repo = git.Repo(self.repo_path, search_parent_directories=True)
         folder_path = os.path.join(self.repo_path, folder_name)
         for item in os.listdir(folder_path):
@@ -186,30 +180,29 @@ class GitHubCommits:
     def commit_answers(self, results):
         commits_csv = os.path.join(self.repo_path, "commits.csv")
         files_dir   = os.path.join(self.repo_path, "files")
-    
-        with open(commits_csv, "r") as f:
-            lines = f.readlines()
-    
-        with open(commits_csv, "w") as f:
-            for line in lines:
-                # leave alone until we see a matching file_name
-                f.write(line)
-    
-        for result in results:
-            file_name = result["file_name"]
-            file_path = os.path.join(files_dir, file_name)
-            answer = result.get("answer", "")
+        file_path = os.path.join(files_dir, results["file_name"])
 
-            code, cwe = self.extract_vulnerable_code(answer)
-            if code:
-                cwe = cwe or "Unknown"
-                # commit and update CSV...
-                sha = self.commit_code(
-                    file_path,
-                    code,
-                    f"Add vulnerable code for {file_name} (CWE-{cwe})"
-                )
-                # �now rewrite the matching line in commits_csv to include sha & cwe�
+        for result in results:
+            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["answer"])
+            if(vul_code):
+                if cwe_id is None:
+                    cwe_id = "Unknown CWE ID"
+                
+                if result["file_name"] not in line: 
+                    f.write(line)
+                else:
+                    line.strip().split(",")
+                    line[3] = self.commit_code(
+                        file_path, vul_code, f"Add VUlnerable code for {result['file_name']} (CWE-{cwe_id})"
+                    )                
+                    line[4] = cwe_id
+                    f.write(",".join(line)+"\n")
             else:
                 self.remove_file(file_path)
-                print(f"No vulnerable code for {file_name}, removed.")
+                with open(commits_csv) as f: 
+                    lines = f.readfiles()
+                with open(commits_csv) as f: 
+                    for line in lines: 
+                        if result["file_name"] not in line: 
+                            f.write(line)
+                print(f"Error on file {result['file_name']}: No vulnerable Code Generated.")
