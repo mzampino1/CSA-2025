@@ -14,6 +14,8 @@ class GitHubCommits:
         self.repo_path = os.path.expanduser(repo_path)
         self.repo_owner = repo_owner
         self.links = links
+        os.makedirs(os.path.join(self.repo_path, "files"), exist_ok=True)
+
     
     # Checks if a file with the given name already exists in the repository
     # If it does, appends a number to the file name to make it unique
@@ -42,7 +44,7 @@ class GitHubCommits:
         print("DEBUG: gitdir exists? ", os.path.exists(gitdir))
         print("DEBUG: gitdir isdir? ", os.path.isdir(gitdir))
         if os.path.exists(gitdir) and not os.path.isdir(gitdir):
-            # if it’s a file, show its contents
+            # if itï¿½s a file, show its contents
             with open(gitdir, "r") as f:
                 print("DEBUG: .git file contents:\n", f.read())
 
@@ -207,7 +209,7 @@ class GitHubCommits:
                     code,
                     f"Add vulnerable code for {file_name} (CWE-{cwe})"
                 )
-                # …now rewrite the matching line in commits_csv to include sha & cwe…
+                # ï¿½now rewrite the matching line in commits_csv to include sha & cweï¿½
             else:
                 self.remove_file(file_path)
                 print(f"No vulnerable code for {file_name}, removed.")
