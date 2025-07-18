@@ -58,8 +58,8 @@ def main():
     # Make VCC commits based on the answers generated
     commits.commit_answers(answers)
     commits.commit_csv_file(
-        file_path=commits.repo_path + "\\commits.csv",
-        message="Add CSV to repository"
+        file_path=os.path.join(commits.repo_path, "commits.csv"),
+        message="Update CSV with VCC commit SHAs and CWE IDs"
     )
 
 
