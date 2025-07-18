@@ -178,31 +178,54 @@ class GitHubCommits:
 
     # Commits the new code to GitHub, creating a vulnerability-contributing commit hash
     def commit_answers(self, results):
+
         commits_csv = os.path.join(self.repo_path, "commits.csv")
         files_dir   = os.path.join(self.repo_path, "files")
-        file_path = os.path.join(files_dir, results["file_name"])
 
+        # 1) Load existing CSV into memory
+        with open(commits_csv, newline='', encoding='utf-8') as csvfile:
+            reader  = csv.reader(csvfile)
+            headers = next(reader)
+            rows    = [row for row in reader]
+
+        # 2) Update rows based on generated answers
         for result in results:
-            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(result["answer"])
-            if(vul_code):
-                if cwe_id is None:
-                    cwe_id = "Unknown CWE ID"
-                
-                if result["file_name"] not in line: 
-                    f.write(line)
-                else:
-                    line.strip().split(",")
-                    line[3] = self.commit_code(
-                        file_path, vul_code, f"Add VUlnerable code for {result['file_name']} (CWE-{cwe_id})"
-                    )                
-                    line[4] = cwe_id
-                    f.write(",".join(line)+"\n")
-            else:
-                self.remove_file(file_path)
-                with open(commits_csv) as f: 
-                    lines = f.readfiles()
-                with open(commits_csv) as f: 
-                    for line in lines: 
-                        if result["file_name"] not in line: 
-                            f.write(line)
-                print(f"Error on file {result['file_name']}: No vulnerable Code Generated.")
+            file_name    = result.get("file_name")
+            answer       = result.get("answer", "")
+            vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(answer)
+
+            # Find the matching CSV row
+            for row in rows:
+                if row[1] == file_name:
+                    if vul_code:
+                        # Commit the vulnerable code and capture its SHA
+                        file_path = os.path.join(files_dir, file_name)
+                        vcc_hash = self.commit_code(
+                            file_path,
+                            vul_code,
+                            f"Add vulnerable code for {file_name} (CWE-{cwe_id or 'Unknown'})"
+                        )
+                        row[3] = vcc_hash
+                        row[4] = cwe_id or "Unknown CWE ID"
+                    else:
+                        # No vulnerable code: remove the file and clear columns
+                        file_path = os.path.join(files_dir, file_name)
+                        if os.path.exists(file_path):
+                            self.remove_file(file_path)
+                        row[3] = ""
+                        row[4] = ""
+                    break
+
+        # 3) Write updates back to the CSV
+        with open(commits_csv, "w", newline='', encoding='utf-8') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(headers)
+            writer.writerows(rows)
+
+        # 4) Commit & push the updated CSV
+        self.commit_csv_file(
+            commits_csv,
+            "Update VCC commit hashes in commits.csv"
+        )
+
+        return rows
