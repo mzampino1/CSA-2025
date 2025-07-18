@@ -170,11 +170,12 @@ class GitHubCommits:
             re.DOTALL | re.IGNORECASE
         )
         if not match:
+            print(answer)
             return None, None
 
         code = match.group(1).strip()
 
-        # 2) Find the first CWE marker (e.g. CWE‑73, cwe_79, CWE:89, etc.)
+        # 2) Find the first CWE marker 
         cwe_match = re.search(r"(?i)cwe[-_\s:]*(\d+)", answer)
         cwe_id = cwe_match.group(1) if cwe_match else None
 

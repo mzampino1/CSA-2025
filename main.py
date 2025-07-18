@@ -51,9 +51,6 @@ def main():
     )
     answers = processor.run()
     logging.info(f"Total answers generated: {len(answers)}")
-
-    for answer in answers:
-        print(answer["answer"])
     
     # Make VCC commits based on the answers generated
     commits.commit_answers(answers)
