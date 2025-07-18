@@ -40,7 +40,9 @@ class ProcessCommits:
         qa_chain = LangchainQA_Chain(self.similar_chunks, self.HUGGINGFACE_HUB_TOKEN).build_QA_Chain_with_langchain()
 
         resp = ""
-        with open(self.repo_path + "\\files\\" + file_name, "r") as f:
+
+        file_path = os.path.join(self.repo_path, "files", file_name)
+        with open(file_path, "r", encoding="utf-8") as f:
             resp = f.read()
 
         raw_patch = resp
