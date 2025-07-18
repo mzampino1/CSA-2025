@@ -23,7 +23,8 @@ class ProcessCommits:
         self.github_token = github_token
         self.num_gpus = num_gpus
         self.HUGGINGFACE_HUB_TOKEN = HUGGINGFACE_HUB_TOKEN
-        self.repo_path = repo_path
+        self.repo_path = os.path.expanduser(repo_path)
+
 
         logging.basicConfig(
             level=logging.INFO,

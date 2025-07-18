@@ -58,7 +58,7 @@ def main():
     # Make VCC commits based on the answers generated
     commits.commit_answers(answers)
     commits.commit_csv_file(
-        file_path=os.path.join(commits.repo_path, "commits.csv"),
+        file_path=os.path.join(os.path.expanduser(config.repo_path), "commits.csv"),
         message="Update CSV with VCC commit SHAs and CWE IDs"
     )
 
