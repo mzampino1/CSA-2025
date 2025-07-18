@@ -125,10 +125,9 @@ class GitHubCommits:
 
             # For each link, commit the file to the repository
             for link in self.links:
-                if link != None: 
-                    file_name, commit_hash = self.commit_new_file(link)
-                    writer.writerow([repo_with_owner, file_name, commit_hash, "", ""])
-                    file_names.append(file_name)
+                file_name, commit_hash = self.commit_new_file(link)
+                writer.writerow([repo_with_owner, file_name, commit_hash, "", ""])
+                file_names.append(file_name)
         return file_names
     
     # Extracts the code block from the LLM's answer.
