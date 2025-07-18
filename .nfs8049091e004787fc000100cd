@@ -8,10 +8,6 @@
 #$ -N vcc_full_gpu                    # job name
 #$ -o logs/vcc_full_gpu.o$JOB_ID      # STDOUT log
 #$ -e logs/vcc_full_gpu.e$JOB_ID      # STDERR log
-#$ -j y    # join stderr into the -o file
-
-
-module load git
 
 # 1) Load and initialize Conda
 module load conda
@@ -21,7 +17,6 @@ source /afs/crc.nd.edu/x86_64_linux/c/conda/24.7.1/etc/profile.d/conda.sh
 # 2) Activate (or create/update) your env
 conda activate VCCenvironment || \
   conda env create -f environment-linux.yml && conda activate VCCenvironment
-echo "[$(date)] Starting job on $(hostname)"
 
 
 # 3) Ensure the dataset repo is available
