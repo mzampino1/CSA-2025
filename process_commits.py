@@ -52,6 +52,7 @@ class ProcessCommits:
         with open("selected_context.log", "a") as f:
             # Tries to complete the RAG three times, then fails if nothing is generated on the
             # 3rd attempt
+            result = None
             for i in range(3): 
                 try: 
                     result = qa_chain.invoke(query)
@@ -60,7 +61,7 @@ class ProcessCommits:
                     break 
                 except Exception as e: 
                     if i == 2:
-                        logging.error(f"Error in QA chain: {e}")
+                        print(f"Error in QA chain: {e}")
             answer = result.get("result") if isinstance(result, dict) else result
 
         return f"\n\nFile Name: {file_name}\n\n" + answer
