@@ -163,23 +163,23 @@ class GitHubCommits:
     
     @staticmethod
     def extract_vulnerable_code(answer):
-        # This regex looks for a code block (```...```)
+        # 1) Grab the first Java‐fenced code block
         match = re.search(
             r"```java\s*(.*?)```",
             answer,
             re.DOTALL | re.IGNORECASE
         )
-        if not match: 
+        if not match:
             return None, None
+
         code = match.group(1).strip()
 
-        # Look for CWE-, return following number
-        cwe_matches = re.search(r"(?i)cwe[-_\s:]*(\d+)", answer)
-        if cwe_matches:
-            cwe_id = ",".join(cwe_matches)
-        else:
-            cwe_id = None
+        # 2) Find the first CWE marker (e.g. CWE‑73, cwe_79, CWE:89, etc.)
+        cwe_match = re.search(r"(?i)cwe[-_\s:]*(\d+)", answer)
+        cwe_id = cwe_match.group(1) if cwe_match else None
+
         return code, cwe_id
+
 
     # Commits the new code to GitHub, creating a vulnerability-contributing commit hash
     def commit_answers(self, results):
