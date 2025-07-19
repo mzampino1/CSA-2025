@@ -23,8 +23,8 @@ class LangchainQA_Chain():
     def __init__(self, similarChunks, HUGGINGFACE_HUB_TOKEN):
         self.similarChunks = similarChunks
         self.HUGGINGFACE_HUB_TOKEN = HUGGINGFACE_HUB_TOKEN
-        self.llmModel = "codellama:34b"
-        self.instructModelLink = "codellama/CodeLlama-34b-Instruct-hf"
+        self.llmModel = "qwen2.5-coder-32b-instruct"
+        self.instructModelLink = "Qwen/qwen2.5-coder-32b-instruct"
     def build_QA_Chain_with_langchain(self):   
         template = """
     Use the following context containing examples of vulnerable code to help you generate a realistic VCC, but do not copy any code from the context. Instead, use it to understand the patterns and types of vulnerabilities that exist and can be injected in the code:

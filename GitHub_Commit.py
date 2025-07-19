@@ -165,7 +165,7 @@ class GitHubCommits:
     def extract_vulnerable_code(answer):
         # 1) Grab the first Java‐fenced code block
         match = re.search(
-            r"```java\s*(.*?)```",
+            r"```\s*(.*?)```",
             answer,
             re.DOTALL | re.IGNORECASE
         )
