@@ -1,6 +1,7 @@
 from langchain.prompts import PromptTemplate
 from langchain.chains.retrieval_qa.base import RetrievalQA
 from langchain_ollama import OllamaLLM
+#from transformers import LlamaTokenizer
 from transformers import AutoTokenizer
 
 
@@ -23,7 +24,7 @@ class LangchainQA_Chain():
     def __init__(self, similarChunks, HUGGINGFACE_HUB_TOKEN):
         self.similarChunks = similarChunks
         self.HUGGINGFACE_HUB_TOKEN = HUGGINGFACE_HUB_TOKEN
-        self.llmModel = "qwen2.5-coder-32b-instruct"
+        self.llmModel = "krith/qwen2.5-coder-32b-instruct"
         self.instructModelLink = "Qwen/qwen2.5-coder-32b-instruct"
     def build_QA_Chain_with_langchain(self):   
         template = """
@@ -48,8 +49,9 @@ class LangchainQA_Chain():
             )
         llm = OllamaLLM(model=self.llmModel)
 
-        # Initialize tokenizer for your LLM model
-        self.tokenizer = AutoTokenizer.from_pretrained(self.instructModelLink, token = self.HUGGINGFACE_HUB_TOKEN)
+                      # Initialize tokenizer for your LLM model
+        self.tokenizer = AutoTokenizer.from_pretrained(self.instructModelLink, trust_remote_code=True, use_fast=False, token = self.HUGGINGFACE_HUB_TOKEN)
+        #self.tokenizer = LlamaTokenizer.from_pretrained("hf-internal-testing/llama-tokenizer")
         self.MAX_TOKENS = 2048  # adjust to your model's context window
         qa_chain = RetrievalQA.from_chain_type(
             llm=llm,
