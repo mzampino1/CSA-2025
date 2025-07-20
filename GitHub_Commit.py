@@ -153,6 +153,9 @@ class GitHubCommits:
             for link in self.links:
                 if link != None: 
                     file_name, commit_hash = self.commit_new_file(link)
+                    if file_name is None or commit_hash is None:
+                        print(f"Failed to commit file from link: {link}")
+                        continue
                     writer.writerow([repo_with_owner, file_name, commit_hash, "", ""])
                     file_names.append(file_name)
         return file_names
@@ -165,7 +168,7 @@ class GitHubCommits:
     def extract_vulnerable_code(answer):
         # 1) Grab the first Java‐fenced code block
         match = re.search(
-            r"```\s*(.*?)```",
+            r"```(?:java)\s+(.*?)```",
             answer,
             re.DOTALL | re.IGNORECASE
         )
@@ -201,7 +204,7 @@ class GitHubCommits:
             vul_code, cwe_id = GitHubCommits.extract_vulnerable_code(answer)
 
             # Find the matching CSV row
-            for row in rows:
+            for idx, row in enumerate(rows):
                 if row[1] == file_name:
                     if vul_code:
                         # Commit the vulnerable code and capture its SHA
@@ -214,12 +217,12 @@ class GitHubCommits:
                         row[3] = vcc_hash
                         row[4] = cwe_id or "Unknown CWE ID"
                     else:
-                        # No vulnerable code: remove the file and clear columns
+                        # No vulnerable code: remove the file and clear row
                         file_path = os.path.join(files_dir, file_name)
                         if os.path.exists(file_path):
                             self.remove_file(file_path)
-                        row[3] = ""
-                        row[4] = ""
+                        del rows[idx]  # Remove the row
+                        print(f"Removed {file_name} from commits.csv as it has no vulnerable code.")
                     break
 
         # 3) Write updates back to the CSV
