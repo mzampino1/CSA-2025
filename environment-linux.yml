@@ -1,4 +1,0 @@
-name: VCCenvironment
-channels:
-  - conda-forge
-prefix: /users/cgarci32/.conda/envs/VCCenvironment
