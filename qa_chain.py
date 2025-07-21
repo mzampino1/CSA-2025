@@ -33,15 +33,16 @@ class LangchainQA_Chain():
     {context}
     ----END OF CONTEXT
 
-    Now, based on the context provided, answer the following question in detail:
+    Now, based on the context provided, complete the following tasks:
 
     INTRODUCE a realistic NEW vulnerability to the code that will be provided. As in change safe code to vulnerable code.
+    Print the entire new vulnerable code base with a comment indicating where the vulnerability is.
     Integrate it naturally into the existing flow. NO trivial one line “hacks”. If you use any new modules, be sure to import them.
-    In a section titled \"CWE-## Vulnerable Code\" (fill in the CWE ID in this exact format), give me the entire modified file (with a comment indicating where the vulnerability is).
+    In a section titled 'CWE-## Vulnerable Code' (fill in the CWE ID in this exact format).
     **THIS is my original code file that I want to be converted into vulnerable code: **
     {question}
     ** END **
-    Only modify the code where you are adding the NEW vulnerability, print the rest of the code the same as I gave you above. 
+    Now print the entire code base that inlcudes the new vulnerability and the comments as I instructed. 
     """
         prompt = PromptTemplate(
                 input_variables=["context", "question"],
