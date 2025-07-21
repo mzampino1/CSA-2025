@@ -1,7 +1,7 @@
 from github import Github
 import re
 import pandas as pd
-from src.config_loader import ConfigLoader
+from config_loader import ConfigLoader
 import requests
 
 cfg = ConfigLoader("credentials.json")

@@ -1,11 +1,11 @@
 import os
 import logging
-from src.GitHub_Commit import GitHubCommits
-from src.config_loader import ConfigLoader
-from src.context_loader import ContextLoader
-from src.vector_store import VectorStoreManager
-from src.process_commits import ProcessCommits
-from src.drive_upload import UploadToDrive
+from GitHub_Commit import GitHubCommits
+from config_loader import ConfigLoader
+from context_loader import ContextLoader
+from vector_store import VectorStoreManager
+from process_commits import ProcessCommits
+from drive_upload import UploadToDrive
 import multiprocessing
 
 def main():

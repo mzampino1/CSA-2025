@@ -1,0 +1,69 @@
+Loading python/3.12.11
+  Loading requirement: tcl/8.6.12
+[W711 14:56:04.005950584 socket.cpp:755] [c10d] The client socket cannot be initialized to connect to [localhost]:29500 (errno: 97 - Address family not supported by protocol).
+Traceback (most recent call last):
+  File "/users/cgarci32/CSA-2025/Trainers/train_injector.py", line 6, in <module>
+    from config_loader import ConfigLoader
+ModuleNotFoundError: No module named 'config_loader'
+Traceback (most recent call last):
+  File "/users/cgarci32/CSA-2025/Trainers/train_injector.py", line 6, in <module>
+    from config_loader import ConfigLoader
+ModuleNotFoundError: No module named 'config_loader'
+Traceback (most recent call last):
+  File "/users/cgarci32/CSA-2025/Trainers/train_injector.py", line 6, in <module>
+    from config_loader import ConfigLoader
+ModuleNotFoundError: No module named 'config_loader'
+Traceback (most recent call last):
+  File "/users/cgarci32/CSA-2025/Trainers/train_injector.py", line 6, in <module>
+    from config_loader import ConfigLoader
+ModuleNotFoundError: No module named 'config_loader'
+E0711 14:56:15.636622 2571238 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 2571242) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/users/cgarci32/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/users/cgarci32/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+Trainers/train_injector.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-07-11_14:56:15
+  host      : qa-a10-031.crc.nd.edu
+  rank      : 1 (local_rank: 1)
+  exitcode  : 1 (pid: 2571243)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2025-07-11_14:56:15
+  host      : qa-a10-031.crc.nd.edu
+  rank      : 2 (local_rank: 2)
+  exitcode  : 1 (pid: 2571244)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[3]:
+  time      : 2025-07-11_14:56:15
+  host      : qa-a10-031.crc.nd.edu
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 2571245)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-07-11_14:56:15
+  host      : qa-a10-031.crc.nd.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2571242)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

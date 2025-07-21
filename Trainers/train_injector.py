@@ -3,7 +3,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingA
 from peft import LoraConfig, get_peft_model, TaskType
 import os
 import json
-from src.config_loader import ConfigLoader
+from config_loader import ConfigLoader
 
 class JavaTrainerAI(): 
     def __init__(self):

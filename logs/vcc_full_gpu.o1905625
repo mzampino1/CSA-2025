@@ -1,0 +1,2956 @@
+[Sat Jul 19 05:43:26 PM EDT 2025] Starting job on qa-a10-023.crc.nd.edu
+[Sat Jul 19 05:43:26 PM EDT 2025] Dataset repo already present at /users/cgarci32/CSA-2025-Dataset
+time=2025-07-19T17:43:26.175-04:00 level=INFO source=routes.go:1235 msg="server config" env="map[CUDA_VISIBLE_DEVICES:0 GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_CONTEXT_LENGTH:4096 OLLAMA_DEBUG:INFO OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11434 OLLAMA_INTEL_GPU:false OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/users/cgarci32/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NEW_ENGINE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:0 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_SCHED_SPREAD:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+time=2025-07-19T17:43:26.183-04:00 level=INFO source=images.go:476 msg="total blobs: 14"
+time=2025-07-19T17:43:26.187-04:00 level=INFO source=images.go:483 msg="total unused blobs removed: 0"
+time=2025-07-19T17:43:26.189-04:00 level=INFO source=routes.go:1288 msg="Listening on 127.0.0.1:11434 (version 0.9.6)"
+time=2025-07-19T17:43:26.189-04:00 level=INFO source=gpu.go:217 msg="looking for compatible GPUs"
+time=2025-07-19T17:43:26.556-04:00 level=INFO source=types.go:130 msg="inference compute" id=GPU-911ce388-3875-b70c-4232-86878fc5916e library=cuda variant=v12 compute=8.6 driver=12.8 name="NVIDIA A10" total="22.1 GiB" available="21.8 GiB"
+2025-07-19 17:44:26,125 INFO Fetched: 2228 / 2228 files
+2025-07-19 17:44:34,735 INFO Use pytorch device_name: cuda:0
+2025-07-19 17:44:34,736 INFO Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-07-19 17:44:52,218 INFO Loading faiss with AVX512 support.
+2025-07-19 17:44:52,243 INFO Successfully loaded faiss with AVX512 support.
+2025-07-19 17:44:52,248 INFO Failed to load GPU Faiss: name 'GpuIndexIVFFlat' is not defined. Will not load constructor refs for GPU indexes. This is only an error if you're trying to use GPU Faiss.
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+DEBUG: repo_path = /users/cgarci32/CSA-2025-Dataset
+DEBUG: contents of repo_path: ['.git', 'CSA-2025-Dataset', 'files', 'commits.csv']
+DEBUG: gitdir = /users/cgarci32/CSA-2025-Dataset/.git
+DEBUG: gitdir exists?  True
+DEBUG: gitdir isdir?  True
+Cleared and committed deletions in 'files' for repo at /users/cgarci32/CSA-2025-Dataset.
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/R.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+Failed to get Conversation.java: 404
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationCursor.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationList.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Account.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Contact.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Conversation.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Message.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DatabaseBackend.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/NewConversationActivity.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ManageAccountActivity.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/NewConversationActivity-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/AbstractEntity.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Conversation-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Message-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DatabaseBackend-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/OnConversationListChangedListener.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Element.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/MessagePacket.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/OnIqPacketReceived.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/OnMessagePacketReceived.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/OnPresencePacketReceived.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnection.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/R-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Account-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/EditAccount.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ManageAccountActivity-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/NewConversationActivity-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/R-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Contact-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DatabaseBackend-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/NewConversationActivity-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/R-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Contact-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Presences.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DatabaseBackend-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DialogContactDetails.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/NewConversationActivity-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-5.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/R-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/OtrEngine.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Account-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Conversation-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DatabaseBackend-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-5.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity-5.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-6.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/UIHelper.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/TagWriter.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/MessagePacket-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnection-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Account-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Contact-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DatabaseBackend-5.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/OnPhoneContactsMerged.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-6.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-7.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/MessageParser.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/PhoneHelper.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmlReader.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-8.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/R-5.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/OtrEngine-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/PgpEngine.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Account-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Contact-4.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Message-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-7.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity-6.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationFragment-9.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DialogContactDetails-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ManageAccountActivity-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/MessageParser-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-8.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ConversationActivity-7.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/PhoneHelper-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/EventReceiver.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppActivity.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/Account-5.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/EventReceiver-1.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnectionService-9.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ManageAccountActivity-3.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/DNSHelper.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/XmppConnection-2.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+DEBUG: attempting to open Git repo at: /users/cgarci32/CSA-2025-Dataset
+File /users/cgarci32/CSA-2025-Dataset/files/ContactDetailsActivity.java has been updated with new code.
+Changes committed and pushed to git@github.com:mzampino1/CSA-2025-Dataset.git
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+[GIN] 2025/07/19 - 17:46:56 | 404 |    4.042571ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |   16.036526ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |    30.54391ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |    8.863825ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |    9.609057ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |    3.356297ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |    8.237875ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |    3.548059ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:56 | 404 |   10.097398ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:57 | 404 |    3.282655ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:57 | 404 |   19.409408ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:57 | 404 |   10.162732ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |    3.857789ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |   13.408859ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |    11.22956ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |     3.35355ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |   26.514106ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |   23.017189ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |    3.503136ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |   23.630846ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:46:58 | 404 |   18.773043ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |    3.444707ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |      3.1942ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |   24.382765ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |    3.734431ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |   13.899341ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |    3.857797ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |     10.0916ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |   10.228184ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:00 | 404 |   18.947562ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:01 | 404 |    3.364018ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:01 | 404 |    3.576424ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:01 | 404 |   19.974127ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |      3.3923ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |    6.357655ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |   23.317106ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |    3.890406ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |   40.434996ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |    3.320379ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |   13.374729ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |    6.422731ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |    6.263847ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |    3.201782ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |    3.303764ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:02 | 404 |   18.235906ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:04 | 404 |    3.455253ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:04 | 404 |    9.518801ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:04 | 404 |   13.975835ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:04 | 404 |    3.619074ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:04 | 404 |   12.226944ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:05 | 404 |   12.950021ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:05 | 404 |     3.45107ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:05 | 404 |   23.864386ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:05 | 404 |   23.919229ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:05 | 404 |    3.636236ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:05 | 404 |    7.222156ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:05 | 404 |   25.715629ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:06 | 404 |    3.590963ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:06 | 404 |   26.514006ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:06 | 404 |   36.088778ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:06 | 404 |   13.983363ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:06 | 404 |   19.790858ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:06 | 404 |   21.373325ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:07 | 404 |    3.490157ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:07 | 404 |   25.407836ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:07 | 404 |    9.795917ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:07 | 404 |     3.70024ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:07 | 404 |    20.70839ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:07 | 404 |   13.705265ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:07 | 404 |     4.96711ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:08 | 404 |   22.963653ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:08 | 404 |    3.214469ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:08 | 404 |     3.27647ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:08 | 404 |    3.195747ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:08 | 404 |    3.127385ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:09 | 404 |    3.467954ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:09 | 404 |   10.261571ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:09 | 404 |    3.579087ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:10 | 404 |    3.462752ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:10 | 404 |   20.687046ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:10 | 404 |    9.943427ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:10 | 404 |    5.215301ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:10 | 404 |   30.498838ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:10 | 404 |   30.542886ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:10 | 404 |    3.868684ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:11 | 404 |   13.678824ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:11 | 404 |   16.714041ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:11 | 404 |    3.353743ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:11 | 404 |   24.973433ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:11 | 404 |    4.668663ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:11 | 404 |    3.756595ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:11 | 404 |   23.055484ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:12 | 404 |   25.749049ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:12 | 404 |    6.880712ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:12 | 404 |    3.215737ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:12 | 404 |   12.007244ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |    3.365733ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |    9.197093ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |     3.47484ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |    8.104902ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |    3.470416ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |     7.57012ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |    3.789855ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:13 | 404 |    3.320671ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:14 | 404 |    3.694303ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:15 | 404 |    3.225755ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:15 | 404 |   16.914527ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:15 | 404 |   11.676197ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:15 | 404 |    3.350536ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:15 | 404 |   19.171762ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:15 | 404 |    3.465744ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:15 | 404 |    3.536314ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:16 | 404 |    4.861015ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:16 | 404 |   22.464562ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:16 | 404 |   10.925162ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:16 | 404 |   28.721778ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:16 | 404 |    9.848938ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:16 | 404 |    3.524391ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:16 | 404 |    3.564237ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:17 | 404 |    9.160863ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:17 | 404 |    3.456246ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:17 | 404 |   20.448671ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:17 | 404 |   23.575647ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:17 | 404 |    3.332724ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:17 | 404 |   12.695062ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:18 | 404 |    16.03613ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:18 | 404 |    3.162903ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:18 | 404 |     31.5057ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:18 | 404 |   24.940868ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:19 | 404 |    4.749371ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:19 | 404 |   22.319724ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:19 | 404 |   17.330463ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:19 | 404 |    9.345125ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:20 | 404 |   10.132636ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:20 | 404 |    10.08274ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:20 | 404 |    7.399321ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:20 | 404 |   39.785269ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:20 | 404 |   17.773603ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |    4.884412ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |     4.90285ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |   20.724536ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |   23.905215ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |   24.611335ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |    6.928751ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |    3.608485ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |   20.892911ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:21 | 404 |   13.741347ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:22 | 404 |     3.88612ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:22 | 404 |   22.805413ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:22 | 404 |    6.086821ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:22 | 404 |      3.7907ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |   18.898495ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |   14.137762ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |    3.474483ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |   29.708986ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |   10.479884ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |    3.480658ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |   23.856729ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:23 | 404 |    39.82725ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:24 | 404 |    3.497237ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:24 | 404 |   16.995185ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:24 | 404 |   18.779895ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:25 | 404 |    3.223647ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:25 | 404 |   21.521932ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:25 | 404 |   15.495753ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:25 | 404 |    3.408388ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:25 | 404 |   19.003902ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:25 | 404 |   16.777617ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:26 | 404 |     3.35079ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:26 | 404 |   37.733274ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:26 | 404 |   10.518458ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:26 | 404 |    3.300023ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:26 | 404 |   20.223137ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:26 | 404 |    3.499604ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:27 | 404 |     3.91687ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:27 | 404 |   11.313805ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:27 | 404 |   13.192664ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:27 | 404 |    3.402381ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:27 | 404 |   20.689156ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:27 | 404 |   12.248352ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:28 | 404 |    3.218292ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:28 | 404 |     4.73009ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:28 | 404 |   18.285085ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:28 | 404 |    4.067827ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:28 | 404 |   16.363844ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:28 | 404 |   12.108195ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:29 | 404 |    3.406708ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:29 | 404 |   12.433054ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:29 | 404 |    3.733505ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:29 | 404 |     3.02503ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:29 | 404 |    3.088451ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:29 | 404 |   17.583427ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:30 | 404 |    3.685723ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |   23.609696ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |   26.757192ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |    3.325515ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |   12.256738ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |    5.888865ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |    3.197747ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |   10.948686ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:31 | 404 |    7.983571ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:32 | 404 |    3.525232ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:32 | 404 |   22.732115ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:32 | 404 |   24.639065ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:32 | 404 |    3.394098ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:32 | 404 |    3.399015ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:32 | 404 |    9.224995ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:33 | 404 |    3.997082ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:33 | 404 |    3.592476ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:33 | 404 |    8.359405ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:33 | 404 |    9.593125ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:34 | 404 |    3.373011ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:34 | 404 |   41.738546ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:34 | 404 |    3.268066ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:34 | 404 |   27.245393ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:34 | 404 |   41.975262ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:35 | 404 |    3.430103ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:35 | 404 |     3.00396ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:35 | 404 |   19.468258ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:35 | 404 |    3.338438ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:35 | 404 |    5.184997ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:35 | 404 |   18.239517ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:36 | 404 |    9.025875ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:36 | 404 |   10.046247ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:36 | 404 |   22.191621ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:37 | 404 |    3.464143ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:37 | 404 |    3.625079ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:37 | 404 |   11.674065ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:37 | 404 |   24.003801ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:37 | 404 |   15.665613ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:37 | 404 |    3.923696ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |    5.713413ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |   26.479166ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |   25.173819ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |    3.360831ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |    9.495094ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |   19.399806ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |    5.022342ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |    14.66785ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:38 | 404 |   15.392197ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:39 | 404 |    3.679169ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:39 | 404 |   22.146782ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:39 | 404 |    3.304884ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:40 | 404 |    3.444071ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:40 | 404 |   18.734763ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:40 | 404 |    7.650874ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:40 | 404 |    3.472013ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:40 | 404 |   17.418425ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:40 | 404 |   16.499659ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:41 | 404 |    3.695396ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:41 | 404 |   18.020019ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:41 | 404 |    9.433995ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:41 | 404 |    3.527664ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:41 | 404 |   25.535917ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:41 | 404 |   26.881634ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:41 | 404 |    4.511966ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:42 | 404 |   21.414549ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:42 | 404 |    9.104604ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:42 | 404 |    3.767772ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:42 | 404 |   27.130997ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:42 | 404 |   27.663876ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:43 | 404 |    3.764454ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:43 | 404 |    3.596925ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:43 | 404 |    3.678208ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:43 | 404 |    3.569179ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:43 | 404 |   13.580152ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:43 | 404 |   24.988987ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:44 | 404 |    3.863654ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:44 | 404 |    24.44128ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:44 | 404 |   24.620977ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:44 | 404 |    3.540888ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:44 | 404 |   12.403723ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:44 | 404 |   25.031636ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:45 | 404 |    4.286355ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:45 | 404 |    2.924123ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:45 | 404 |    3.105857ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:46 | 404 |    4.719683ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:46 | 404 |    3.093353ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:46 | 404 |   25.768326ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:46 | 404 |     7.04152ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:46 | 404 |    18.48398ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:46 | 404 |   27.577628ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:47 | 404 |    3.859553ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:47 | 404 |   43.772399ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:47 | 404 |   21.088223ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:47 | 404 |   10.151362ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:47 | 404 |   25.857793ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:47 | 404 |    3.411753ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    3.595208ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    15.96699ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    3.444505ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    3.372031ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |     3.00872ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    3.610771ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    4.945398ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    3.068607ms |       127.0.0.1 | POST     "/api/generate"
+[GIN] 2025/07/19 - 17:47:48 | 404 |    3.006146ms |       127.0.0.1 | POST     "/api/generate"
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+
+
+[1m> Entering new RetrievalQA chain...[0m
+Error in QA chain: model 'krith/qwen2.5-coder-32b-instruct' not found (status code: 404)
+2025-07-19 17:47:52,159 INFO Total answers generated: 0
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+ Exception on None: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+ Exception on ConversationList.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationCursor.java: can only concatenate str (not "NoneType") to str
+ Exception on R.java: can only concatenate str (not "NoneType") to str
+ Exception on Account.java: can only concatenate str (not "NoneType") to str
+ Exception on Contact.java: can only concatenate str (not "NoneType") to str
+ Exception on Conversation.java: can only concatenate str (not "NoneType") to str
+ Exception on Message.java: can only concatenate str (not "NoneType") to str
+ Exception on DatabaseBackend.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment.java: can only concatenate str (not "NoneType") to str
+ Exception on NewConversationActivity.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity-1.java: can only concatenate str (not "NoneType") to str
+ Exception on ManageAccountActivity.java: can only concatenate str (not "NoneType") to str
+ Exception on NewConversationActivity-1.java: can only concatenate str (not "NoneType") to str
+ Exception on AbstractEntity.java: can only concatenate str (not "NoneType") to str
+ Exception on Conversation-1.java: can only concatenate str (not "NoneType") to str
+ Exception on Message-1.java: can only concatenate str (not "NoneType") to str
+ Exception on DatabaseBackend-1.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity-2.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-1.java: can only concatenate str (not "NoneType") to str
+ Exception on OnConversationListChangedListener.java: can only concatenate str (not "NoneType") to str
+ Exception on Element.java: can only concatenate str (not "NoneType") to str
+ Exception on MessagePacket.java: can only concatenate str (not "NoneType") to str
+ Exception on OnIqPacketReceived.java: can only concatenate str (not "NoneType") to str
+ Exception on OnMessagePacketReceived.java: can only concatenate str (not "NoneType") to str
+ Exception on OnPresencePacketReceived.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnection.java: can only concatenate str (not "NoneType") to str
+ Exception on R-1.java: can only concatenate str (not "NoneType") to str
+ Exception on Account-1.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-1.java: can only concatenate str (not "NoneType") to str
+ Exception on EditAccount.java: can only concatenate str (not "NoneType") to str
+ Exception on ManageAccountActivity-1.java: can only concatenate str (not "NoneType") to str
+ Exception on NewConversationActivity-2.java: can only concatenate str (not "NoneType") to str
+ Exception on R-2.java: can only concatenate str (not "NoneType") to str
+ Exception on Contact-1.java: can only concatenate str (not "NoneType") to str
+ Exception on DatabaseBackend-2.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-2.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity-3.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-2.java: can only concatenate str (not "NoneType") to str
+ Exception on NewConversationActivity-3.java: can only concatenate str (not "NoneType") to str
+ Exception on R-3.java: can only concatenate str (not "NoneType") to str
+ Exception on Contact-2.java: can only concatenate str (not "NoneType") to str
+ Exception on Presences.java: can only concatenate str (not "NoneType") to str
+ Exception on DatabaseBackend-3.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-3.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-3.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity-4.java: can only concatenate str (not "NoneType") to str
+ Exception on DialogContactDetails.java: can only concatenate str (not "NoneType") to str
+ Exception on NewConversationActivity-4.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-4.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-4.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-5.java: can only concatenate str (not "NoneType") to str
+ Exception on R-4.java: can only concatenate str (not "NoneType") to str
+ Exception on OtrEngine.java: can only concatenate str (not "NoneType") to str
+ Exception on Account-2.java: can only concatenate str (not "NoneType") to str
+ Exception on Conversation-2.java: can only concatenate str (not "NoneType") to str
+ Exception on DatabaseBackend-4.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-5.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity-5.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-6.java: can only concatenate str (not "NoneType") to str
+ Exception on UIHelper.java: can only concatenate str (not "NoneType") to str
+ Exception on TagWriter.java: can only concatenate str (not "NoneType") to str
+ Exception on MessagePacket-1.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnection-1.java: can only concatenate str (not "NoneType") to str
+ Exception on Account-3.java: can only concatenate str (not "NoneType") to str
+ Exception on Contact-3.java: can only concatenate str (not "NoneType") to str
+ Exception on DatabaseBackend-5.java: can only concatenate str (not "NoneType") to str
+ Exception on OnPhoneContactsMerged.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-6.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-7.java: can only concatenate str (not "NoneType") to str
+ Exception on MessageParser.java: can only concatenate str (not "NoneType") to str
+ Exception on PhoneHelper.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-8.java: can only concatenate str (not "NoneType") to str
+ Exception on XmlReader.java: can only concatenate str (not "NoneType") to str
+ Exception on R-5.java: can only concatenate str (not "NoneType") to str
+ Exception on OtrEngine-1.java: can only concatenate str (not "NoneType") to str
+ Exception on Account-4.java: can only concatenate str (not "NoneType") to str
+ Exception on PgpEngine.java: can only concatenate str (not "NoneType") to str
+ Exception on Contact-4.java: can only concatenate str (not "NoneType") to str
+ Exception on Message-2.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity-6.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-7.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationFragment-9.java: can only concatenate str (not "NoneType") to str
+ Exception on DialogContactDetails-1.java: can only concatenate str (not "NoneType") to str
+ Exception on ManageAccountActivity-2.java: can only concatenate str (not "NoneType") to str
+ Exception on MessageParser-1.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-8.java: can only concatenate str (not "NoneType") to str
+ Exception on ConversationActivity-7.java: can only concatenate str (not "NoneType") to str
+ Exception on PhoneHelper-1.java: can only concatenate str (not "NoneType") to str
+ Exception on EventReceiver.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppActivity.java: can only concatenate str (not "NoneType") to str
+ Exception on EventReceiver-1.java: can only concatenate str (not "NoneType") to str
+ Exception on Account-5.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnectionService-9.java: can only concatenate str (not "NoneType") to str
+ Exception on ManageAccountActivity-3.java: can only concatenate str (not "NoneType") to str
+ Exception on XmppConnection-2.java: can only concatenate str (not "NoneType") to str
+ Exception on DNSHelper.java: can only concatenate str (not "NoneType") to str
+ Exception on ContactDetailsActivity.java: can only concatenate str (not "NoneType") to str
+Committed and pushed changes to git@github.com:mzampino1/CSA-2025-Dataset.git
+Committed and pushed changes to git@github.com:mzampino1/CSA-2025-Dataset.git
