@@ -33,7 +33,7 @@ class ProcessCommits:
 
     def _worker(self, commit_link,file_name, device_index=4):
         os.environ["CUDA_VISIBLE_DEVICES"] = str(device_index)
-        from qa_chain import LangchainQA_Chain 
+        from src.qa_chain import LangchainQA_Chain 
 
         logging.info(f"[GPU {device_index}] Starting {commit_link}")
 
