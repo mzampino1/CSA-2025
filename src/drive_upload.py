@@ -27,7 +27,6 @@ class UploadToDrive():
         drive_service = build('drive', 'v3', credentials=creds)
         return drive_service
 
-    # Uploads a file to Google Drive as a Google Doc
     def upload_and_convert_to_gdoc(self, path: str, name: str, folder_id: str, drive_service: str):
         file_metadata = {
             'name': name,

@@ -1,3 +1,5 @@
+# ignore NFS “.nfs<…>” temporary files
+.nfs*
 credentials.json
 token.json
 __pycache__/

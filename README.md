@@ -7,18 +7,20 @@ Contains scripts to scrape data from GitHub repositories:
 git_file_scraper.py - Retrieves URLs for relevant files from a GitHub repository and stores them in contextURLs.txt  
 git_patch_scraper.py - Retrieves URLs for relevant commit patch files from a GitHub repository and stores them in CommitLinks.txt  
   
-### input
+### input-text
 Contains text files relevant to the program's input data:  
+CommitLinks.txt - patch file URLs found by git_patch_scraper.py (for storage, not actually accessed by the program)  
 contextURLs.txt - context file URLs found by git_file_scraper.py to be used in the program  
-inputLinks.txt - file URLs of the files found by git_file_scraper.py to be made vulnerable by the program  
+inputLinks.txt - patch file URLs of the commits to be made vulnerable by the program  
+
+### output-text
+Contains text files relevant to the program's output:  
+context.txt - context used most recently in the program's RAG (retrieval-augmented generation)  
 
 ### main
 Contains the main program's python files:  
-config_loader.py - loads information from credentials.json  
-context_loader.py - gets context code from links and splits the code into chunks to be used in vector search  
-drive_upload.py - uploads answers to Google Drive  
-GitHub_commit.py - commits the non-vulnerable code and the vulnerable code to create a non-VCC and a VCC  
-main.py - the main workflow of the program, which calls methods from the other files  
-process_files.py - generates vulnerable versions of the input files using the LLM  
-qa_chain.py - initializes the question-answering chain that is used to perform retrieval-augmented generation  
-vector_store.py - creates vector store representing context to be used in vector search  
+vulnerability_injection.py - script that performs retrieval-augmented generation and uploads results to Google Drive  
+drive.py - contains methods to upload files to Google Drive  
+alternate-versions - folder containing alternate versions of vulnerability_injection.py:  
+* LangChain_no_chunk.py - similar to original, but gives entire code snippets as context without splitting into chunks  
+* manual_no_chunk.py - also does not split context, but performs the steps of RAG more manually (without LangChain abstraction)  
