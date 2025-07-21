@@ -2,9 +2,9 @@
 #$ -cwd                               # run in submission directory
 #$ -M cgarci32@nd.edu                 # email notifications
 #$ -m abe                             
-#$ -pe smp 4                          # 4 CPU cores
+#$ -pe smp 1                          # 4 CPU cores
 #$ -q gpu                             # GPU queue
-#$ -l gpu_card=4                      # 4 GPUs
+#$ -l gpu_card=1                      # 4 GPUs
 #$ -N vcc_full_gpu                    # job name
 #$ -o logs/vcc_full_gpu.o$JOB_ID      # STDOUT log
 #$ -e logs/vcc_full_gpu.e$JOB_ID      # STDERR log
