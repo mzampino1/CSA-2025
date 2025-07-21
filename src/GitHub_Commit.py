@@ -223,9 +223,10 @@ class GitHubCommits:
                         row[4] = cwe_id or "Unknown CWE ID"
                         new_rows.append(row)
                     else:
-                        # No vulnerable code: remove the file and clear row
+                        # No vulnerable code: remove the file unless it is the last remaining file and clear row
                         file_path = os.path.join(files_dir, file_name)
-                        if os.path.exists(file_path):
+                        # If directory exists and has more than one file, remove the file
+                        if os.path.exists(file_path) and len(os.listdir(files_dir)) > 1:
                             self.remove_file(file_path)
                         print(f"Removed {file_name} from commits.csv as it has no vulnerable code.")
                     break
