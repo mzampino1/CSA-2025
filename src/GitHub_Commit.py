@@ -197,6 +197,8 @@ class GitHubCommits:
             headers = next(reader)
             rows    = [row for row in reader]
 
+        new_rows = []
+
         # 2) Update rows based on generated answers
         for result in results:
             file_name    = result.get("file_name")
@@ -205,6 +207,9 @@ class GitHubCommits:
 
             # Find the matching CSV row
             for idx, row in enumerate(rows):
+                # Skip iteration if row is completely empty
+                if not row:
+                    continue
                 if row[1] == file_name:
                     if vul_code:
                         # Commit the vulnerable code and capture its SHA
@@ -216,14 +221,15 @@ class GitHubCommits:
                         )
                         row[3] = vcc_hash
                         row[4] = cwe_id or "Unknown CWE ID"
+                        new_rows.append(row)
                     else:
                         # No vulnerable code: remove the file and clear row
                         file_path = os.path.join(files_dir, file_name)
                         if os.path.exists(file_path):
                             self.remove_file(file_path)
-                        del rows[idx]  # Remove the row
                         print(f"Removed {file_name} from commits.csv as it has no vulnerable code.")
                     break
+        rows = new_rows
 
         # 3) Write updates back to the CSV
         with open(commits_csv, "w", newline='', encoding='utf-8') as csvfile:
