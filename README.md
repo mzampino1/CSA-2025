@@ -22,3 +22,5 @@ main.py - Main flow of the program that calls various methods to complete the fu
 process_commits.py - Generates responses from the LLM for each file to be used to generate a VCC.  
 qa_chain.py - Contains method to build RAG Question-Answering chain with configuration info such as the LLM to be used.  
 vector_store.py - Contains method to make vector embeddings that represent the context chunks for the similarity search.  
+
+### See about for VCC dataset repo
