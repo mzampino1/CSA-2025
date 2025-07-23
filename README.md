@@ -1,6 +1,6 @@
 # RAG-VCC (Notre Dame's Summer 2025 Computing Skills Accelerator Program)
 
-Vulnerability-detecting machine learning models are becoming more important in cybersecurity because they can help prevent vulnerable software from being published. However, in order to train these models, large amounts of data are necessary. Existing datasets are currently not realistic or diverse enough to address this challenge. RAG-VCC tries to address that issue by using retrieval-augmented generation (RAG) with a large language model to inject vulnerable code into non-vulnerable code snippets. Now with both snippets, we create Vulnerability Contributing Commits (VCC) that are both realistic and diverse, fit to train vulnerability-detecting models. 
+Vulnerability-detecting machine learning models are becoming more important in cybersecurity because they can help prevent vulnerable software from being published. However, in order to train these models, large amounts of data are necessary. Existing datasets are currently not realistic or diverse enough to address this challenge. RAG-VCC tries to address that issue by using retrieval-augmented generation (RAG) with a large language model to inject vulnerable code into non-vulnerable code snippets. Now with both snippets, we create Vulnerability-Contributing Commits (VCC) that are both realistic and diverse, fit to train vulnerability-detecting models.  
 
 ### GitHub-scrapers
 Contains scripts to scrape data from GitHub repositories:  
@@ -9,7 +9,7 @@ git_patch_scraper.py - Retrieves URLs for relevant commit patch files from a Git
   
 ### input-text
 Contains text files relevant to the program's input data:  
-contextURLs.txt - GitHub context file URLs found by git_file_scraper.py to be used in the program. Include pieces of vulnerable code to be later used by the model. 
+contextURLs.txt - GitHub context file URLs found by git_file_scraper.py to be used in the program. Include pieces of vulnerable code to be later used by the model.  
 inputLinks.txt - GitHub file URLs that will be transformed into vulnerable code.  
 
 ### src
